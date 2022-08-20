@@ -4,7 +4,8 @@
   "description": "a scheduling app",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "lodash": "^4.17.21",
     "mongoose": "^6.5.2",
     "nodemailer": "^6.7.8",
+    "nodemon": "^2.0.19",
     "otp-generator": "^4.0.0"
   }
 }
