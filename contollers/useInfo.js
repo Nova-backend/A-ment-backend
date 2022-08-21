@@ -31,7 +31,7 @@ module.exports.signup = ()=>{
      })
      await user.save()
      await newuser.save()
-    }
+    
     const messenger = nodeMailer.createTransport({
         service: 'Gmail',
         auth: {
@@ -41,6 +41,26 @@ module.exports.signup = ()=>{
     })
 
     const message = {
-        to: 
+        to: user.email,
+            from: "divineingabire69@gmail.com",
+            subject: "Email verification",
+            html: `
+            <html>
+            <h6> Hi ${user.firstName} </h6>\n
+            <p> below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
+             <h3>${OTP}</h3>
+             </html>
+            `
+
     }
+    messenger.sendMail(mailOPtions, (error,info)=>{
+        if(error){
+            console.log(error);
+
+        }else{
+            console.log("sent", info.response);
+            res.send("Email sent successfully")
+        }
+    })
+}
 }
