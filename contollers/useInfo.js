@@ -10,7 +10,7 @@ module.exports.signup = ()=>{
   return async (req,res)=>{
       const salt = await bcrypt.genSalt(20);
       const {error} = validation(req.boy);
-      const OTP = otpGenerator.generate(8, { upperCaseAlphabets:true,lowerCaseAlphabets:true,specialChars:false})
+      const OTP = otpGenerator.generate(8, { upperCaseAlphabets:true,specialChars:false})
      if(error){
          res.send(error)
      }

@@ -5,7 +5,7 @@ const express = require('express')
 const app = express()
 
 const mongoose = require('mongoose')
-const { Router } = require('./routes/user')
+const { Router } = require('./routes/user.js')
 
 mongoose.connect(process.env.URL).then(()=>{
     console.log("Database successfully connected");
