@@ -14,6 +14,7 @@ module.exports.signup = ()=>{
      if(error){
          res.send(error)
      }
+     
      const emailDuplicate = User.findOne(req.body.email)
 
      if(emailDuplicate){
@@ -25,11 +26,12 @@ module.exports.signup = ()=>{
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, salt)
      })
+     await user.save()
      const newuser = new OTPmodel({
          OTP:OTP,
          email: user.email
      })
-     await user.save()
+     
      await newuser.save()
     
     const messenger = nodeMailer.createTransport({
@@ -63,4 +65,5 @@ module.exports.signup = ()=>{
         }
     })
 }
+
 }
