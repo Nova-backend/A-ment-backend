@@ -68,3 +68,48 @@ module.exports.signup = ()=>{
 }
 
 }
+module.exports.verifyEmail = () => {
+    return async (req, res) => {
+        const newOTP = await OTPmodel.findOne({ OTP: req.body.OTP })
+        if (!newOTP) {
+            res.send('OTP validation failed')
+        }
+        res.status(200).send('Account registered validation successfull').redirect('/signup')
+    }
+}
+module.exports.updateUser = () => {
+    return async (req, res) => {
+        try {
+            const updates = _.pick(req.body, ['firstName', 'lastName', 'email', 'password'])
+             User.findByIdAndUpdate(req.params.id, {
+                firstName: updates.firstName,
+                lastName: updates.lastName,
+                email: updates.email,
+                password: updates.password
+            }, (err, response) => {
+                if (err) {
+                    console.log(err)
+                   return res.send('error occured')
+                } else {
+                    res.json({message:'profile updated', user: updates});
+                   return console.log(response)
+                }
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+}
+module.exports.deleteUser = () => {
+    return async (req, res) => {
+         User.findByIdAndDelete(req.params.id)
+        res.json({ message: 'Profile deleted successfully', success: true })
+    }
+}
+module.exports.getUser = () => {
+    return async (req, res) => {
+        const user = await User.findById(req.body.id)
+        return res.json({ user: user, success: true })
+    }
+}
