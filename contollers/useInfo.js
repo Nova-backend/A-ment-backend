@@ -14,18 +14,19 @@ module.exports.signup = ()=>{
      if(error){
          res.send(error)
      }
-     
-     const emailDuplicate = User.findOne(req.body.email)
-
-     if(emailDuplicate){
-         res.send("Sorry, the email already exists");
-     }
      const user = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, salt)
      })
+     
+     const emailDuplicate = User.findOne(req.body.email)
+
+     if(emailDuplicate){
+         res.send("Sorry, the email already exists");
+     }
+   
      await user.save()
      const newuser = new OTPmodel({
          OTP:OTP,
@@ -55,7 +56,7 @@ module.exports.signup = ()=>{
             `
 
     }
-    messenger.sendMail(mailOPtions, (error,info)=>{
+    messenger.sendMail(message, (error,info)=>{
         if(error){
             console.log(error);
 
