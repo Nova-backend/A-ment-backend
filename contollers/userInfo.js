@@ -15,13 +15,7 @@ module.exports.signup = ()=>{
          res.send(error)
      }
 
-     
-     const emailDuplicate = User.findOne(req.body.email)
-
-     if(emailDuplicate){
-         res.send("Sorry, the email already exists").status(400);
-     }
-     console.log("new user not registered");
+    
      const user = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -33,18 +27,25 @@ module.exports.signup = ()=>{
          OTP:OTP,
          email: user.email
      })
+     const emailDuplicate = User.findOne(req.body.email)
+
+if(emailDuplicate){
+    res.send("Sorry, the email already exists").status(400);
+}
+console.log("new user not registered");
      
      await newuser.save()
      await user.save()
-    const messenger = nodeMailer.createTransport({
-        service: 'Gmail',
+    const messenger = nodeMailer.createTransport(smtpTransport({
+        service: 'gmail',
+        host: 'smtp.gmail.com',
         auth: {
             user:"divineingabire69@gmail.com",
             pass: "20202005"
         }
-    })
+    }))
 
-    const message = {
+    const mailOptions = {
         to: user.email,
             from: "divineingabire69@gmail.com",
             subject: "Email verification",
@@ -57,7 +58,7 @@ module.exports.signup = ()=>{
             `
 
     }
-    messenger.sendMail(message, (error,info)=>{
+    messenger.sendMail(mailOptions, (error,info)=>{
         if(error){
             console.log(error);
 
@@ -67,6 +68,8 @@ module.exports.signup = ()=>{
         }
     })
 }
+ 
+
 
 }
 module.exports.verifyEmail = () => {
