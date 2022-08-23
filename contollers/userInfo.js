@@ -21,6 +21,7 @@ module.exports.signup = ()=>{
      if(emailDuplicate){
          res.send("Sorry, the email already exists").status(400);
      }
+     console.log("new user not registered");
      const user = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,

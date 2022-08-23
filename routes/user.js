@@ -1,4 +1,4 @@
-const { signup } = require('../contollers/useInfo')
+const { signup } = require('../contollers/userInfo.js')
 const { verifyToken } = require('../auth/user')
 const express = require('express')
 
