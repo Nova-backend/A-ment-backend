@@ -6,6 +6,7 @@ const _ = require("lodash")
 
 
 
+
 module.exports.signup = ()=>{
   return async (req,res)=>{
       const salt = await bcrypt.genSalt(20);
@@ -32,27 +33,27 @@ module.exports.signup = ()=>{
 if(emailDuplicate){
     res.send("Sorry, the email already exists").status(400);
 }
-console.log("new user not registered");
+
      
      await newuser.save()
      await user.save()
-    const messenger = nodeMailer.createTransport(smtpTransport({
-        service: 'gmail',
-        host: 'smtp.gmail.com',
+    const messenger = nodeMailer.createTransport({
+        service: 'outlook',
+        
         auth: {
-            user:"divineingabire69@gmail.com",
-            pass: "20202005"
+            user:"divineingabire@outlook.com",
+            pass: "divine005@"
         }
-    }))
+    })
 
     const mailOptions = {
         to: user.email,
-            from: "divineingabire69@gmail.com",
+            from: "divineingabire@outlook.com",
             subject: "Email verification",
             html: `
             <html>
             <h6> Hi ${user.firstName} </h6>\n
-            <p> below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
+            <p> Below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
              <h3>${OTP}</h3>
              </html>
             `
