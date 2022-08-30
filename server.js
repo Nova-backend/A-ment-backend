@@ -19,6 +19,12 @@ cloudinary.config({
     secure:true
 });
 
+cloudinary.uploader.upload("https://res.cloudinary.com/dzgesd2uy/image/upload/v1657472998/cld-sample-2.jpg",
+ function(error, result) {
+     console.log(result, error)
+    });
+
+
 const PORT = process.env.PORT
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
