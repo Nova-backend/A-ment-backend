@@ -28,11 +28,11 @@ module.exports.signup = ()=>{
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, salt)
      })
-     cloudinary.uploader.upload("https://res.cloudinary.com/dzgesd2uy/image/upload/v1657472998/cld-sample-2.jpg",
+     cloudinary.uploader.upload("https://res.cloudinary.com/dzgesd2uy/image/upload/v1657473000/cld-sample-5.jpg",
      function(error, result) {
      console.log(result, error)
     });
-
+  
      
      const newuser = new OTPmodel({
          OTP:OTP,
