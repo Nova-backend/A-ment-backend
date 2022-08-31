@@ -21,8 +21,8 @@ module.exports.signup = ()=>{
         lastName: req.body.lastName,
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, salt),
-        profile_img: result.secure_url,
-        cloudinary_id: result.public_id,
+        // profile_img: result.secure_url,
+        // cloudinary_id: result.public_id,
      })
     //  cloudinary.uploader.upload("https://res.cloudinary.com/dzgesd2uy/image/upload/v1657473000/cld-sample-5.jpg",
     //  function(error, result) {
