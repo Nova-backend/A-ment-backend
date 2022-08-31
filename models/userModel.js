@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
+
 const joi = require('joi')
+const { string } = require('joi')
 const User = mongoose.Schema({
     firstName: {
         type: String,
@@ -17,8 +19,20 @@ const User = mongoose.Schema({
         type: String,
         required: true
     },
+    profile_img:{
+        type: String,
+        required:true
+    },
+    cloudinary_Id:{
+        type:String
+    }
+    
+
 
 })
+
+
+
 
 const validation = (data)=>{
      data = new joi.object({
