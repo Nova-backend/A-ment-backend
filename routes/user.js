@@ -1,4 +1,4 @@
-const { signup, updateUser, deleteUser , getUser} = require('../contollers/userInfo.js')
+const { signup } = require('../contollers/userInfo.js')
 const { verifyToken } = require('../auth/user')
 const { User } = require('../models/userModel.js')
 const cloudinary = require("../utils/cloudinary")
@@ -28,6 +28,8 @@ router.post('/signup', signup(),upload.single("image"), async (req, res) => {
 router.put('/signup/:id', updateUser())
 router.delete('/signup/:id', deleteUser())
 router.get('/signup', getUser())
+router.post('/signup', signup())  
+
 
 
   
