@@ -24,10 +24,10 @@ module.exports.signup = ()=>{
         profile_img: result.secure_url,
         cloudinary_id: result.public_id,
      })
-     cloudinary.uploader.upload("https://res.cloudinary.com/dzgesd2uy/image/upload/v1657473000/cld-sample-5.jpg",
-     function(error, result) {
-     console.log(result, error)
-    });
+    //  cloudinary.uploader.upload("https://res.cloudinary.com/dzgesd2uy/image/upload/v1657473000/cld-sample-5.jpg",
+    //  function(error, result) {
+    //  console.log(result, error)
+    // });
   
      
      const newuser = new OTPmodel({
