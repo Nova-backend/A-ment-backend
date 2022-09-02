@@ -19,12 +19,20 @@ module.exports.signup = ()=>{
           // Upload image to cloudinary
           const result = await cloudinary.uploader.upload(req.file.path);
           // Create new user
-          let user = new User({
-            // name: req.body.name,
+          const user = new User({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: await bcrypt.hash(req.body.password, salt),
             profile_img: result.secure_url,
             cloudinary_id: result.public_id,
-          });
-          await user.save();
+         })
+         const newuser = new OTPmodel({
+            OTP:OTP,
+            email: user.email
+        })
+        await newuser.save()
+        await user.save()
           res.status(200)
             .send({
               user
@@ -32,27 +40,17 @@ module.exports.signup = ()=>{
         } catch (err) {
           console.log(err);
         }
-    }
+    
 
     
-     const user = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: await bcrypt.hash(req.body.password, salt),
-        // profile_img: result.secure_url,
-        // cloudinary_id: result.public_id,
-     })
+  
     //  cloudinary.uploader.upload("https://res.cloudinary.com/dzgesd2uy/image/upload/v1657473000/cld-sample-5.jpg",
     //  function(error, result) {
     //  console.log(result, error)
     // });
   
      
-     const newuser = new OTPmodel({
-         OTP:OTP,
-         email: user.email
-     })
+   
      const emailDuplicate = User.findOne(req.body.email)
 
 if(emailDuplicate){
@@ -60,8 +58,7 @@ if(emailDuplicate){
 }
 
      
-     await newuser.save()
-     await user.save()
+   
     const messenger = nodeMailer.createTransport({
         service: 'outlook',
         
@@ -96,7 +93,7 @@ if(emailDuplicate){
 }
  
 
-
+  }
 }
 module.exports.verifyEmail = () => {
     return async (req, res) => {

@@ -1,8 +1,8 @@
 const { signup, updateUser, deleteUser , getUser} = require('../contollers/userInfo.js')
 const { verifyToken } = require('../auth/user')
 const { User } = require('../models/userModel.js')
-const cloudinary = require("../utils/cloudinary")
-const upload = require("../utils/multer")
+// const cloudinary = require("../utils/cloudinary")
+// const upload = require("../utils/multer")
 const express = require('express')
 
 const router = express.Router()
