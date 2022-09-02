@@ -14,70 +14,88 @@ module.exports.signup = ()=>{
      if(error){
          res.send(error)
      }
+     upload.single("image"), async (req, res) => {
+        try {
+          // Upload image to cloudinary
+          const result = await cloudinary.uploader.upload(req.file.path);
+          // Create new user
+          const user = new User({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: await bcrypt.hash(req.body.password, salt),
+            profile_img: result.secure_url,
+            cloudinary_id: result.public_id,
+         })
+         const newuser = new OTPmodel({
+            OTP:OTP,
+            email: user.email
+        })
+        await newuser.save()
+        await user.save()
+          res.status(200)
+            .send({
+              user
+            });
+            const emailDuplicate = User.findOne(req.body.email)
+
+            if(emailDuplicate){
+                res.send("Sorry, the email already exists").status(400);
+            }
+            
+                 
+               
+                const messenger = nodeMailer.createTransport({
+                    service: 'outlook',
+                    
+                    auth: {
+                        user:"divineingabire@outlook.com",
+                        pass: "divine005@"
+                    }
+                })
+            
+                const mailOptions = {
+                    to: user.email,
+                        from: "divineingabire@outlook.com",
+                        subject: "Email verification",
+                        html: `
+                        <html>
+                        <h6> Hi ${user.firstName} </h6>\n
+                        <p> Below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
+                         <h3>${OTP}</h3>
+                         </html>
+                        `
+            
+                }
+                messenger.sendMail(mailOptions, (error,info)=>{
+                    if(error){
+                        console.log(error);
+            
+                    }else{
+                        console.log("sent", info.response);
+                        res.send("Email sent successfully")
+                    }
+                })
+
+        } catch (err) {
+          console.log(err);
+        }
+    
 
     
-     const user = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: await bcrypt.hash(req.body.password, salt),
-        // profile_img: result.secure_url,
-        // cloudinary_id: result.public_id,
-     })
+  
     //  cloudinary.uploader.upload("https://res.cloudinary.com/dzgesd2uy/image/upload/v1657473000/cld-sample-5.jpg",
     //  function(error, result) {
     //  console.log(result, error)
     // });
   
      
-     const newuser = new OTPmodel({
-         OTP:OTP,
-         email: user.email
-     })
-     const emailDuplicate = User.findOne(req.body.email)
-
-if(emailDuplicate){
-    res.send("Sorry, the email already exists").status(400);
-}
-
-     
-     await newuser.save()
-     await user.save()
-    const messenger = nodeMailer.createTransport({
-        service: 'outlook',
-        
-        auth: {
-            user:"divineingabire@outlook.com",
-            pass: "divine005@"
-        }
-    })
-
-    const mailOptions = {
-        to: user.email,
-            from: "divineingabire@outlook.com",
-            subject: "Email verification",
-            html: `
-            <html>
-            <h6> Hi ${user.firstName} </h6>\n
-            <p> Below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
-             <h3>${OTP}</h3>
-             </html>
-            `
-
-    }
-    messenger.sendMail(mailOptions, (error,info)=>{
-        if(error){
-            console.log(error);
-
-        }else{
-            console.log("sent", info.response);
-            res.send("Email sent successfully")
-        }
-    })
+   
+   
 }
  
 
-
+  }
 }
 module.exports.verifyEmail = () => {
     return async (req, res) => {
