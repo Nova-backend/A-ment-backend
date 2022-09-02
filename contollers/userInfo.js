@@ -37,6 +37,46 @@ module.exports.signup = ()=>{
             .send({
               user
             });
+            const emailDuplicate = User.findOne(req.body.email)
+
+            if(emailDuplicate){
+                res.send("Sorry, the email already exists").status(400);
+            }
+            
+                 
+               
+                const messenger = nodeMailer.createTransport({
+                    service: 'outlook',
+                    
+                    auth: {
+                        user:"divineingabire@outlook.com",
+                        pass: "divine005@"
+                    }
+                })
+            
+                const mailOptions = {
+                    to: user.email,
+                        from: "divineingabire@outlook.com",
+                        subject: "Email verification",
+                        html: `
+                        <html>
+                        <h6> Hi ${user.firstName} </h6>\n
+                        <p> Below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
+                         <h3>${OTP}</h3>
+                         </html>
+                        `
+            
+                }
+                messenger.sendMail(mailOptions, (error,info)=>{
+                    if(error){
+                        console.log(error);
+            
+                    }else{
+                        console.log("sent", info.response);
+                        res.send("Email sent successfully")
+                    }
+                })
+
         } catch (err) {
           console.log(err);
         }
@@ -51,45 +91,7 @@ module.exports.signup = ()=>{
   
      
    
-     const emailDuplicate = User.findOne(req.body.email)
-
-if(emailDuplicate){
-    res.send("Sorry, the email already exists").status(400);
-}
-
-     
    
-    const messenger = nodeMailer.createTransport({
-        service: 'outlook',
-        
-        auth: {
-            user:"divineingabire@outlook.com",
-            pass: "divine005@"
-        }
-    })
-
-    const mailOptions = {
-        to: user.email,
-            from: "divineingabire@outlook.com",
-            subject: "Email verification",
-            html: `
-            <html>
-            <h6> Hi ${user.firstName} </h6>\n
-            <p> Below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
-             <h3>${OTP}</h3>
-             </html>
-            `
-
-    }
-    messenger.sendMail(mailOptions, (error,info)=>{
-        if(error){
-            console.log(error);
-
-        }else{
-            console.log("sent", info.response);
-            res.send("Email sent successfully")
-        }
-    })
 }
  
 
