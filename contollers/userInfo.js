@@ -37,7 +37,7 @@ module.exports.signup = ()=>{
             .send({
               user
             });
-            const emailDuplicate = User.findOne(req.body.email)
+            const emailDuplicate = user.findOne(req.body.email)
 
             if(emailDuplicate){
                 res.send("Sorry, the email already exists").status(400);
@@ -80,16 +80,7 @@ module.exports.signup = ()=>{
         } catch (err) {
           console.log(err);
         }
-    
 
-    
-  
-    //  cloudinary.uploader.upload("https://res.cloudinary.com/dzgesd2uy/image/upload/v1657473000/cld-sample-5.jpg",
-    //  function(error, result) {
-    //  console.log(result, error)
-    // });
-  
-     
    
    
 }
