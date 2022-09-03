@@ -80,16 +80,7 @@ module.exports.signup = ()=>{
         } catch (err) {
           console.log(err);
         }
-    
 
-    
-  
-    //  cloudinary.uploader.upload("https://res.cloudinary.com/dzgesd2uy/image/upload/v1657473000/cld-sample-5.jpg",
-    //  function(error, result) {
-    //  console.log(result, error)
-    // });
-  
-     
    
    
 }
