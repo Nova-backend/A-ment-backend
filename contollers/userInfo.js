@@ -37,7 +37,7 @@ module.exports.signup = ()=>{
             .send({
               user
             });
-            const emailDuplicate = user.findOne(req.body.email)
+            const emailDuplicate = User.findOne(req.body.email)
 
             if(emailDuplicate){
                 res.send("Sorry, the email already exists").status(400);
