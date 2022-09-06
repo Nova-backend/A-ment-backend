@@ -6,7 +6,7 @@ dotenv.config()
 const path = require('path')
 const express = require('express')
 const app = express()
-const server = http.createServer(app)
+// const server = http.createServer(app)
 const mongoose = require('mongoose')
 const router = require('./routes/user.js')
 
