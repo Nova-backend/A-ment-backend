@@ -14,6 +14,7 @@ module.exports.signup = ()=>{
      if(error){
          res.send(error)
      }
+     
      upload.single("image"), async (req, res) => {
         try {
           // Upload image to cloudinary
@@ -31,13 +32,14 @@ module.exports.signup = ()=>{
             OTP:OTP,
             email: user.email
         })
+        
         await newuser.save()
         await user.save()
           res.status(200)
             .send({
               user
             });
-            const emailDuplicate = User.findOne(req.body.email)
+            const emailDuplicate = user.findOne(req.body.email)
 
             if(emailDuplicate){
                 res.send("Sorry, the email already exists").status(400);
@@ -83,8 +85,8 @@ module.exports.signup = ()=>{
 
    
    
-}
- 
+
+    }
 
   }
 }
