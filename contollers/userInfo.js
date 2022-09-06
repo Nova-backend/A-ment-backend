@@ -31,8 +31,10 @@ module.exports.signup = ()=>{
             OTP:OTP,
             email: user.email
         })
+        console.log("user is saved");
         await newuser.save()
         await user.save()
+        console.log("it reaches here");
           res.status(200)
             .send({
               user
