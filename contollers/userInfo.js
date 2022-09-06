@@ -129,7 +129,7 @@ module.exports.deleteUser = () => {
 }
 module.exports.getUser = () => {
     return async (req, res) => {
-        const user = await User.findById(req.body.id)
+        const user = await User.findOne(req.body.id)
         return res.json({ user: user, success: true })
     }
 }
