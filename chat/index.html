@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
-    <script defer src="./script.js"></script>
+   
     <title>chat-app</title>
 </head>
 <body>
@@ -15,5 +15,47 @@
         <button type="submit" id="send-button">Send</button>
     </form>
 </div>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+ 
+    <title>ChatApp</title>
+  </head>
+  <body class="chat">
+        <form id='message-form'>
+          <input name='message' type="text"placeholder="Message"
+                  autofocus autocomplete="off"/>
+          <button >Send</button>
+        </form>
+ 
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script>
+var socket=io('http:localhost:3000')
+ 
+// connection with server
+socket.on('connect', function(){
+  console.log('Connected to Server')
+ 
+});
+ 
+// message listener from server
+socket.on('newMessage', function(message){
+ console.log(message);
+});
+ 
+// emits message from user side
+socket.emit('createMessage', {
+  to:'john@ds',
+  text:'what kjkljd'
+});
+ 
+// when disconnected from server
+socket.on('disconnect', function(){
+  console.log('Disconnect from server')
+});
+</script>
+
 </body>
 </html>
