@@ -1,5 +1,5 @@
 
- const io = require("socket.io/socket.io.js")
+ const io = require("socket.io")
 
 io.on('connection', (socket) => {
    console.log("new user");

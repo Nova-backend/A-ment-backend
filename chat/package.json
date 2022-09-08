@@ -2,9 +2,9 @@
   "name": "chat",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon script.js"
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
