@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
-   <script defer src="app.js"></script>
+   
+  
     <title>chat-app</title>
 </head>
 <body>
@@ -13,34 +13,10 @@
     <form action="" id="send-container">
         <input type="text" id="message-input">
         <button type="submit" id="send-button">Send</button>
+        
     </form>
-</div>
-
-
-<script>
-  var socket = io('http://localhost:3000')  
-  // connection with server
-socket.on('connect', function(){
-  console.log('Connected to Server')
- 
-});
- 
-// message listener from server
-socket.on('newMessage', function(message){
- console.log(message);
-});
- 
-// emits message from user side
-socket.emit('createMessage', {
-  to:'john@ds',
-  text:'what kjkljd'
-});
- 
-// when disconnected from server
-socket.on('disconnect', function(){
-  console.log('Disconnect from server')
-});
-</script>
-
+  </div>
+  <script defer src="/socket.io/socket.io.js"></script>
+  <script defer src="app.js"></script>
 </body>
 </html>
