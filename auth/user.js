@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 module.exports.generateAUthToken = (userId)=>{
-  const token = jwt.sign({userId}, process.env.SECRET_KEY, {expiresIn:'24h'})
+  const token = jwt.sign({userId}, process.env.SECRET_KEY, {expiresIn:'15h'})
   return token;
 }
 module.exports.verifyToken = (req,res,next) =>{
