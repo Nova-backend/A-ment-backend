@@ -24,7 +24,8 @@ const User = mongoose.Schema({
         required:true
     },
     cloudinary_Id:{
-        type:String
+        type:String,
+        required:true
     }
     
 
