@@ -1,4 +1,4 @@
-const { signup } = require('../contollers/userInfo.js')
+const { signup, deleteUser, updateUser, getUser } = require('../contollers/userInfo.js')
 const { verifyToken } = require('../auth/user')
 const { User } = require('../models/userModel.js')
 

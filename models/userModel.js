@@ -36,6 +36,7 @@ const User = mongoose.Schema({
 
 
 const validation = (data)=>{
+    console.log(data)
      data = new joi.object({
         firstName: joi.string().required().min(4),
         lastName: joi.string().required().min(4),
