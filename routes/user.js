@@ -9,8 +9,4 @@ router.post('/signup',signup())
 router.put('/signup/:id', updateUser())
 router.delete('/signup/:id', deleteUser())
 router.get('/signup', getUser())
-
-
-  
-
 module.exports = router;
