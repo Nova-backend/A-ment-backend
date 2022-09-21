@@ -31,10 +31,6 @@ const User = mongoose.Schema({
 
 
 })
-
-
-
-
 const validation = (data)=>{
     console.log(data)
      data = new joi.object({
