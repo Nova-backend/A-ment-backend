@@ -15,15 +15,15 @@ module.exports.signup = ()=>{
       const OTP = otpGenerator.generate(8, { upperCaseAlphabets:true,specialChars:false, lowerCaseAlphabets:true})
       if(error){
         res.send(error) 
-        console.log(error)
+        console.log("er1" ,error)
     }
         try {
           // Upload image to cloudinary
-          console.log(req.file)
-          console.log("image not registered");
-          const result = await cloudinary.uploader.upload(req.file.path);
+          console.log("file" ,req.files)
+   
+          const result = await cloudinary.uploader.upload(req.files.file.path);
           
-          console.log(result);
+          console.log("result",result);
           // Create new user
           const user = new User({
             firstName: req.body.firstName,
@@ -76,7 +76,7 @@ module.exports.signup = ()=>{
                 }
                 messenger.sendMail(mailOptions, (error,info)=>{
                     if(error){
-                        console.log(error);
+                        console.log("er2",error);
             
                     }else{
                         console.log("sent", info.response);
@@ -85,7 +85,7 @@ module.exports.signup = ()=>{
                 })
 
         } catch (err) {
-          console.log(err);
+          console.log("er3",err);
         }
 
     }

@@ -2,6 +2,7 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 const path = require('path')
+const fileupload = require("express-fileupload")
 const express = require('express')
 const app = express()
 // const server = http.createServer(app)
@@ -16,6 +17,7 @@ mongoose.connect(process.env.URL).then(()=>{
 
 
 const PORT = process.env.PORT
+app.use(fileupload())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use("/api/auth",router)
