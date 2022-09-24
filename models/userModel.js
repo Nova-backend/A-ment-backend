@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const joi = require('joi')
-const { String }  = require('joi')
+const { string }  = require('joi')
 const User = mongoose.Schema({
     firstName: {
         type: String,
@@ -34,10 +34,10 @@ const User = mongoose.Schema({
 const validation = (data)=>{
     console.log(data)
      data = new joi.object({
-        firstName: joi.String().required().min(4),
-        lastName: joi.String().required().min(4),
-        email: joi.String().required().email(),
-        password: joi.String().required()
+        firstName: joi.string().required().min(4),
+        lastName: joi.string().required().min(4),
+        email: joi.string().required().email(),
+        password: joi.string().required()
     })
     return data.validate()
 }
