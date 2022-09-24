@@ -6,7 +6,7 @@ const otpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
 const upload = require("../utils/multer")
-const path = require('path')
+const path  = require('path')
 
 module.exports.signup = ()=>{
   return async (req,res)=>{
@@ -22,6 +22,8 @@ module.exports.signup = ()=>{
           // Upload image to cloudinary
           console.log(req.file)
           const result = await cloudinary.uploader.upload(req.file.path);
+          
+          console.log(result);
           // Create new user
           const user = new User({
             firstName: req.body.firstName,

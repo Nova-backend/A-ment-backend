@@ -36,8 +36,8 @@ const validation = (data)=>{
      data = new joi.object({
         firstName: joi.string().required().min(4),
         lastName: joi.string().required().min(4),
-        // email: joi.string().required().email(),
-        // password: joi.string().required()
+        email: joi.string().required().email(),
+        password: joi.string().required()
     })
     return data.validate()
 }
