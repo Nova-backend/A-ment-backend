@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt');
-const{ validation, User , OTPmodel} = require("../models/userModel")
+// const{ validation, User , OTPmodel} = require("../models/userModel")
+const { validation, User , OTPmodel } = require('../models/userModel.js')
 const nodeMailer = require("nodemailer")
 const otpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
 const upload = require("../utils/multer")
+const path = require('path')
 
 module.exports.signup = ()=>{
   return async (req,res)=>{
@@ -12,8 +14,10 @@ module.exports.signup = ()=>{
       const salt = await bcrypt.genSalt(20);
       const {error} = await validation(req.body);
       const OTP = otpGenerator.generate(8, { upperCaseAlphabets:true,specialChars:false, lowerCaseAlphabets:true})
-      if(error){res.send(error) 
-        console.log(error)}
+      if(error){
+        res.send(error) 
+        console.log(error)
+    }
         try {
           // Upload image to cloudinary
           console.log(req.file)
