@@ -5,7 +5,7 @@ const otpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
 const upload = require("../utils/multer")
-const path  = require('path')
+const path = require('path')
 
 module.exports.signup = ()=>{
   return async (req,res)=>{
