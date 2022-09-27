@@ -30,31 +30,31 @@ module.exports.signup = ()=>{
           
           console.log("result",result);
           // Create new user
-          const user = new User({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            password: bcrypt.hash(req.body.password, salt,(error,hash)=>{
-                if(error) {throw (error);          
-                }
 
-                req.body.password = hash
+          bcrypt.genSalt(10,(err,salt) => {
+          bcrypt.hash(req.body.password, salt , (err, hash) =>{
+               if(err) throw (err);
+          
+             const user = new User({
+                 firstName: req.body.firstName,
+                 lastName: req.body.lastName,
+                 email: req.body.email,
+                 password: hash
+                });
             })
-            
-         
-         })
-     
-         const newuser = new OTPmodel({
-            OTP:OTP,
-            email: user.email
         })
+            await user.save()     
+            const newuser = new OTPmodel({
+                OTP:OTP,
+                email: user.email
+            })
         
-        await newuser.save()
-        await user.save()
+        
           res.status(200)
             .send({
               user
             });
+        
             const emailDuplicate = user.findOne(req.body.email)
 
             if(emailDuplicate){
@@ -90,17 +90,19 @@ module.exports.signup = ()=>{
             
                     }else{
                         console.log("sent", info.response);
-                        res.send("Email sent successfully")
+                        res.send("Email sent successfully");
                     }
                 })
-
-        } catch (err) {
+            }
+          
+        
+        catch (err) {
           console.log("er3",err);
         }
 
+  }
     }
 
-}
 module.exports.verifyEmail = () => {
     return async (req, res) => {
         const newOTP = await OTPmodel.findOne({ OTP: req.body.OTP })
@@ -132,8 +134,8 @@ module.exports.updateUser = () => {
             console.log(error)
         }
     }
-
 }
+
 module.exports.deleteUser = () => {
     return async (req, res) => {
          User.findByIdAndDelete(req.params.id)
