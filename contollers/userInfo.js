@@ -4,6 +4,11 @@ const nodeMailer = require("nodemailer")
 const otpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+});
 const upload = require("../utils/multer")
 const path = require('path')
 
@@ -20,8 +25,8 @@ module.exports.signup = ()=>{
         try {
           // Upload image to cloudinary
           console.log("file" ,req.files)
-   
-          const result = await cloudinary.uploader.upload(req.files.file.path);
+          const file = req.files.image
+          const result = await cloudinary.uploader.upload(file.tempFilePath);
           
           console.log("result",result);
           // Create new user
@@ -29,10 +34,11 @@ module.exports.signup = ()=>{
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
-            password: await bcrypt.hash(req.body.password, salt),
-            profile_img: result.secure_url,
-            cloudinary_id: result.public_id,
+            password: await bcrypt.hash(req.body.password, salt)
+            
+         
          })
+     
          const newuser = new OTPmodel({
             OTP:OTP,
             email: user.email
