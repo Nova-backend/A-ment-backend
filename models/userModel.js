@@ -13,24 +13,14 @@ const User = mongoose.Schema({
     },
     email:{
         type: String,
-        required: true
+        required: true,
+        trim:true
     },
     password:{
         type: String,
         required: true
-    },
-    profile_img:{
-        type: String,
-        required:true
-    },
-    cloudinary_Id:{
-        type:String,
-        required:true
     }
-    
-
-
-})
+ })
 const validation = (data)=>{
      data = new joi.object({
         firstName: joi.string().required().min(4),

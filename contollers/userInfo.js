@@ -4,13 +4,18 @@ const nodeMailer = require("nodemailer")
 const otpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+});
 const upload = require("../utils/multer")
 const path = require('path')
 
 module.exports.signup = ()=>{
   return async (req,res)=>{
     
-      const salt = await bcrypt.genSalt(20);
+      const salt = await bcrypt.genSalt(10);
       const {error} = await validation(req.body);
       const OTP = otpGenerator.generate(8, { upperCaseAlphabets:true,specialChars:false, lowerCaseAlphabets:true})
       if(error){
@@ -20,38 +25,43 @@ module.exports.signup = ()=>{
         try {
           // Upload image to cloudinary
           console.log("file" ,req.files)
-   
-          const result = await cloudinary.uploader.upload(req.files.file.path);
+          const file = req.files.image
+          const result = await cloudinary.uploader.upload(file.tempFilePath);
           
           console.log("result",result);
           // Create new user
-          const user = new User({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            password: await bcrypt.hash(req.body.password, salt),
-            profile_img: result.secure_url,
-            cloudinary_id: result.public_id,
-         })
-         const newuser = new OTPmodel({
-            OTP:OTP,
-            email: user.email
+
+          bcrypt.genSalt(10,(err,salt) => {
+          bcrypt.hash(req.body.password, salt , (err, hash) =>{
+               if(err) throw (err);
+          
+             const user = new User({
+                 firstName: req.body.firstName,
+                 lastName: req.body.lastName,
+                 email: req.body.email,
+                 password: hash
+                });
+            })
         })
+            await user.save()     
+            const newuser = new OTPmodel({
+                OTP:OTP,
+                email: user.email
+            })
         
-        await newuser.save()
-        await user.save()
+        
           res.status(200)
             .send({
               user
             });
+        
             const emailDuplicate = user.findOne(req.body.email)
 
             if(emailDuplicate){
                 res.send("Sorry, the email already exists").status(400);
             }
             
-                 
-               
+            
                 const messenger = nodeMailer.createTransport({
                     service: 'outlook',
                     
@@ -80,17 +90,19 @@ module.exports.signup = ()=>{
             
                     }else{
                         console.log("sent", info.response);
-                        res.send("Email sent successfully")
+                        res.send("Email sent successfully");
                     }
                 })
-
-        } catch (err) {
+            }
+          
+        
+        catch (err) {
           console.log("er3",err);
         }
 
+  }
     }
 
-}
 module.exports.verifyEmail = () => {
     return async (req, res) => {
         const newOTP = await OTPmodel.findOne({ OTP: req.body.OTP })
@@ -122,8 +134,8 @@ module.exports.updateUser = () => {
             console.log(error)
         }
     }
-
 }
+
 module.exports.deleteUser = () => {
     return async (req, res) => {
          User.findByIdAndDelete(req.params.id)
