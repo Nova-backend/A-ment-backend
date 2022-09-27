@@ -10,7 +10,8 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
 });
 const upload = require("../utils/multer")
-const path = require('path')
+const path = require('path');
+const { url } = require('inspector');
 
 module.exports.signup = () => {
     return async (req, res) => {
@@ -40,7 +41,9 @@ module.exports.signup = () => {
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
                         email: req.body.email,
-                        password: hash
+                        password: hash,
+                        image:result.url
+                        
                     });
                     await user.save()
                     const newuser = new OTPmodel({
