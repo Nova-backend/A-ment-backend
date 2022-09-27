@@ -34,11 +34,11 @@ module.exports.signup = ()=>{
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
-            password: bcrypt.hash(req.body.password, salt,(err,hash)=>{
-                if(err){
-                    throw(err)
+            password: bcrypt.hash(req.body.password, salt,(error,hash)=>{
+                if(error) {throw (error);          
                 }
-                
+
+                req.body.password = hash
             })
             
          
