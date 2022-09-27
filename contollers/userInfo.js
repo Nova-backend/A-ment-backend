@@ -15,7 +15,7 @@ const path = require('path')
 module.exports.signup = ()=>{
   return async (req,res)=>{
     
-      const salt = await bcrypt.genSalt(20);
+      const salt = await bcrypt.genSalt(10);
       const {error} = await validation(req.body);
       const OTP = otpGenerator.generate(8, { upperCaseAlphabets:true,specialChars:false, lowerCaseAlphabets:true})
       if(error){
@@ -34,7 +34,12 @@ module.exports.signup = ()=>{
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
-            password: await bcrypt.hash(req.body.password, salt)
+            password: bcrypt.hash(req.body.password, salt,(err,hash)=>{
+                if(err){
+                    throw(err)
+                }
+                
+            })
             
          
          })
@@ -56,8 +61,7 @@ module.exports.signup = ()=>{
                 res.send("Sorry, the email already exists").status(400);
             }
             
-                 
-               
+            
                 const messenger = nodeMailer.createTransport({
                     service: 'outlook',
                     
