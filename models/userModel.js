@@ -25,16 +25,20 @@ const User = mongoose.Schema({
         required:true  
     },
     contact:{
-        type:number,
+        type:Number,
         required:true
     },
     employees : [{
+        fullname:{
+           type:String,
+           required:true
+        },
         position:{
             type:String,
             required:true,
         },
         workingHours: {
-            type:date,
+            type:Date,
             required:true,
         },
         workingDays: {
@@ -60,7 +64,7 @@ const User = mongoose.Schema({
 const validation = (data)=>{
      data = new joi.object({
         fullName: joi.string().required().min(4),
-     
+        userName:joi.string().required().min(4),
         email: joi.string().required().email(),
         password: joi.string().required()
     })
