@@ -1,15 +1,15 @@
 const mongoose = require('mongoose')
 
 const joi = require('joi')
-const { string }  = require('joi')
+const { string, number }  = require('joi')
 const User = mongoose.Schema({
     fullName: {
         type: String,
         required: true
     },
-    lastName:{
-        type: String,
-        required: true
+    userName:{
+        type:String,
+        required:true
     },
     email:{
         type: String,
@@ -23,12 +23,48 @@ const User = mongoose.Schema({
     image:{
         type:String,
         required:true  
-    } 
+    },
+    contact:{
+        type:Number,
+        required:true
+    },
+    employees : [{
+        fullname:{
+           type:String,
+           required:true
+        },
+        position:{
+            type:String,
+            required:true,
+        },
+        workingHours: {
+            type:Date,
+            required:true,
+        },
+        workingDays: {
+            type: Array,
+           enum: [
+            "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
+        ]
+    },
+     }],
+    servicesOffered:[{
+        digitalisedService:{
+            type:String
+            
+        },
+        unDigitalisedService:{
+            type:String
+        }
+    }]
+
+    
+        
  })
 const validation = (data)=>{
      data = new joi.object({
-        firstName: joi.string().required().min(4),
-        lastName: joi.string().required().min(4),
+        fullName: joi.string().required().min(4),
+        userName:joi.string().required().min(4),
         email: joi.string().required().email(),
         password: joi.string().required()
     })
