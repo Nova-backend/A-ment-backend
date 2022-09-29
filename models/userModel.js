@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const joi = require('joi')
 const { string }  = require('joi')
 const User = mongoose.Schema({
-    firstName: {
+    fullName: {
         type: String,
         required: true
     },
