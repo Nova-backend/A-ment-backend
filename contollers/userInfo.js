@@ -44,7 +44,18 @@ module.exports.signup = () => {
                         password: hash,
                         image:result.url,
                         contact:req.body.contact,
+                        employees:{
+                            fullname:req.body.fullname,
+                            position:req.body.position,
+                            workingHours:Date,
                         
+                        },
+                        servicesOffered:{
+                            digitalisedService:req.body.digitalisedService,
+                            unDigitalisedService:req.body.unDigitalisedService
+
+                            
+                        }
                         
                     });
                     await user.save()
