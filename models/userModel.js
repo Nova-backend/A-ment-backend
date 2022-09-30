@@ -43,9 +43,9 @@ const User = mongoose.Schema({
         },
         workingDays: {
             type: Array,
-           enum: [
-            "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
-        ]
+        //    enum: [
+        //     "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
+        // ]
     },
      }],
     servicesOffered:[{
