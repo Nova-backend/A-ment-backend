@@ -33,7 +33,7 @@ module.exports.signup = () => {
             // Create new user
 
             bcrypt.genSalt(10, (err, salt) => {
-                console.log(req.body.password, salt)
+                
                 bcrypt.hash(req.body.password, salt, async (err, hash) => {
                     if (err) throw (err);
 
