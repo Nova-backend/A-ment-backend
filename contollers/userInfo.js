@@ -44,10 +44,12 @@ module.exports.signup = () => {
                         password: hash,
                         image:result.url,
                         contact:req.body.contact,
+                      
                         employees:{
                             fullname:req.body.fullname,
                             position:req.body.position,
-                            workingHours:Date,
+                            workingDays:userModel.schema.options.enum,
+                            workingHours:req.body.workingHours,
                         
                         },
                         servicesOffered:{
