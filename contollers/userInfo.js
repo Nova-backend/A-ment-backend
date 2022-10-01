@@ -48,7 +48,7 @@ module.exports.signup = () => {
                         employees:{
                             fullname:req.body.fullname,
                             position:req.body.position,
-                            workingDays:userModel.schema.options.enum,
+                            workingDays:User.workingDays,
                             workingHours:req.body.workingHours,
                         
                         },
