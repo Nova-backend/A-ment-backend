@@ -38,8 +38,8 @@ module.exports.signup = () => {
                     if (err) throw (err);
 
                     const user = new User({
-                        fullName: req.body.firstName,
-                        userName: req.body.lastName,
+                        fullName: req.body.fullName,
+                        userName: req.body.userName,
                         email: req.body.email,
                         password: hash,
                         image:result.url,
