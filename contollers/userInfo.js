@@ -33,21 +33,23 @@ module.exports.signup = () => {
             // Create new user
 
             bcrypt.genSalt(10, (err, salt) => {
-                console.log(req.body.password, salt)
+                
                 bcrypt.hash(req.body.password, salt, async (err, hash) => {
                     if (err) throw (err);
 
                     const user = new User({
-                        fullName: req.body.firstName,
-                        userName: req.body.lastName,
+                        fullName: req.body.fullName,
+                        userName: req.body.userName,
                         email: req.body.email,
                         password: hash,
                         image:result.url,
                         contact:req.body.contact,
+                      
                         employees:{
                             fullname:req.body.fullname,
                             position:req.body.position,
-                            workingHours:Date,
+                            workingDays:User.workingDays,
+                            workingHours:req.body.workingHours,
                         
                         },
                         servicesOffered:{
