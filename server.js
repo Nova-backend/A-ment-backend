@@ -20,7 +20,7 @@ const PORT = process.env.PORT
 app.use(fileupload({useTempFiles:true}))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use("/api/auth",router)
+app.use("/",router)
 
 app.listen(PORT, ()=>{
     console.log(`The server is learning on port ${PORT}`)
