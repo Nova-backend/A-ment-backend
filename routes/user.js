@@ -1,4 +1,4 @@
-const { signup, deleteUser, updateUser, getUser } = require('../contollers/userInfo.js')
+const { signup, deleteUser, updateUser, getUser ,login} = require('../contollers/userInfo.js')
 const { verifyToken } = require('../auth/user')
 const { User } = require('../models/userModel.js')
 
@@ -9,6 +9,7 @@ router.post('/signup', signup())
 router.put('/signup/:id', updateUser())
 router.delete('/signup/:id', deleteUser())
 router.get('/signup', getUser())
+router.post('/login',login())
 
 
 

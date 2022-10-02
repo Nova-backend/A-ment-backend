@@ -4,6 +4,7 @@ const nodeMailer = require("nodemailer")
 const otpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
+const {generateAuthToken,verifyToken} = require('../auth/user')
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
@@ -140,8 +141,8 @@ module.exports.updateUser = () => {
         try {
             const updates = _.pick(req.body, ['firstName', 'lastName', 'email', 'password'])
             User.findByIdAndUpdate(req.params.id, {
-                firstName: updates.firstName,
-                lastName: updates.lastName,
+                fullName: updates.fullName,
+                userName: updates.userName,
                 email: updates.email,
                 password: updates.password
             }, (err, response) => {
@@ -169,5 +170,30 @@ module.exports.getUser = () => {
     return async (req, res) => {
         const user = await User.findOne(req.body.id)
         return res.json({ user: user, success: true })
+    }
+}
+module.exports.login = () => {
+    return async(req,res)=>{
+         const user = await user.findOne({email:req.body.email})
+         if(!user){
+            return res.send("Invalid credentials");
+         }
+         if(!bcrypt.compareSync(req.body.password,user.password)){
+            return res.status(400).json({message:"Invalid password"});
+         }
+         const token = user.generateAuthToken();
+         const userProfile = await user.findOne({userId:user._id})
+         res.cookie("token", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+          });
+          return res.status(200).json({
+            success:true,
+            message:"You successfully logged in",
+            data:user,
+            token:token,
+            user:userProfile
+          })
     }
 }
