@@ -217,5 +217,13 @@ module.exports.forgotPassword = () =>{
     }
 }
 module.exports.logout = () =>{
-    
+    return async(req,res)=>{
+        User.findOneAndUpdate({_id:req.user._id}, {token : "" }, (error,doc)=>{
+           if(error){
+            res.status(403).json({success:false,error})
+           }else{
+            return res.status(200).send({success:true})
+           }
+        })
+    }
 }
