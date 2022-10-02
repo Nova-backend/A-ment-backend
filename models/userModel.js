@@ -57,7 +57,11 @@ const User = mongoose.Schema({
         unDigitalisedService:{
             type:String
         }
-    }]
+    }],
+    bio:{
+        type:String,
+        
+    }
 
     
         

@@ -58,7 +58,8 @@ module.exports.signup = () => {
                             unDigitalisedService:req.body.unDigitalisedService
 
                             
-                        }
+                        },
+                        bio:req.body.bio
                         
                     });
                     await user.save()
@@ -202,5 +203,19 @@ module.exports.forgotPassword = () =>{
         res.status(200).json({
             message:"user not found"
         })
+     let userInfo = await password.findOne({email:user.email})
+     if(userInfo){
+       password.findOneAndUpdate({email:userInfo.email})
+     }else{
+        userInfo =  new password({
+            email:user.email,
+            OTP:OTP,
+            userId : user._id
+        })
+        await userInfo.save();
+     }
     }
+}
+module.exports.logout = () =>{
+    
 }
