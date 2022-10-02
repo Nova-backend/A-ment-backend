@@ -58,7 +58,8 @@ module.exports.signup = () => {
                             unDigitalisedService:req.body.unDigitalisedService
 
                             
-                        }
+                        },
+                        bio:req.body.bio
                         
                     });
                     await user.save()
@@ -139,9 +140,8 @@ module.exports.verifyEmail = () => {
 module.exports.updateUser = () => {
     return async (req, res) => {
         try {
-            const updates = _.pick(req.body, ['firstName', 'lastName', 'email', 'password'])
+            const updates = _.pick(req.body, [ 'userName', 'email', 'password'])
             User.findByIdAndUpdate(req.params.id, {
-                fullName: updates.fullName,
                 userName: updates.userName,
                 email: updates.email,
                 password: updates.password
@@ -196,4 +196,26 @@ module.exports.login = () => {
             user:userProfile
           })
     }
+}
+module.exports.forgotPassword = () =>{
+    return async(req,res)=>{
+        const user = await user.findOne({email:req.body.email})
+        res.status(200).json({
+            message:"user not found"
+        })
+     let userInfo = await password.findOne({email:user.email})
+     if(userInfo){
+       password.findOneAndUpdate({email:userInfo.email})
+     }else{
+        userInfo =  new password({
+            email:user.email,
+            OTP:OTP,
+            userId : user._id
+        })
+        await userInfo.save();
+     }
+    }
+}
+module.exports.logout = () =>{
+    
 }
