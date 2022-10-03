@@ -4,7 +4,7 @@ const nodeMailer = require("nodemailer")
 const otpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
-// const {generateAuthToken,verifyToken} = require('../auth/user')
+const {generateAuthToken,verifyToken} = require('../auth/user')
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
