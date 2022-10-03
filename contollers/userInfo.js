@@ -10,9 +10,7 @@ cloudinary.config({
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET
 });
-// const upload = require("../utils/multer")
-// const path = require('path');
-// const { url } = require('inspector');
+
 
 module.exports.signup = () => {
     return async (req, res) => {
