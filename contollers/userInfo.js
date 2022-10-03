@@ -4,15 +4,13 @@ const nodeMailer = require("nodemailer")
 const otpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
-const {generateAuthToken,verifyToken} = require('../auth/user')
+// const {generateAuthToken,verifyToken} = require('../auth/user')
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET
 });
-// const upload = require("../utils/multer")
-// const path = require('path');
-// const { url } = require('inspector');
+
 
 module.exports.signup = () => {
     return async (req, res) => {

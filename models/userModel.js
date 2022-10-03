@@ -71,7 +71,7 @@ const validation = (data)=>{
         fullName: joi.string().required().min(4),
         userName:joi.string().required(),
         email: joi.string().required().email(),
-        password: joi.string().required()
+        password: joi.stringrs().required()
     })
     return data.validate()
 }
