@@ -1,4 +1,12 @@
-const { signup, deleteUser, updateUser, getUser ,login,forgotPassword} = require('../contollers/userInfo.js')
+const { 
+    signup,
+    deleteUser, 
+    updateUser,
+     getUser ,
+     login,
+     forgotPassword
+    } = require('../contollers/userInfo.js')
+const {createAppointment} = require('../contollers/appointmentContoller')
 const { verifyToken } = require('../auth/user')
 const { User } = require('../models/userModel.js')
 
@@ -11,6 +19,7 @@ router.delete('/signup/:id', deleteUser())
 router.get('/signup', getUser())
 router.post('/login',login())
 router.put('/forgotpassword', forgotPassword())
+router.post('/createAppointment', createAppointment())
 
 
 
