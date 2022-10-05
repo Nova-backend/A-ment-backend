@@ -14,7 +14,7 @@ const Appointment = mongoose.Schema({
         required:true
     },
     duration:{
-        typpe:Date,
+        type:Date,
         required:true
     }
 })
