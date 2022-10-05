@@ -1,5 +1,4 @@
-const { application } = require('express')
-const { rearg } = require('lodash')
+
 const { Appointment } = require('../models/appointmentModel')
 
 module.exports.createAppointment = () => {
