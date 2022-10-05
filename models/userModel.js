@@ -61,11 +61,9 @@ const User = mongoose.Schema({
     bio:{
         type:String,
         
-    }
-
-    
-        
- })
+    },
+    googleId:String
+})
 const validation = (data)=>{
      data = new joi.object({
         fullName: joi.string().required().min(4),
