@@ -17,13 +17,6 @@ mongoose.connect(process.env.URL).then(()=>{
 const PORT = process.env.PORT
 app.use(fileupload({useTempFiles:true}))
 app.use(express.json())
-app.set('view engine', 'ejs');
-
-app.get('/login',(req,res)=>{
-      res.render('login');
-})
-
-
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 app.use("/",router)

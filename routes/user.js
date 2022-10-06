@@ -5,7 +5,7 @@ const {
      getUser ,
      login,
      forgotPassword,
-     signinGoogle
+    
     } = require('../contollers/userInfo.js')
 const {createAppointment} = require('../contollers/appointmentContoller')
 const { verifyToken } = require('../auth/user')
@@ -22,7 +22,8 @@ router.get('/signup', getUser())
 router.post('/login',login())
 router.put('/forgotpassword', forgotPassword())
 router.post('/createAppointment', createAppointment())
-router.post('/loginGoogle', signinGoogle())
+
+
 
 
 module.exports = router;
