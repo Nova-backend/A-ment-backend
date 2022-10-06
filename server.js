@@ -2,7 +2,7 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
-const path = require('path')
+
 const fileupload = require("express-fileupload")
 const express = require('express')
 const app = express()
