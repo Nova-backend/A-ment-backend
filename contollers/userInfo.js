@@ -5,6 +5,8 @@ const otpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
 const {generateAuthToken,verifyToken} = require('../auth/user')
+
+
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
@@ -195,6 +197,7 @@ module.exports.login = () => {
           })
     }
 }
+
 module.exports.forgotPassword = () =>{
     return async(req,res)=>{
         const user = await user.findOne({email:req.body.email})
