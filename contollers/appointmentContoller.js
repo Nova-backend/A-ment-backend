@@ -38,3 +38,14 @@ module.exports.updateAppointment = () =>{
         }
     }
 }
+module.exports.getAppointment = () =>{
+    return async (req,res) => {
+        const appointment = await Appointment.findOne(req.body.id)
+        return res.json({appointment:appointment, success:true})
+    }
+}
+module.exports.deleteAppointment = () => {
+    return async (req,res) => {
+                
+    }
+}
