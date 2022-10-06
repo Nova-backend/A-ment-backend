@@ -1,15 +1,15 @@
 const dotenv = require('dotenv')
 
 dotenv.config()
-
-
 const fileupload = require("express-fileupload")
 const express = require('express')
 const app = express()
 // const server = http.createServer(app)
 const mongoose = require('mongoose')
 const router = require('./routes/user.js')
-const cookieSession = require('cookie-session')
+
+const cookieParser = require('cookie-parser')
+
 
 mongoose.connect(process.env.URL).then(()=>{
     console.log("Database successfully connected");
@@ -17,6 +17,14 @@ mongoose.connect(process.env.URL).then(()=>{
 const PORT = process.env.PORT
 app.use(fileupload({useTempFiles:true}))
 app.use(express.json())
+app.set('view engine', 'ejs');
+
+app.get('/login',(req,res)=>{
+      res.render('login');
+})
+
+
+app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 app.use("/",router)
 app.listen(PORT, ()=>{

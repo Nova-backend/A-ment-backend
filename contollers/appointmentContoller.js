@@ -46,6 +46,8 @@ module.exports.getAppointment = () =>{
 }
 module.exports.deleteAppointment = () => {
     return async (req,res) => {
-                
+        Appointment.findByIdAndDelete(req.params.id) 
+            res.json({message : "Appointment deleted"})
+        }
     }
-}
+
