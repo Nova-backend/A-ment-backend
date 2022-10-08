@@ -5,6 +5,8 @@ const {
      getUser ,
      login,
      forgotPassword,
+     oAuth,
+     getGoogleUser,
     
     } = require('../contollers/userInfo.js')
 const {createAppointment} = require('../contollers/appointmentContoller')
@@ -22,6 +24,8 @@ router.get('/signup', getUser())
 router.post('/login',login())
 router.put('/forgotpassword', forgotPassword())
 router.post('/createAppointment', createAppointment())
+router.get('/signup/google', oAuth())
+router.get('/auth/google', getGoogleUser())
 
 
 

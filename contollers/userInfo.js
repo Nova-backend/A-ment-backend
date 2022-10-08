@@ -5,6 +5,8 @@ const otpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
 const {generateAuthToken,verifyToken} = require('../auth/user')
+const QueryString = require('qs')
+const redirectURI = 'auth/google'
 
 
 cloudinary.config({
@@ -68,9 +70,6 @@ module.exports.signup = () => {
                         email: user.email
                     })
                     newuser.save();
-             
-
-          
 
             res.status(200)
                 .send({
@@ -228,3 +227,85 @@ module.exports.logout = () =>{
         })
     }
 }
+
+function getGoogleAuthUrl() {
+    const rootUrl = "https://accounts.google.com/o/oauth2/auth";
+    const options = {
+      redirect_uri: `${process.env.SERVER_ROOT_URI}/${redirectURI}`,
+      client_id: process.env.CLIENT_ID,
+      access_type: "offline",
+      response_type: "code",
+      prompt: "consent",
+      scope: [
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/userinfo.email",
+      ].join(" "),
+    };
+    return `${rootUrl}?${QueryString.stringify(options)}`;
+  }
+  
+  module.exports.oAuth = () => {
+    return async (req, res) => {
+      res.redirect(getGoogleAuthUrl());
+    };
+  };
+  module.exports.getGoogleUser = () => {
+    return async (req, res) => {
+      const code = req.query.code;
+      let tokens;
+      try {
+        const response = await getTokens({ code });
+        tokens = response;
+      } catch (e) {
+        console.log(e);
+        return res.json({ message: "Failed to make the request" });
+      }
+  
+      const googleUser = await axios
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${tokens.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${tokens.id_token}`,
+            },
+          }
+        )
+        .then((res) => res.data)
+        .catch((error) => {
+          throw new Error(error.message);
+        });
+      await newUser(googleUser.email, googleUser.given_name, googleUser.id);
+      const response = await newUser(
+        googleUser.email,
+        googleUser.id,
+        googleUser.given_name
+      );
+      return res
+        .status(response.statusCode)
+        .json({ message: response.message, success: response.status });
+    };
+  };
+  
+  function getTokens({ code }) {
+    const url = "https://oauth2.googleapis.com/token";
+    const values = {
+      code: code,
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.GOOGLE_SECRET,
+      redirect_uri: "http://localhost:4000/auth/google",
+      grant_type: "authorization_code",
+    };
+    return axios
+      .post(url, values, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        throw new Error(error);
+      });
+  }
