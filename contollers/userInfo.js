@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const { validation, User, OTPmodel } = require('../models/userModel.js')
 const nodeMailer = require("nodemailer")
-const generateAuthTokenotpGenerator = require("otp-generator")
+// const generateAuthTokenotpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
 const QueryString = require('qs')
@@ -173,7 +173,7 @@ module.exports.getUser = () => {
 }
 module.exports.login = () => {
     return async(req,res)=>{
-         const user = await user.findOne({email:req.body.email})
+         const user = await User.findOne({email:req.body.email})
          if(!user){
             return res.send("Invalid credentials");
          }

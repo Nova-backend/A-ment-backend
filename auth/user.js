@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
-
+const dotenv = require('dotenv')
+dotenv.config()
 module.exports.generateAuthToken = (userId)=>{
   const token = jwt.sign({userId}, process.env.SECRET_KEY, {expiresIn:'15h'})
   return token;
