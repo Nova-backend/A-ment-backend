@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const { validation, User, OTPmodel } = require('../models/userModel.js')
 const nodeMailer = require("nodemailer")
-const generateAuthTokenotpGenerator = require("otp-generator")
+// const generateAuthTokenotpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
 const QueryString = require('qs')
