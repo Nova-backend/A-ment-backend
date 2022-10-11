@@ -6,6 +6,7 @@ const app = express()
 // const server = http.createServer(app)
 const mongoose = require('mongoose')
 const router = require('./routes/user.js')
+const manageappoint=require('./Routes/requestAppointRoutes')
 
 const cookieParser = require('cookie-parser')
 
@@ -19,6 +20,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 app.use("/",router)
+app.use("/api/manage",manageappoint)
 app.listen(PORT, ()=>{
     console.log(`The server is learning on port ${PORT}`)
 })
