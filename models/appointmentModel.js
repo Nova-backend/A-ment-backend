@@ -18,4 +18,4 @@ const Appointment = mongoose.Schema({
         required:true
     }
 })
-module.exports.appointment = mongoose.model('appointment',Appointment);
+module.exports.Appointment = mongoose.model('appointment',Appointment);

@@ -1,12 +1,12 @@
 const bcrypt = require('bcrypt');
 const { validation, User, OTPmodel } = require('../models/userModel.js')
 const nodeMailer = require("nodemailer")
-const otpGenerator = require("otp-generator")
+const generateAuthTokenotpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
-const {generateAuthToken,verifyToken} = require('../auth/user')
 const QueryString = require('qs')
 const redirectURI = 'auth/google'
+const {generateAuthToken,verifyToken} = require('../auth/user')
 
 
 cloudinary.config({
