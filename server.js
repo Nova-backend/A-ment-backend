@@ -6,7 +6,7 @@ const app = express()
 // const server = http.createServer(app)
 const mongoose = require('mongoose')
 const router = require('./routes/user.js')
-const manageappoint=require('./Routes/requestAppointRoutes')
+const manageappoint=require('./routes/requestAppointRoutes')
 
 const cookieParser = require('cookie-parser')
 
