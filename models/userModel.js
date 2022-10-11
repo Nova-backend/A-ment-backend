@@ -9,16 +9,20 @@ const User = mongoose.Schema({
     },
     userName:{
         type:String,
-        required:true
+        required:true,
+
     },
     email:{
         type: String,
         required: true,
-        trim:true
+        trim:true,
+        unique:true
     },
     password:{
         type: String,
-        required: true
+        required: true,
+        unique:true
+
     },
     image:{
         type:String,
