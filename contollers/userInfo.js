@@ -173,7 +173,7 @@ module.exports.getUser = () => {
 }
 module.exports.login = () => {
     return async(req,res)=>{
-         const user = await user.findOne({email:req.body.email})
+         const user = await User.findOne({email:req.body.email})
          if(!user){
             return res.send("Invalid credentials");
          }
