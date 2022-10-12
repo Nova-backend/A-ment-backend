@@ -15,8 +15,12 @@ const { verifyToken } = require('../auth/user')
 
 
 const express = require('express')
+const { registerDefinition, registerDefinitions } = require('swaggiffy');
 
 const router = express.Router()
+
+registerDefinition(router, { tags: 'user', mappedSchema: 'User', basePath: '/' });
+
 router.post('/signup', signup())  
 router.put('/signup/:id', updateUser())
 router.delete('/signup/:id', deleteUser())

@@ -4,9 +4,10 @@ const nodeMailer = require("nodemailer")
 // const generateAuthTokenotpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
+
 const QueryString = require('qs')
 const redirectURI = 'auth/google'
-const {generateAuthToken,verifyToken} = require('../auth/user')
+// const {generateAuthToken,verifyToken} = require('../auth/user')
 
 
 cloudinary.config({
@@ -180,7 +181,14 @@ module.exports.login = () => {
          if(!bcrypt.compareSync(req.body.password,user.password)){
             return res.status(400).json({message:"Invalid password"});
          }
-         const token = user.generateAuthToken();
+         console.log("blaaaaaaaaaaaaa");
+         const generateAuthToken = (userId)=>{
+          const token = jwt.sign({userId}, process.env.SECRET_KEY, {expiresIn:'15h'})
+          return token;
+         }
+        //  const token = user.generateAuthToken();
+         token = generateAuthToken()
+         console.log(token);
          const userProfile = await user.findOne({userId:user._id})
          res.cookie("token", token, {
             httpOnly: true,
