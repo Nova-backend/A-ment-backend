@@ -1,6 +1,11 @@
+const { Swaggiffy } = require('swaggiffy'); // Using require
+
+
 const dotenv = require('dotenv')
 dotenv.config()
+
 const fileupload = require("express-fileupload")
+
 const express = require('express')
 const app = express()
 // const server = http.createServer(app)
@@ -8,7 +13,9 @@ const mongoose = require('mongoose')
 const router = require('./routes/user.js')
 const manageappoint=require('./routes/requestAppointRoutes')
 
+new Swaggiffy().setupExpress(app).swaggiffy();
 const cookieParser = require('cookie-parser')
+
 
 
 mongoose.connect(process.env.URL).then(()=>{
