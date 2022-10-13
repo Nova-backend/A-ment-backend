@@ -2,7 +2,7 @@ const express=require('express')
 
 const {deleteAppoint,findAppoint,updateAppoint,createAppointment,getAppoint}=require('../contollers/clientcontrollers')
 
-const router=express.Router()
+const router = express.Router()
 
 
 
@@ -13,4 +13,4 @@ router.put('/update/:id',updateAppoint);
 router.delete('/delete/:id', deleteAppoint);
 
 
-module.exports = router
+module.exports = router;
