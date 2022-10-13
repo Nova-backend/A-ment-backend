@@ -27,7 +27,7 @@ mongoose.connect(process.env.URL).then(()=>{
 const PORT = process.env.PORT
 app.use(fileupload({useTempFiles:true}))
 app.use(express.json())
-app.use(bodyparser)
+
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 app.use("/",router)
