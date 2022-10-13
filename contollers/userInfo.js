@@ -6,15 +6,15 @@ const _ = require("lodash")
 const cloudinary = require('cloudinary')
 
 const QueryString = require('qs')
-const redirectURI = 'auth/google'
-// const {generateAuthToken,verifyToken} = require('../auth/user')
-
+const redirectURI = 'auth/google';
+const { generateUserToken } = require('../auth/user')
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET
 });
+token = generateUserToken()
 
 
 module.exports.signup = () => {
@@ -181,14 +181,18 @@ module.exports.login = () => {
          if(!bcrypt.compareSync(req.body.password,user.password)){
             return res.status(400).json({message:"Invalid password"});
          }
-         console.log("blaaaaaaaaaaaaa");
-         const generateAuthToken = (userId)=>{
-          const token = jwt.sign({userId}, process.env.SECRET_KEY, {expiresIn:'15h'})
-          return token;
-         }
-        //  const token = user.generateAuthToken();
-         token = generateAuthToken()
-         console.log(token);
+         const newToken = generateUserToken();
+         
+         console.log(newToken);
+
+         
+        //  const generateAuthToken = (userId)=>{
+        //   const token = jwt.sign({userId}, process.env.SECRET_KEY, {expiresIn:'15h'})
+        //   return token;
+        //  }
+         
+        
+        //  console.log(token);
          const userProfile = await user.findOne({userId:user._id})
          res.cookie("token", token, {
             httpOnly: true,

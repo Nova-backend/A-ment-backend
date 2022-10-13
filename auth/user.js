@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 dotenv.config()
-module.exports.generateAuthToken = (userId)=>{
-  const token = jwt.sign({userId}, process.env.SECRET_KEY, {expiresIn:'15h'})
+module.exports.generateUserToken = (userId)=>{
+  const token = jwt.sign({userId}, process.env.SECRET_KEY, {expiresIn:'7d'})
+
   return token;
   
 }
-module.exports.verifyToken = (req,res,next) =>{
+module.exports.verifyUserToken = (req,res,next) =>{
     if(req.headers.authorization && req.headers.authorization.startsWith("Bearer")){
         const token = jwt.verify(req.headers.authorization.split(" ")[1], process.env.SECRET_KEY)
     if(!token) {
