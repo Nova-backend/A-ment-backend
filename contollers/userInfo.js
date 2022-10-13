@@ -181,16 +181,9 @@ module.exports.login = () => {
          if(!bcrypt.compareSync(req.body.password,user.password)){
             return res.status(400).json({message:"Invalid password"});
          }
-         const newToken = generateUserToken();
-         console.log(newToken);
-         
-        //  const generateAuthToken = (userId)=>{
-        //   const token = jwt.sign({userId}, process.env.SECRET_KEY, {expiresIn:'15h'})
-        //   return token;
-        
-         
-        
-      
+         const token = generateUserToken();
+         console.log(token);
+       
          const userProfile = await user.findOne({userId:user._id})
          res.cookie("token", token, {
             httpOnly: true,
