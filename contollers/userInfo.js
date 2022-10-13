@@ -15,8 +15,6 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
 });
 token = generateUserToken()
-
-
 module.exports.signup = () => {
     return async (req, res) => {
 
