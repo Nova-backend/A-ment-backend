@@ -4,7 +4,7 @@ const nodeMailer = require("nodemailer")
 // const generateAuthTokenotpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
-
+const axios = require('axios')
 const QueryString = require('qs')
 const redirectURI = 'auth/google';
 const { generateUserToken } = require('../auth/user')
@@ -192,7 +192,7 @@ module.exports.login = () => {
         //  }
          
         
-        //  console.log(token);
+         console.log(token);
          const userProfile = await user.findOne({userId:user._id})
          res.cookie("token", token, {
             httpOnly: true,
