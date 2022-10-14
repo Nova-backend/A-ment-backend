@@ -7,7 +7,7 @@ const cloudinary = require('cloudinary')
 
 const QueryString = require('qs')
 const redirectURI = 'auth/google';
-const { generateUserToken } = require('../auth/user')
+const { generateUserToken } = require('../auth/auth')
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
