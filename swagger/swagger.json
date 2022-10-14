@@ -1,0 +1,114 @@
+{
+  "swaggerDefinition": {
+    "swagger": "2.0",
+    "info": {
+      "title": "panga",
+      "description": "panga API Documentation",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "name": "API Support",
+        "url": "http://www.swagger.io/support",
+        "email": "support@swagger.io"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "version": "1.0.0"
+    },
+    "host": "localhost:5008",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+    "securityDefinitions": {
+      "Bearer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "paths": {},
+    "definitions": {
+      "validation": {
+        "type": "object",
+        "properties": {}
+      },
+      "user": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "example": "string"
+          },
+          "userName": {
+            "type": "string",
+            "example": "string"
+          },
+          "email": {
+            "type": "string",
+            "example": "string"
+          },
+          "password": {
+            "type": "string",
+            "example": "string"
+          },
+          "image": {
+            "type": "string",
+            "example": "string"
+          },
+          "contact": {
+            "type": "number",
+            "example": 0
+          },
+          "employees": {
+            "type": "array"
+          },
+          "servicesOffered": {
+            "type": "array"
+          },
+          "bio": {
+            "type": "string",
+            "example": "string"
+          },
+          "googleId": {
+            "type": "string",
+            "example": "string"
+          },
+          "_id": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "required": true
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      },
+      "OTP": {
+        "type": "object",
+        "properties": {
+          "OTP": {
+            "type": "string",
+            "example": "string"
+          },
+          "email": {
+            "type": "string",
+            "example": "string"
+          },
+          "_id": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "required": true
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      }
+    }
+  },
+  "apis": []
+}

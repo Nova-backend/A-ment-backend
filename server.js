@@ -1,14 +1,24 @@
+const { Swaggiffy } = require('swaggiffy'); // Using require
+
+
 const dotenv = require('dotenv')
 dotenv.config()
+
 const fileupload = require("express-fileupload")
+
 const express = require('express')
+
+const bodyparser= require('body-parser');
 const app = express()
 // const server = http.createServer(app)
 const mongoose = require('mongoose')
 const router = require('./routes/user.js')
-const manageappoint=require('./Routes/requestAppointRoutes')
+const manageappoint=require('./routes/requestAppointRoutes')
 
-const cookieParser = require('cookie-parser')
+new Swaggiffy().setupExpress(app).swaggiffy();
+const cookieParser = require('cookie-parser');
+const { urlencoded } = require('express');
+
 
 
 mongoose.connect(process.env.URL).then(()=>{
@@ -17,6 +27,7 @@ mongoose.connect(process.env.URL).then(()=>{
 const PORT = process.env.PORT
 app.use(fileupload({useTempFiles:true}))
 app.use(express.json())
+
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 app.use("/",router)

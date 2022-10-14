@@ -1,21 +1,18 @@
 const bcrypt = require('bcrypt');
 const { validation, User, OTPmodel } = require('../models/userModel.js')
 const nodeMailer = require("nodemailer")
-// const generateAuthTokenotpGenerator = require("otp-generator")
 const _ = require("lodash")
 const cloudinary = require('cloudinary')
 const QueryString = require('qs')
-const redirectURI = 'auth/google'
-const {generateAuthToken,verifyToken} = require('../auth/user')
-
+const redirectURI = 'auth/google';
+const { generateUserToken } = require('../auth/auth')
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET
 });
-
-
+token = generateUserToken();
 module.exports.signup = () => {
     return async (req, res) => {
 
@@ -180,7 +177,9 @@ module.exports.login = () => {
          if(!bcrypt.compareSync(req.body.password,user.password)){
             return res.status(400).json({message:"Invalid password"});
          }
-         const token = user.generateAuthToken();
+         const token = generateUserToken();
+         console.log(token);
+       
          const userProfile = await user.findOne({userId:user._id})
          res.cookie("token", token, {
             httpOnly: true,
@@ -195,8 +194,8 @@ module.exports.login = () => {
             user:userProfile
           })
     }
-}
 
+  }
 module.exports.forgotPassword = () =>{
     return async(req,res)=>{
         const user = await user.findOne({email:req.body.email})
