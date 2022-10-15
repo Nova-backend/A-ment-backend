@@ -6,6 +6,8 @@ const cloudinary = require('cloudinary')
 const QueryString = require('qs')
 const redirectURI = 'auth/google';
 const { generateUserToken } = require('../auth/auth')
+const axios = require('axios')
+
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -233,7 +235,7 @@ function getGoogleAuthUrl() {
       redirect_uri: `${process.env.SERVER_ROOT_URI}/${redirectURI}`,
       client_id: process.env.CLIENT_ID,
       access_type: "offline",
-      response_type: "code",
+      response_type: 'code',
       prompt: "consent",
       scope: [
         "https://www.googleapis.com/auth/userinfo.profile",
@@ -286,6 +288,7 @@ function getGoogleAuthUrl() {
   };
   
   function getTokens({ code }) {
+    console.log(code)
     const url = "https://oauth2.googleapis.com/token";
     const values = {
       code: code,
@@ -293,6 +296,7 @@ function getGoogleAuthUrl() {
       client_secret: process.env.GOOGLE_SECRET,
       redirect_uri: "http://localhost:4000/auth/google",
       grant_type: "authorization_code",
+      
     };
     return axios
       .post(url, values, {

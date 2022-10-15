@@ -10,7 +10,7 @@ const {
     
     } = require('../contollers/userInfo.js')
 const {createAppointment} = require('../contollers/appointmentContoller')
-const { verifyToken } = require('../auth/user')
+const { verifyToken } = require('../auth/auth')
 
 
 
