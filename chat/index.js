@@ -36,18 +36,19 @@ const getUser = (userId) => {
 io.on("connection", socket => {
     console.log(socket.id, "User connected");
     //user connected
-     socket.on("new-user", name => {
+     socket.on('new-user', name => {
                 users[socket.id] = name;
                 socket.broadcast.emit("user connected", name)
             })
     //sending message
     socket.on('chat', message => {
     console.log('From client: ', message);
-    // io.emit('chat', message)
+    io.emit('chat', message)
 
 })   
 socket.on('chat', message => {
     console.log('From server: ', message)
+    // io.emit('chat', message)
   })
 //adding user
     socket.on("addUser", (data)=>{
