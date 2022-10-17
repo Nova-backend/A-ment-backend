@@ -2,11 +2,8 @@ let ejs = require('ejs');
 const express = require('express')
 const app = express()
 const path = require('path')
-const port = 4500;
-const server = app.listen(port,
-    console.log(`The server is listening on port ${port}`)
-    )
-// app.use(express.static(path.join(__dirname + '/public')))
+
+const server = app.listen(Process.env.URL)
 app.use("/static", express.static('./static/'));
 const mongoose = require('mongoose')
 const io  = require("socket.io")(server, {
