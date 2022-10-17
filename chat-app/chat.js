@@ -2,18 +2,18 @@ let ejs = require('ejs');
 const express = require('express')
 const app = express()
 const path = require('path')
-const port = 4500;
-const server = app.listen(port,
-    console.log(`The server is listening on port ${port}`)
-    )
-// app.use(express.static(path.join(__dirname + '/public')))
-app.use("/static", express.static('./static/'));
 
+const server = app.listen(Process.env.URL)
+app.use("/static", express.static('./static/'));
+const mongoose = require('mongoose')
 const io  = require("socket.io")(server, {
     cors : {
-        origin : "*"
+        origin : "*",
+        method:["POST","GET"]
     }
 })
+
+
 const users = {}
 app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
@@ -34,7 +34,7 @@ const getUser = (userId) => {
 }
 //connecting the user
 io.on("connection", socket => {
-    console.log(socket.id, "User connected");
+    console.log("User connected with an ID of: " ,socket.id);
     //user connected
      socket.on('new-user', name => {
                 users[socket.id] = name;
@@ -48,7 +48,7 @@ io.on("connection", socket => {
 })   
 socket.on('chat', message => {
     console.log('From server: ', message)
-    // io.emit('chat', message)
+    
   })
 //adding user
     socket.on("addUser", (data)=>{
