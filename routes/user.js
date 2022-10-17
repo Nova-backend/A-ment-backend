@@ -8,7 +8,9 @@ const {
      oAuth,
      getGoogleUser,
     
+    
     } = require('../contollers/userInfo.js')
+    const {chatting} = require('../chat-app/chat')
 const {createAppointment} = require('../contollers/appointmentContoller')
 const { verifyToken } = require('../auth/auth')
 
@@ -30,7 +32,7 @@ router.put('/forgotpassword', forgotPassword())
 router.post('/createAppointment', createAppointment())
 router.get('/signup/google', oAuth())
 router.get('/auth/google', getGoogleUser())
-
+router.post('/chat',chatting())
 
 
 
