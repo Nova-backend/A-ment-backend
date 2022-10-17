@@ -15,9 +15,7 @@ const io  = require("socket.io")(server, {
         method:["POST","GET"]
     }
 })
-mongoose.connect("mongodb+srv://Divine:123@cluster0.0e37a.mongodb.net/Appointments_data?retryWrites=true&w=majority").then(()=>{
-    console.log("Database successfully connected");
-})
+
 
 const users = {}
 app.set('view engine', 'ejs');
