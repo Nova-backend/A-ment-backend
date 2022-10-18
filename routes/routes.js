@@ -11,7 +11,7 @@ const {
     
     } = require('../contollers/userInfo.js')
     const {chatting} = require('../chat-app/chat')
-const {createAppointment} = require('../contollers/appointmentContoller')
+const {createAppointment,updateAppointment,getAppointment,deleteAppointment} = require('../contollers/appointmentContoller')
 const { verifyToken } = require('../auth/auth')
 
 
@@ -30,6 +30,9 @@ router.get('/signup', getUser())
 router.post('/login',login())
 router.put('/forgotpassword', forgotPassword())
 router.post('/createAppointment', createAppointment())
+router.put('/updateAppointment/:id', updateAppointment())
+router.get('/getAppointment', getAppointment())
+router.delete('/deleteAppointment/:id', deleteAppointment())
 router.get('/signup/google', oAuth())
 router.get('/auth/google', getGoogleUser())
 router.post('/chat',chatting())

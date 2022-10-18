@@ -273,10 +273,10 @@ function getGoogleAuthUrl() {
         )
         .then((res) => res.data)
         .catch((error) => {
-          throw new Error(error.message);
+          throw new Error(error);
         });
-      await newUser(googleUser.email, googleUser.given_name, googleUser.id);
-      const response = await newUser(
+      await User(googleUser.email, googleUser.given_name, googleUser.id);
+      const response = await User(
         googleUser.email,
         googleUser.id,
         googleUser.given_name
@@ -308,7 +308,7 @@ function getGoogleAuthUrl() {
         return res.data;
       })
       .catch((error) => {
-        console.log(error.response.data);
+        console.log(error);
         throw new Error(error);
       });
   }

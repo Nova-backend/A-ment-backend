@@ -1,15 +1,13 @@
 
 module.exports.chatting = () =>{
-    return async(req,res) =>{
-
-    
+    return async(req,res) =>{   
 let ejs = require('ejs');
 const express = require('express')
 const app = express()
 const path = require('path')
 const dotenv = require('dotenv')
 dotenv.config()
-const server = app.listen(process.env.PORT,)
+const server = app.listen(process.env.port,)
 app.use("/static", express.static('./static/'));
 
 const io  = require("socket.io")(server, {
@@ -24,19 +22,21 @@ app.get('/', function(req, res) {
     res.render('chat');
   });
 const Chat = require('../models/chatModel')
-const users = {};
+// const users = {};
 
   app.get('/', (req, res) => {
     Chat.find({}).then(messages => {
-      res.render('index', {messages});
+      res.render('chat', {messages});
     }).catch(err => console.error(err));
   });
-
-  io.sockets.on('connection', socket => {
+console.log("ewrtyuiopuytr");
+ await  io.on('connection', socket => {
   socket.on('chat', data => {
     Chat.create({name: data.handle, message: data.message}).then(() => {
       io.sockets.emit('chat', data); // return data
     }).catch(err => console.error(err));
+    console.log(data);
+    
   });
   socket.on('typing', data => {
     socket.broadcast.emit('typing', data); // return data
