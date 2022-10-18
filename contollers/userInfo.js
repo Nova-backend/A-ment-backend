@@ -8,7 +8,6 @@ const redirectURI = 'auth/google';
 const { generateUserToken } = require('../auth/auth')
 const axios = require('axios')
 
-
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
@@ -30,10 +29,8 @@ module.exports.signup = () => {
             console.log("file", req.files)
             const file = req.files.image
             const result = await cloudinary.uploader.upload(file.tempFilePath);
-
             console.log("result",result);
             // Create new user
-
             bcrypt.genSalt(10, (err, salt) => {
                 
                 bcrypt.hash(req.body.password, salt, async (err, hash) => {
@@ -57,11 +54,9 @@ module.exports.signup = () => {
                         servicesOffered:{
                             digitalisedService:req.body.digitalisedService,
                             unDigitalisedService:req.body.unDigitalisedService
-
-                            
+                         
                         },
                         bio:req.body.bio
-                        
                     });
                     await user.save()
                     const newuser = new OTPmodel({
@@ -80,9 +75,7 @@ module.exports.signup = () => {
             if (emailDuplicate) {
                 res.send("Sorry, the email already exists").status(400);
             }
-
-
-            const messenger = nodeMailer.createTransport({
+          const messenger = nodeMailer.createTransport({
                 service: 'outlook',
 
                 auth: {
@@ -90,7 +83,6 @@ module.exports.signup = () => {
                     pass: "divine005@"
                 }
             })
-
             const mailOptions = {
                 to: user.email,
                 from: "divineingabire@outlook.com",
@@ -101,8 +93,7 @@ module.exports.signup = () => {
                         <p> Below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
                          <h3>${OTP}</h3>
                          </html>
-                        `
-
+                      `
             }
             messenger.sendMail(mailOptions, (error, info) => {
                 if (error) {
@@ -117,15 +108,11 @@ module.exports.signup = () => {
         })
             })
         }
-
-
         catch (err) {
             console.log("er3", err);
         }
-
     }
 }
-
 module.exports.verifyEmail = () => {
     return async (req, res) => {
         const newOTP = await OTPmodel.findOne({ OTP: req.body.OTP })
@@ -143,10 +130,11 @@ module.exports.updateUser = () => {
                 userName: updates.userName,
                 email: updates.email,
                 password: updates.password
-            }, (err, response) => {
+              }, (err, response) => {
+              console.log(req.params.id);
                 if (err) {
                     console.log(err)
-                    return res.send('error occured')
+                    return res.send('Error occured')
                 } else {
                     res.json({ message: 'profile updated', user: updates });
                     return console.log(response)
@@ -157,7 +145,6 @@ module.exports.updateUser = () => {
         }
     }
 }
-
 module.exports.deleteUser = () => {
     return async (req, res) => {
         User.findByIdAndDelete(req.params.id)
@@ -228,7 +215,6 @@ module.exports.logout = () =>{
         })
     }
 }
-
 function getGoogleAuthUrl() {
     const rootUrl = "https://accounts.google.com/o/oauth2/auth";
     const options = {
@@ -246,7 +232,7 @@ function getGoogleAuthUrl() {
   }
   
   module.exports.oAuth = () => {
-    return async (req, res) => {
+    return async(req, res) => {
       res.redirect(getGoogleAuthUrl());
     };
   };
