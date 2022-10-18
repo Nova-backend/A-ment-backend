@@ -1,9 +1,5 @@
-const mongoose = require('mongoose')
-
- // for plain Js objects
-// registerSchema('Model Name 2', modelObj2, { orm: 'mongoose' }); // for mongoose model
-// registerSchema('Model Name 2', modelObj3, { orm: 'sequelize' }); // for sequelize model
-const { registerSchema, registerSchemas }  = require('swaggiffy');
+const mongoose = require('mongoose');
+const { registerSchema}  = require('swaggiffy');
 const joi = require('joi')
 const { string, number }  = require('joi')
 const User = mongoose.Schema({
@@ -77,7 +73,7 @@ const validation = (data)=>{
         fullName: joi.string().required().min(4),
         userName:joi.string().required(),
         email: joi.string().required().email(),
-        password: joi.stringrs().required()
+        password: joi.string().required()
     })
     return data.validate()
 }

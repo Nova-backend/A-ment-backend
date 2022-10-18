@@ -12,7 +12,7 @@ const bodyparser= require('body-parser');
 const app = express()
 // const server = http.createServer(app)
 const mongoose = require('mongoose')
-const router = require('./routes/user.js')
+const router = require('./routes/routes.js')
 const manageappoint=require('./routes/requestAppointRoutes')
 
 new Swaggiffy().setupExpress(app).swaggiffy();

@@ -17,7 +17,7 @@ module.exports.createAppointment = () => {
 module.exports.updateAppointment = () =>{
     return async(res,req)=>{
         try{
-            const updating = _.pick(req.body,[service,clientName,date,duration])
+            const updating = _.pick(req.body,['service','clientName','date','duration'])
             Appointment.findByIdAndUpdate(req.params.id, {
                 service:updating.service,
                 clientName:updating.clientName,
