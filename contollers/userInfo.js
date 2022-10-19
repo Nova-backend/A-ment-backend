@@ -131,7 +131,6 @@ module.exports.updateUser = () => {
                 email: updates.email,
                 password: updates.password
               }, (err, response) => {
-              console.log(req.params.id);
                 if (err) {
                     console.log(err)
                     return res.send('Error occured')
@@ -236,7 +235,7 @@ function getGoogleAuthUrl() {
       res.redirect(getGoogleAuthUrl());
     };
   };
-  module.exports.getGoogleUser = () => {
+  module.exports. getGoogleUser = () => {
     return async (req, res) => {
       const code = req.query.code;
       let tokens;
@@ -266,7 +265,8 @@ function getGoogleAuthUrl() {
         googleUser.email,
         googleUser.id,
         googleUser.given_name
-      );
+      )
+     
       return res
         .status(response.statusCode)
         .json({ message: response.message, success: response.status });
