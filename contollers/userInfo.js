@@ -265,7 +265,8 @@ function getGoogleAuthUrl() {
         googleUser.email,
         googleUser.id,
         googleUser.given_name
-      );
+      )
+     
       return res
         .status(response.statusCode)
         .json({ message: response.message, success: response.status });
