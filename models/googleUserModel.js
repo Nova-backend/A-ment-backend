@@ -20,25 +20,20 @@ const Usergoogle = mongoose.Schema({
 
     },
     image:{
-        type:String,
-        required:true   
+        type:String, 
     },
     contact:{
         type:Number,
-        required:true
     },
     employees : [{
         fullname:{
            type:String,
-           required:true
         },
         position:{
             type:String,
-            required:true,
         },
         workingHours: {
             type:Date,
-            required:true,
         },
         workingDays: {
             type: String,
@@ -64,16 +59,16 @@ const Usergoogle = mongoose.Schema({
     googleId:String
 })
 
-const OTP = mongoose.Schema({
-    OTP : {
-        type: String,
-        required: true
-    }, 
-    email:{
-        type: String,
-        required: true
-    }
-})
+// const OTP = mongoose.Schema({
+//     OTP : {
+//         type: String,
+//         required: true
+//     }, 
+//     email:{
+//         type: String,
+//         required: true
+//     }
+// })
 
 // module.exports.validating = validation
 module.exports.Usergoogle = mongoose.model('usergoogle', Usergoogle)
