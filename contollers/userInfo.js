@@ -7,7 +7,7 @@ const QueryString = require('qs')
 const redirectURI = 'auth/google';
 const { generateUserToken } = require('../auth/auth')
 const axios = require('axios')
-
+const { Usergoogle} = require('../models/googleUserModel.js')
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
@@ -17,7 +17,7 @@ token = generateUserToken();
 module.exports.signup = () => {
     return async (req, res) => {
 
-        const salt = await bcrypt.genSalt(10);
+        // const salt = await bcrypt.genSalt(10);
         const { error } = await validation(req.body);
         const OTP = otpGenerator.generate(8, { upperCaseAlphabets: true, specialChars: false, lowerCaseAlphabets: true })
         if (error) {
@@ -27,7 +27,7 @@ module.exports.signup = () => {
         try {
             // Upload image to cloudinary
             console.log("file", req.files)
-            const file = req.files.image
+            const file = req.files.image;
             const result = await cloudinary.uploader.upload(file.tempFilePath);
             console.log("result",result);
             // Create new user
@@ -252,7 +252,7 @@ function getGoogleAuthUrl() {
           `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${tokens.access_token}`,
           {
             headers: {
-              Authorization: `Bearer ${tokens.id_token}`,
+              Authorization: `Bearer ${tokens.id_tokeUsern}`,
             },
           }
         )
@@ -260,17 +260,46 @@ function getGoogleAuthUrl() {
         .catch((error) => {
           throw new Error(error);
         });
-      await User(googleUser.email, googleUser.given_name, googleUser.id);
-      const response = await User(
-        googleUser.email,
-        googleUser.id,
-        googleUser.given_name
-      )
+         bcrypt.genSalt(10, (err, salt) => {
+                
+        bcrypt.hash(req.body.password, salt, async (err, hash) => {
+    
+      const usergoogle  = new Usergoogle({
+        email:googleUser.email,
+        given_name:googleUser.given_name,
+        id:googleUser.id,
+        password: hash,
+        image:googleUser.image,
+        contact:req.body.contact,
+      
+        employees:{
+            fullname:req.body.fullname,
+            position:req.body.position,
+            workingDays:User.workingDays,
+            workingHours:req.body.workingHours,
+        
+        },
+        servicesOffered:{
+            digitalisedService:req.body.digitalisedService,
+            unDigitalisedService:req.body.unDigitalisedService
+         
+        },
+        bio:req.body.bio
+      
+      });  
+      const response = await Usergoogle({
+        email : googleUser.email,
+        full_name: googleUser.full_name,
+        image : googleUser.image
+        })
+      await usergoogle.save();
      
       return res
         .status(response.statusCode)
         .json({ message: response.message, success: response.status });
-    };
+    })
+  })
+}
   };
   
   function getTokens({ code }) {
@@ -297,4 +326,9 @@ function getGoogleAuthUrl() {
         console.log(error);
         throw new Error(error);
       });
+  }
+  module.exports.signupGoogle = () =>{
+    return async (req,res) =>{
+
+    }
   }

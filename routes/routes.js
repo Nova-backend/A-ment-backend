@@ -30,6 +30,7 @@ router.put('/updateAppointment/:id', updateAppointment())
 router.get('/getAppointment', getAppointment())
 router.delete('/deleteAppointment/:id', deleteAppointment())
 router.get('/signup/google', oAuth())
+router.post('/signup/google', oAuth())
 router.get('/auth/google', getGoogleUser())
 router.post('/chat',chatting())
 
