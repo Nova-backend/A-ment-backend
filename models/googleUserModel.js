@@ -3,14 +3,11 @@ const { registerSchema}  = require('swaggiffy');
 const joi = require('joi')
 const { string, number }  = require('joi')
 const Usergoogle = mongoose.Schema({
-    fullName: {
-        type: String,
-        required: true
+    full_name: {
+        type: String,     
     },
     userName:{
         type:String,
-        required:true,
-
     },
     email:{
         type: String,
@@ -66,15 +63,6 @@ const Usergoogle = mongoose.Schema({
     },
     googleId:String
 })
-const validation = (data)=>{
-     data = new joi.object({
-        fullName: joi.string().required().min(4),
-        userName:joi.string().required(),
-        email: joi.string().required().email(),
-        password: joi.string().required()
-    })
-    return data.validate()
-}
 
 const OTP = mongoose.Schema({
     OTP : {
@@ -87,9 +75,7 @@ const OTP = mongoose.Schema({
     }
 })
 
-module.exports.validation = validation
+// module.exports.validating = validation
 module.exports.Usergoogle = mongoose.model('usergoogle', Usergoogle)
-module.exports.OTPmodel = mongoose.model('OTPs', OTP)
-registerSchema('validation', validation);
-registerSchema('usergoogle', User);
-registerSchema('OTP', OTP);
+// module.exports.Otpmodel = mongoose.model('OTP', OTP)
+registerSchema('usergoogle', Usergoogle);
