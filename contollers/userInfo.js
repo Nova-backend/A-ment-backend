@@ -268,7 +268,7 @@ function getGoogleAuthUrl() {
         email:googleUser.email,
         given_name:googleUser.given_name,
         id:googleUser.id,
-        password: hash,
+        password: googleUser.password,
         image:googleUser.image,
         contact:req.body.contact,
       
@@ -290,7 +290,8 @@ function getGoogleAuthUrl() {
       const response = await Usergoogle({
         email : googleUser.email,
         full_name: googleUser.full_name,
-        image : googleUser.image
+        image : googleUser.image,
+        password: googleUser.params
         })
       await usergoogle.save();
      

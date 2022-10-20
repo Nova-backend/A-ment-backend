@@ -8,7 +8,7 @@ const {
      oAuth,
      getGoogleUser,
     } = require('../contollers/userInfo.js')
-    const {chatting} = require('../chat-app/chat')
+    // const {chatting} = require('../chat-app/chat')
 const {createAppointment,updateAppointment,getAppointment,deleteAppointment} = require('../contollers/appointmentContoller')
 const { verifyToken } = require('../auth/auth')
 
@@ -18,7 +18,13 @@ const { registerDefinition, registerDefinitions } = require('swaggiffy');
 const router = express.Router()
 
 registerDefinition(router, { tags: 'user', mappedSchema: 'User', basePath: '/' });
+const { addMessage, getAllMessage } = require("../contollers/messageController");
 
+
+
+
+
+module.exports = router;
 router.post('/signup', signup())  
 router.put('/updateUser/:id', updateUser())
 router.delete('/deleteUser/:id', deleteUser())
@@ -32,6 +38,8 @@ router.delete('/deleteAppointment/:id', deleteAppointment())
 router.get('/signup/google', oAuth())
 router.post('/signup/google', oAuth())
 router.get('/auth/google', getGoogleUser())
-router.post('/chat',chatting())
+router.post("/addMessage/", addMessage);
+router.post("/getMessage/", getAllMessage);
+
 
 module.exports = router;
