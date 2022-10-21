@@ -19,4 +19,4 @@ const messageSchema = mongoose.Schema(
 );
 
 module.exports = mongoose.model("Messages", messageSchema);
-registerSchema('Messages',messageSchema);
+registerSchema("Messages", messageSchema);
