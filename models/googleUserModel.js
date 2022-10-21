@@ -26,7 +26,7 @@ const Usergoogle = mongoose.Schema({
     contact:{
         type:Number,
     },
-    employees : {
+    employees : [{
         fullname:{
            type:String,
         },
@@ -43,8 +43,8 @@ const Usergoogle = mongoose.Schema({
         ],
         
     },
-     },
-    servicesOffered:{
+     }],
+    servicesOffered:[{
         digitalisedService:{
             type:String
             
@@ -52,7 +52,7 @@ const Usergoogle = mongoose.Schema({
         unDigitalisedService:{
             type:String
         }
-    },
+    }],
     bio:{
         type:String,
         

@@ -135,29 +135,11 @@
             "type": "number",
             "example": 0
           },
-          "employees.fullname": {
-            "type": "string",
-            "example": "string"
+          "employees": {
+            "type": "array"
           },
-          "employees.position": {
-            "type": "string",
-            "example": "string"
-          },
-          "employees.workingHours": {
-            "type": "string",
-            "example": "10/21/2022, 4:28:19 PM"
-          },
-          "employees.workingDays": {
-            "type": "string",
-            "example": "string"
-          },
-          "servicesOffered.digitalisedService": {
-            "type": "string",
-            "example": "string"
-          },
-          "servicesOffered.unDigitalisedService": {
-            "type": "string",
-            "example": "string"
+          "servicesOffered": {
+            "type": "array"
           },
           "bio": {
             "type": "string",
@@ -187,11 +169,11 @@
           },
           "date": {
             "type": "string",
-            "example": "10/21/2022, 4:28:19 PM"
+            "example": "10/21/2022, 4:30:15 PM"
           },
           "duration": {
             "type": "string",
-            "example": "10/21/2022, 4:28:19 PM"
+            "example": "10/21/2022, 4:30:15 PM"
           },
           "_id": {
             "type": "string",
@@ -226,11 +208,11 @@
           },
           "updatedAt": {
             "type": "string",
-            "example": "10/21/2022, 4:28:19 PM"
+            "example": "10/21/2022, 4:30:15 PM"
           },
           "createdAt": {
             "type": "string",
-            "example": "10/21/2022, 4:28:19 PM"
+            "example": "10/21/2022, 4:30:15 PM"
           },
           "__v": {
             "type": "number",
