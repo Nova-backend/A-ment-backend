@@ -111,7 +111,7 @@
       "usergoogle": {
         "type": "object",
         "properties": {
-          "full_name": {
+          "given_name": {
             "type": "string",
             "example": "string"
           },
@@ -135,17 +135,121 @@
             "type": "number",
             "example": 0
           },
-          "employees": {
-            "type": "array"
+          "employees.fullname": {
+            "type": "string",
+            "example": "string"
           },
-          "servicesOffered": {
-            "type": "array"
+          "employees.position": {
+            "type": "string",
+            "example": "string"
+          },
+          "employees.workingHours": {
+            "type": "string",
+            "example": "10/21/2022, 4:28:19 PM"
+          },
+          "employees.workingDays": {
+            "type": "string",
+            "example": "string"
+          },
+          "servicesOffered.digitalisedService": {
+            "type": "string",
+            "example": "string"
+          },
+          "servicesOffered.unDigitalisedService": {
+            "type": "string",
+            "example": "string"
           },
           "bio": {
             "type": "string",
             "example": "string"
           },
-          "googleId": {
+          "_id": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "required": true
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      },
+      "appointment": {
+        "type": "object",
+        "properties": {
+          "service": {
+            "type": "string",
+            "example": "string"
+          },
+          "clientName": {
+            "type": "string",
+            "example": "string"
+          },
+          "date": {
+            "type": "string",
+            "example": "10/21/2022, 4:28:19 PM"
+          },
+          "duration": {
+            "type": "string",
+            "example": "10/21/2022, 4:28:19 PM"
+          },
+          "_id": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "required": true
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      },
+      "Messages": {
+        "type": "object",
+        "properties": {
+          "message.text": {
+            "type": "string",
+            "example": "string"
+          },
+          "users": {
+            "type": "array"
+          },
+          "sender": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "required": true
+          },
+          "_id": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "required": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "10/21/2022, 4:28:19 PM"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "10/21/2022, 4:28:19 PM"
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      },
+      "userdb": {
+        "type": "object",
+        "properties": {
+          "company": {
+            "type": "string",
+            "example": "string"
+          },
+          "serviceNeeded": {
+            "type": "string",
+            "example": "string"
+          },
+          "specificStaff": {
             "type": "string",
             "example": "string"
           },

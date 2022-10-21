@@ -7,7 +7,7 @@ const QueryString = require('qs')
 const redirectURI = 'auth/google';
 const { generateUserToken } = require('../auth/auth')
 const axios = require('axios')
-const { Usergoogle} = require('../models/googleUserModel.js')
+const { Usergoogle } = require('../models/googleUserModel.js')
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
@@ -267,11 +267,10 @@ function getGoogleAuthUrl() {
       const usergoogle  = new Usergoogle({
         email:googleUser.email,
         given_name:googleUser.given_name,
-        id:googleUser.id,
-        password: googleUser.password,
-        image:googleUser.image,
+        id:googleUser.id, 
+        image:googleUser.image,   
         contact:req.body.contact,
-      
+                      
         employees:{
             fullname:req.body.fullname,
             position:req.body.position,
@@ -285,19 +284,15 @@ function getGoogleAuthUrl() {
          
         },
         bio:req.body.bio
-      
       });  
-      const response = await Usergoogle({
-        email : googleUser.email,
-        full_name: googleUser.full_name,
-        image : googleUser.image,
-        password: googleUser.params
-        })
       await usergoogle.save();
-     
-      return res
-        .status(response.statusCode)
-        .json({ message: response.message, success: response.status });
+      console.log(usergoogle);
+      // return res
+      // //  const response = await Usergoogle({
+
+      // //  })
+      //   .status(response.statusCode)
+      //   .json({ message: response.message, success: response.status });
     })
   })
 }

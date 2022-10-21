@@ -3,7 +3,7 @@ const { registerSchema}  = require('swaggiffy');
 const joi = require('joi')
 const { string, number }  = require('joi')
 const Usergoogle = mongoose.Schema({
-    full_name: {
+    given_name: {
         type: String,     
     },
     userName:{
@@ -12,11 +12,13 @@ const Usergoogle = mongoose.Schema({
     email:{
         type: String,
         trim:true,
-        unique:true
+        unique:false,
+        required:false
     },
     password:{
         type: String,
-        unique:true
+        unique:false,
+        required:false
     },
     image:{
         type:String, 
@@ -24,7 +26,7 @@ const Usergoogle = mongoose.Schema({
     contact:{
         type:Number,
     },
-    employees : [{
+    employees : {
         fullname:{
            type:String,
         },
@@ -41,8 +43,8 @@ const Usergoogle = mongoose.Schema({
         ],
         
     },
-     }],
-    servicesOffered:[{
+     },
+    servicesOffered:{
         digitalisedService:{
             type:String
             
@@ -50,26 +52,25 @@ const Usergoogle = mongoose.Schema({
         unDigitalisedService:{
             type:String
         }
-    }],
+    },
     bio:{
         type:String,
         
-    },
-    googleId:String
+    }
 })
 
-// const OTP = mongoose.Schema({
-//     OTP : {
-//         type: String,
-//         required: true
-//     }, 
-//     email:{
-//         type: String,
-//         required: true
-//     }
-// })
+const OTP = mongoose.Schema({
+    OTP : {
+        type: String,
+        required: true
+    }, 
+    email:{
+        type: String,
+        // required: true
+    }
+})
 
-// module.exports.validating = validation
 module.exports.Usergoogle = mongoose.model('usergoogle', Usergoogle)
-// module.exports.Otpmodel = mongoose.model('OTP', OTP)
+module.exports.Otpmodel = mongoose.model('OTP', OTP)
 registerSchema('usergoogle', Usergoogle);
+registerSchema('OTP', OTP);
