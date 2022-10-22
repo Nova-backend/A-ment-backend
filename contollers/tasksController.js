@@ -37,7 +37,7 @@ module.exports.deleteTask = () => {
 }
 module.exports.getTasks = () => {
     return async(req,res) => {
-        await Task.find(req.params.id);
-        return res.json({ task: task, success: true });
+        await Task.find(req.body.id);
+        return res.json({ task:Task, success: true });
     }
 }
