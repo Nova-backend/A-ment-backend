@@ -46,7 +46,7 @@ router.delete("/deleteAppointment/:id", deleteAppointment());
 router.get("/signup/google", oAuth());
 router.post("/signup/google", oAuth());
 router.get("/auth/google", getGoogleUser());
-router.post("/addMessage/", addMessage);
-router.post("/getMessage/", getAllMessage);
+router.post("/addMessage/", addMessage());
+router.post("/getMessage/", getAllMessage());
 
 module.exports = router;

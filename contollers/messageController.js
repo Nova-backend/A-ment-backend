@@ -4,23 +4,25 @@ module.exports.addMessage = () => {
   return async (req, res) => {
     try {
       const { from, to, message } = req.body;
-      const data = await messageModel.create({
+      const data = new messageModel({
         message: {
           text: message,
         },
         users: [from, to],
         sender: from,
       });
-
+      console.log("dghdhjfkshfs");
+      console.log(req.body);
+     await data.save()
       if (data)
         return res.json({
-          msg: "Message added successfully!",
+          message: "Message added successfully!",
         });
       return res.json({
-        msg: "Failed to add message to DB",
+        message: "Failed to add message to DB",
       });
     } catch (err) {
-      next(err);
+      console.log(err);
     }
   };
 };

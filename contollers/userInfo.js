@@ -289,12 +289,7 @@ module.exports.getGoogleUser = () => {
         });
         await usergoogle.save();
         console.log(usergoogle);
-        // return res
-        // //  const response = await Usergoogle({
-
-        // //  })
-        //   .status(response.statusCode)
-        //   .json({ message: response.message, success: response.status });
+        
       });
     });
   };
