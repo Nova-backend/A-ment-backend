@@ -1,12 +1,13 @@
 const { Task } = require("../models/taskModel");
 const _ = require("lodash");
 module.exports.createTask = () => {
-  return async () => {
+  return async (req,res) => {
     try {
       const task = new Task({
         title: req.body.title,
         createdAt: req.body.createdAt,
       });
+      res.send({task:task});
       await task.save();
     } catch (error) {
       console.log(error);
@@ -29,13 +30,13 @@ module.exports.updateTask = () =>{
    }
 }
 module.exports.deleteTask = () => {
-    return async() =>{
+    return async(req,res) =>{
       await Task.findByIdAndDelete(req.params.id);
       res.json({ message: "Task deleted successfully", success: true });
     }
 }
 module.exports.getTasks = () => {
-    return async() => {
+    return async(req,res) => {
         await Task.find(req.params.id);
         return res.json({ task: task, success: true });
     }
