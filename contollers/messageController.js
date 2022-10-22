@@ -68,3 +68,9 @@ module.exports.updateMessage = () => {
 }
   }
 }
+module.exports.deleteMessage = () =>{
+  return async(req,res) =>{
+    await messageModel.findByIdAndDelete(req.body.id);
+    res.send({message: "Message deleted", success:true})
+  }
+}

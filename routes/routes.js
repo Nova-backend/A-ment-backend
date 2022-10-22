@@ -30,6 +30,8 @@ registerDefinition(router, {
 const {
   addMessage,
   getAllMessage,
+  updateMessage,
+  deleteMessage
 } = require("../contollers/messageController");
 const {
   createTask,
@@ -54,9 +56,12 @@ router.post("/signup/google", oAuth());
 router.get("/auth/google", getGoogleUser());
 router.post("/addMessage/", addMessage());
 router.get("/getMessage/", getAllMessage());
+router.put("/updateMessage",updateMessage());
+router.delete("/deleteMessage",deleteMessage());
 router.post("/createTask", createTask());
-router.put("/updateTask", updateTask());
-router.delete("/deleteTask", deleteTask());
+router.put("/updateTask/:id", updateTask());
+router.delete("/deleteTask/:id", deleteTask());
 router.get("/getTask", getTasks());
+
 
 module.exports = router;
