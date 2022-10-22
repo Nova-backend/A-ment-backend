@@ -31,6 +31,12 @@ const {
   addMessage,
   getAllMessage,
 } = require("../contollers/messageController");
+const {
+  createTask,
+  updateTask,
+  deleteTask,
+  getTasks,
+} = require("../contollers/tasksController");
 
 module.exports = router;
 router.post("/signup", signup());
@@ -48,5 +54,9 @@ router.post("/signup/google", oAuth());
 router.get("/auth/google", getGoogleUser());
 router.post("/addMessage/", addMessage());
 router.get("/getMessage/", getAllMessage());
+router.post("/createTask", createTask());
+router.put("/updateTask", updateTask());
+router.delete("/deleteTask", deleteTask());
+router.get("/getTask", getTasks());
 
 module.exports = router;
