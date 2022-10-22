@@ -1,14 +1,21 @@
-const { Appointment } = require("../models/appointmentModel");
+const { Appointment ,validation} = require("../models/appointmentModel");
 const _ = require("lodash");
 const { duration } = require("moment");
+
 module.exports.createAppointment = () => {
   return async (req, res) => {
+
+    const {error} = await validation(req.body);
     const appointment = new Appointment({
       service: req.body.service,
       clientName: req.body.clientName,
       date: req.body.date,
       duration: req.body.duration,
     });
+    if (error) {
+      res.send(error);
+      console.log("error", error);
+    }
     await appointment.save();
   };
 };
