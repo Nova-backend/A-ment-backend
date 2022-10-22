@@ -169,11 +169,11 @@
           },
           "date": {
             "type": "string",
-            "example": "10/22/2022, 3:15:29 PM"
+            "example": "10/22/2022, 7:02:31 PM"
           },
           "duration": {
             "type": "string",
-            "example": "10/22/2022, 3:15:29 PM"
+            "example": "10/22/2022, 7:02:31 PM"
           },
           "_id": {
             "type": "string",
@@ -206,11 +206,33 @@
           },
           "updatedAt": {
             "type": "string",
-            "example": "10/22/2022, 3:15:29 PM"
+            "example": "10/22/2022, 7:02:31 PM"
           },
           "createdAt": {
             "type": "string",
-            "example": "10/22/2022, 3:15:29 PM"
+            "example": "10/22/2022, 7:02:31 PM"
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      },
+      "task": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "10/22/2022, 7:02:31 PM"
+          },
+          "_id": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "required": true
           },
           "__v": {
             "type": "number",

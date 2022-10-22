@@ -1,5 +1,6 @@
-const messageModel = require("../models/chatModel");
 
+const messageModel = require("../models/chatModel");
+const _ = require('lodash')
 module.exports.addMessage = () => {
   return async (req, res) => {
     try {
@@ -51,3 +52,25 @@ module.exports.getAllMessage = () => {
     }
   };
 };
+module.exports.updateMessage = () => {
+  
+  return async(req,res) => {
+    try{
+    
+    const updates = _.pick(['message']);
+    await messageModel.findByIdAndUpdate(req.params.id,{
+       message:updates.message
+    })
+    res.send({message:"Message edited", success:true})
+  }   catch(error) {
+    console.log(error);
+  
+}
+  }
+}
+module.exports.deleteMessage = () =>{
+  return async(req,res) =>{
+    await messageModel.findByIdAndDelete(req.body.id);
+    res.send({message: "Message deleted", success:true})
+  }
+}
