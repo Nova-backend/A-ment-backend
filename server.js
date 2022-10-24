@@ -1,4 +1,5 @@
-const { Swaggiffy } = require('swaggiffy'); // Using require
+const { Swaggiffy } = require('swaggiffy'); 
+const common= require( 'common')// Using require
 
 
 const dotenv = require('dotenv')
@@ -57,6 +58,7 @@ io.on("connection",(socket)=>{
 });
 app.use("/",router)
 app.use("/api/manage",manageappoint)
+
 app.listen(PORT, ()=>{
     console.log(`The server is learning on port ${PORT}`)
 })

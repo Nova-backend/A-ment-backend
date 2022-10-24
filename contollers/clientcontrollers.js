@@ -60,6 +60,7 @@ const getAppoint=async(req,res)=>{
 const updateAppoint =async(req,res)=>{
     try {
         const {id} = req.params;
+        
 
         const updatedAppoint = await clientRequestModels.findByIdAndUpdate(id,req.body,{
             new:true
