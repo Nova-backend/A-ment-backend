@@ -38,7 +38,13 @@ const User = mongoose.Schema({
       type:String,
       required:false
     },
-  
+   achievements:{
+    type:Object,
+    required:false
+   },
+   certifications:{
+   type:String,
+   },
   employees: [
     {
       fullname: {
