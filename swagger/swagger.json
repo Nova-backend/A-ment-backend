@@ -61,6 +61,21 @@
             "type": "number",
             "example": 0
           },
+          "skills": {
+            "type": "string",
+            "example": "string"
+          },
+          "cv": {
+            "type": "string",
+            "example": "string"
+          },
+          "achievements": {
+            "type": "object"
+          },
+          "certifications": {
+            "type": "string",
+            "example": "string"
+          },
           "employees": {
             "type": "array"
           },
@@ -169,11 +184,11 @@
           },
           "date": {
             "type": "string",
-            "example": "10/22/2022, 7:02:31 PM"
+            "example": "10/24/2022, 3:13:19 PM"
           },
           "duration": {
             "type": "string",
-            "example": "10/22/2022, 7:02:31 PM"
+            "example": "10/24/2022, 3:13:19 PM"
           },
           "_id": {
             "type": "string",
@@ -206,11 +221,11 @@
           },
           "updatedAt": {
             "type": "string",
-            "example": "10/22/2022, 7:02:31 PM"
+            "example": "10/24/2022, 3:13:19 PM"
           },
           "createdAt": {
             "type": "string",
-            "example": "10/22/2022, 7:02:31 PM"
+            "example": "10/24/2022, 3:13:19 PM"
           },
           "__v": {
             "type": "number",
@@ -227,7 +242,11 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "10/22/2022, 7:02:31 PM"
+            "example": "10/24/2022, 3:13:19 PM"
+          },
+          "completed": {
+            "type": "boolean",
+            "example": false
           },
           "_id": {
             "type": "string",
