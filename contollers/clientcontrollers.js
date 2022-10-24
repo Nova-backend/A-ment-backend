@@ -1,97 +1,96 @@
-var clientRequestModels = require('../models/RequestClientModels');
+var clientRequestModels = require("../models/RequestClientModels");
 
 // create and save new user
-const createAppointment = (req,res)=>{
-    // validate request
-    if(!req.body){
-        res.status(400).send({ message : "Content can not be emtpy!"});
-        return;
-    }
+const createAppointment = (req, res) => {
+  // validate request
+  if (!req.body) {
+    res.status(400).send({ message: "Content can not be emtpy!" });
+    return;
+  }
 
-    // new user
-    const appoint = new clientRequestModels({
-        company : req.body.company,
-        serviceNeeded: req.body.serviceNeeded,
-        specificStaff: req.body.specificStaff,
-        
+  // new user
+  const appoint = new clientRequestModels({
+    company: req.body.company,
+    serviceNeeded: req.body.serviceNeeded,
+    specificStaff: req.body.specificStaff,
+  });
+
+  // save user in the database
+  appoint
+    .save(appoint)
+    .then((data) => {
+      // res.send(data)
+      res.status(200).send({ message: "appointment created successfully" });
+      // res.redirect('/add-user');
     })
-
-    // save user in the database
-    appoint
-        .save(appoint)
-        .then(data => {
-            // res.send(data)
-            res.status(200).send({message:"appointment created successfully"})
-            // res.redirect('/add-user');
-        })
-        .catch(err =>{
-            res.status(500).send({
-                message : err.message || "Some error occurred while creating a create operation"
-            });
-        });
-
-}
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message ||
+          "Some error occurred while creating a create operation",
+      });
+    });
+};
 
 // retrieve and return all users/ retrive and return a single user
-const findAppoint =async(req,res)=>{
-    try {
-        const appointData = await clientRequestModels.find();
-        res.status(201).json(appointData)
-        console.log(appointData);
-    } catch (error) {
-        res.status(422).json(error);
-    };
-}
-const getAppoint=async(req,res)=>{
-    try {
-        console.log(req.params);
-        const {id} = req.params;
+const findAppoint = async (req, res) => {
+  try {
+    const appointData = await clientRequestModels.find();
+    res.status(201).json(appointData);
+    console.log(appointData);
+  } catch (error) {
+    res.status(422).json(error);
+  }
+};
+const getAppoint = async (req, res) => {
+  try {
+    console.log(req.params);
+    const { id } = req.params;
 
-        const userindividual = await clientRequestModels.findById({_id:id});
-        console.log(userindividual);
-        res.status(201).json(userindividual)
-
-    } catch (error) {
-        res.status(422).json(error);
-    }
-}
+    const userindividual = await clientRequestModels.findById({ _id: id });
+    console.log(userindividual);
+    res.status(201).json(userindividual);
+  } catch (error) {
+    res.status(422).json(error);
+  }
+};
 
 // Update a new idetified user by user id
-const updateAppoint =async(req,res)=>{
-    try {
-        const {id} = req.params;
-        
 
-        const updatedAppoint = await clientRequestModels.findByIdAndUpdate(id,req.body,{
-            new:true
-        });
+    const updatedAppoint = await clientRequestModels.findByIdAndUpdate(
+      id,
+      req.body,
+      {
+        new: true,
+      }
+    );
 
-        console.log(updateAppoint);
-        res.status(201).json(updateAppoint);
-
-    } catch (error) {
-        res.status(422).json(error);
-    }
-}
+    console.log(updateAppoint);
+    res.status(201).json(updateAppoint);
+  } catch (error) {
+    res.status(422).json(error);
+  }
+};
 
 // Delete a user with specified user id in the request
- const deleteAppoint =async(req,res)=>{
-    try {
-        const {id} = req.params;
+const deleteAppoint = async (req, res) => {
+  try {
+    const { id } = req.params;
 
-        const deletAppoint = await clientRequestModels.findByIdAndDelete({_id:id})
-        console.log(deletAppoint);
-        res.status(201).json(deletAppoint);
-
-    } catch (error) {
-        res.status(422).json({message:error.message});
-    }
-}
-        module.exports ={ 
-        deleteAppoint,
-        findAppoint,
-        createAppointment,
-        updateAppoint,
-        getAppoint
-    // module.exports = getUser;
-    }
+    const deletAppoint = await clientRequestModels.findByIdAndDelete({
+      _id: id,
+    });
+    console.log(deletAppoint);
+    res.status(201).json(deletAppoint);
+  } catch (error) {
+    res.status(422).json({ message: error.message });
+  }
+};
+module.exports = {
+  deleteAppoint,
+  findAppoint,
+  createAppointment,
+  updateAppoint,
+  getAppoint,
+  // module.exports = getUser;
+};
