@@ -6,6 +6,7 @@ module.exports.createTask = () => {
       const task = new Task({
         title: req.body.title,
         createdAt: req.body.createdAt,
+        completed:req.body.completed
       });
       res.send({task:task});
       await task.save();

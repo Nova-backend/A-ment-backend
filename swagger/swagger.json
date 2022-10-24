@@ -61,6 +61,14 @@
             "type": "number",
             "example": 0
           },
+          "skills": {
+            "type": "string",
+            "example": "string"
+          },
+          "cv": {
+            "type": "string",
+            "example": "string"
+          },
           "employees": {
             "type": "array"
           },
@@ -169,11 +177,11 @@
           },
           "date": {
             "type": "string",
-            "example": "10/24/2022, 1:19:58 PM"
+            "example": "10/24/2022, 1:33:29 PM"
           },
           "duration": {
             "type": "string",
-            "example": "10/24/2022, 1:19:58 PM"
+            "example": "10/24/2022, 1:33:29 PM"
           },
           "_id": {
             "type": "string",
@@ -206,11 +214,11 @@
           },
           "updatedAt": {
             "type": "string",
-            "example": "10/24/2022, 1:19:58 PM"
+            "example": "10/24/2022, 1:33:29 PM"
           },
           "createdAt": {
             "type": "string",
-            "example": "10/24/2022, 1:19:58 PM"
+            "example": "10/24/2022, 1:33:29 PM"
           },
           "__v": {
             "type": "number",
@@ -227,7 +235,7 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "10/24/2022, 1:19:58 PM"
+            "example": "10/24/2022, 1:33:29 PM"
           },
           "completed": {
             "type": "boolean",

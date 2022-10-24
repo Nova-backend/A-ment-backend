@@ -30,6 +30,15 @@ const User = mongoose.Schema({
     type: Number,
     required: true,
   },
+  skills:{
+    type:String,
+    enum:[]
+  },
+    cv:{
+      type:String,
+      required:false
+    },
+  
   employees: [
     {
       fullname: {
