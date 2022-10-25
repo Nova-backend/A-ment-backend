@@ -30,21 +30,21 @@ const User = mongoose.Schema({
     type: Number,
     required: true,
   },
-  skills:{
-    type:String,
-    enum:[]
+  skills: {
+    type: String,
+    enum: [],
   },
-    cv:{
-      type:String,
-      required:false
-    },
-   achievements:{
-    type:Object,
-    required:false
-   },
-   certifications:{
-   type:String,
-   },
+  cv: {
+    type: String,
+    required: false,
+  },
+  achievements: {
+    type: Object,
+    required: false,
+  },
+  certifications: {
+    type: String,
+  },
   employees: [
     {
       fullname: {

@@ -4,6 +4,7 @@ const nodeMailer = require("nodemailer");
 const _ = require("lodash");
 const cloudinary = require("cloudinary");
 const QueryString = require("qs");
+ const otpGenerator = require('otp-generator')
 const redirectURI = "auth/google";
 const { generateUserToken } = require("../auth/auth");
 const axios = require("axios");
@@ -45,8 +46,11 @@ module.exports.signup = () => {
             password: hash,
             image: result.url,
             contact: req.body.contact,
-
-            employees: {
+            skills:req.body.skills,
+            cv:result.url,
+            achievements:req.body.achievements,
+            certifications:result.url,
+     employees: {
               fullname: req.body.fullname,
               position: req.body.position,
               workingDays: User.workingDays,
@@ -70,7 +74,6 @@ module.exports.signup = () => {
           });
 
           const emailDuplicate = user.findOne(req.body.email);
-
           if (emailDuplicate) {
             res.send("Sorry, the email already exists").status(400);
           }
@@ -131,6 +134,7 @@ module.exports.updateUser = () => {
           userName: updates.userName,
           email: updates.email,
           password: updates.password,
+
         },
         (err, response) => {
           if (err) {

@@ -29,9 +29,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-const io = socket(3000, {
+const io = socket(5000, {
   cors: {
-    origin: "http://localhost:3000",
+    origin:process.env.ORIGIN ,
     credentials: true,
   },
 });

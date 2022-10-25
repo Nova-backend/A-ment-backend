@@ -7,6 +7,7 @@ const {
   forgotPassword,
   oAuth,
   getGoogleUser,
+  verifyEmail,
 } = require("../contollers/userInfo.js");
 // const {chatting} = require('../chat-app/chat')
 const {
@@ -42,6 +43,7 @@ const {
 
 module.exports = router;
 router.post("/signup", signup());
+router.post("/verifyEmail", verifyEmail())
 router.put("/updateUser/:id", updateUser());
 router.delete("/deleteUser/:id", deleteUser());
 router.get("/getUser", getUser());
