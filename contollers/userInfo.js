@@ -73,7 +73,7 @@ module.exports.signup = () => {
             user,
           });
 
-          const emailDuplicate = user.findOne(req.body.email);
+          const emailDuplicate = User.findOne(req.body.email);
           if (emailDuplicate) {
             res.send("Sorry, the email already exists").status(400);
           }
@@ -94,6 +94,7 @@ module.exports.signup = () => {
                         <h6> Hi ${user.firstName} </h6>\n
                         <p> Below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
                          <h3>${OTP}</h3>
+                         <button onClick="">confirm acccount</button>
                          </html>
                       `,
           };
