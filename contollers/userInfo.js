@@ -69,17 +69,14 @@ module.exports.signup = () => {
           });
           newuser.save();
 
-          res.status(200).send({
-            user,
-          });
-
+          
           const emailDuplicate = User.findOne(req.body.email);
           if (emailDuplicate) {
-            res.send("Sorry, the email already exists").status(400);
+            return res.send("Sorry, the email already exists").status(400);
           }
           const messenger = nodeMailer.createTransport({
             service: "outlook",
-
+            
             auth: {
               user: "divineingabire@outlook.com",
               pass: "divine005@",
@@ -90,13 +87,13 @@ module.exports.signup = () => {
             from: "divineingabire@outlook.com",
             subject: "Email verification",
             html: `
-                        <html>
-                        <h6> Hi ${user.firstName} </h6>\n
-                        <p> Below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
-                         <h3>${OTP}</h3>
-                         <button onClick="">confirm acccount</button>
-                         </html>
-                      `,
+            <html>
+            <h6> Hi ${user.firstName} </h6>\n
+            <p> Below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
+            <h3>${OTP}</h3>
+            <button onClick="">confirm acccount</button>
+            </html>
+            `,
           };
           messenger.sendMail(mailOptions, (error, info) => {
             if (error) {
@@ -105,6 +102,9 @@ module.exports.signup = () => {
               console.log("sent", info.response);
               res.send("Email sent successfully");
             }
+          });
+          res.status(200).send({
+            user,
           });
         });
       });
