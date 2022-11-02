@@ -62,21 +62,23 @@ module.exports.signup = () => {
             },
             bio: req.body.bio,
           });
-          await user.save();
+          
           const newuser = new OTPmodel({
             OTP: OTP,
             email: user.email,
           });
-          newuser.save();
+          newuser.save();  
+          await user.save();
 
-          
-          const emailDuplicate = User.findOne(req.body.email);
-          if (emailDuplicate) {
+          const emailDuplicate = User.find(req.body.email);
+
+          if (emailDuplicate){
             return res.send("Sorry, the email already exists").status(400);
-          }
-          const messenger = nodeMailer.createTransport({
-            service: "outlook",
+
+          }else{
             
+            const messenger = nodeMailer.createTransport({
+              service: "outlook",    
             auth: {
               user: "divineingabire@outlook.com",
               pass: "divine005@",
@@ -106,6 +108,7 @@ module.exports.signup = () => {
           res.status(200).send({
             user,
           });
+        };
         });
       });
     } catch (err) {
@@ -215,7 +218,7 @@ module.exports.logout = () => {
     User.findOneAndUpdate(
       { _id: req.user._id },
       { token: "" },
-      (error, doc) => {
+      (error) => {
         if (error) {
           res.status(403).json({ success: false, error });
         } else {
