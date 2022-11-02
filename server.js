@@ -10,7 +10,7 @@ const bodyparser = require("body-parser");
 const app = express();
 // const server = http.createServer(app)
 const mongoose = require("mongoose");
-const router = require("./routes/routes.js");
+const router = require("./models/routes.js");
 const manageappoint = require("./routes/requestAppointRoutes");
 const socket = require("socket.io");
 
@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-const io = socket(5000, {
+const io = socket(8080, {
   cors: {
     origin:process.env.ORIGIN ,
     credentials: true,
