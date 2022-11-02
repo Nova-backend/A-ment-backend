@@ -1,4 +1,3 @@
-const { Swaggiffy } = require("swaggiffy"); // Using require
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -57,3 +56,4 @@ app.use("/api/manage", manageappoint);
 app.listen(PORT, () => {
   console.log(`The server is learning on port ${PORT}`);
 });
+

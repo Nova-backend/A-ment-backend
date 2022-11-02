@@ -56,9 +56,6 @@ const getAppoint = async (req, res) => {
 };
 
 // Update a new idetified user by user id
-const updateAppoint = async (req, res) => {
-  try {
-    const { id } = req.params;
 
     const updatedAppoint = await clientRequestModels.findByIdAndUpdate(
       id,
