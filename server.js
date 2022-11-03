@@ -1,20 +1,23 @@
 
 const dotenv = require("dotenv");
 dotenv.config();
+const { Swaggiffy } = require('swaggiffy');
 
 const fileupload = require("express-fileupload");
 
 const express = require("express");
 
+
 const bodyparser = require("body-parser");
 const app = express();
 // const server = http.createServer(app)
 const mongoose = require("mongoose");
-const router = require("./models/routes.js");
+const router = require("./routes/routes.js");
 const manageappoint = require("./routes/requestAppointRoutes");
 const socket = require("socket.io");
 
 new Swaggiffy().setupExpress(app).swaggiffy();
+
 const cookieParser = require("cookie-parser");
 const { urlencoded } = require("express");
 
