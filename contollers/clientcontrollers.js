@@ -56,17 +56,17 @@ const getAppoint = async (req, res) => {
 };
 
 // Update a new idetified user by user id
-
-    const updatedAppoint = await clientRequestModels.findByIdAndUpdate(
-      id,
+  const updatedAppoint = async(req,res)=>{
+    try{
+    await clientRequestModels.findByIdAndUpdate(id,
       req.body,
       {
         new: true,
       }
     );
 
-    console.log(updateAppoint);
-    res.status(201).json(updateAppoint);
+    console.log(updatedAppoint);
+    res.status(201).json(updatedAppoint);
   } catch (error) {
     res.status(422).json(error);
   }
@@ -90,7 +90,7 @@ module.exports = {
   deleteAppoint,
   findAppoint,
   createAppointment,
-  updateAppoint,
+  updatedAppoint,
   getAppoint,
   // module.exports = getUser;
 };

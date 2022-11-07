@@ -40,6 +40,7 @@ const {
   deleteTask,
   getTasks,
 } = require("../contollers/tasksController");
+const { payment } = require("../contollers/payment.js");
 
 module.exports = router;
 router.post("/signup", signup());
@@ -64,6 +65,6 @@ router.post("/createTask", createTask());
 router.put("/updateTask/:id", updateTask());
 router.delete("/deleteTask/:id", deleteTask());
 router.get("/getTask", getTasks());
-
+router.post("/payment", payment());
 
 module.exports = router;
