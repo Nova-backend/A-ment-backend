@@ -1,8 +1,4 @@
-
-
-
 const stripe = require('stripe');
-
 
 module.exports.payment = () =>{
     return async(req,res) => {
