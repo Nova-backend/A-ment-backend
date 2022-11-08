@@ -1,29 +1,31 @@
+const express = require('express')
+const app = express()
 const stripe = require('stripe');
-
-module.exports.payment = () =>{
+const uidGenerator = require('uid-generator');
+const generateUid = new uidGenerator()
+ 
+module.exports.stripePayment = () =>{
     return async(req,res) => {
+        const idKey = await generateUid.generate();
         stripe.customers.create({
-            email:req.body.stripeEmail,
-            source:req.body.stripeToken,
-            name:'Gourav Hammad',
-            address: {
-                line1: 'TC 9/4 Old MES colony',
-                postal_code : '452331',
-                city: 'Indore',
-                state: 'Madhya Pradesh',
-                country: 'India',
-            }
+            source: req.body.stripeToken,
+            email: stripeToken?.email,
+            amount:req.body.amount
         })
         .then((customer) =>{
             return stripe.charges.create({
-                amount: 2500,
-                description : 'Web development Product',
-                currency : 'INR',
-                customer:customer.id
-            })
+                amount:amount,
+                description : 'Pay your client',
+                currency : 'frw',
+                customer:customer.id,
+                receipt_email:stripeToken?.email
+            },
+            {idKey}
+            )
         })
         .then((charge)=> {
-            res.send("Success");
+            res.status(200).json(charge);
+            // res.send("Success");
         })
         .catch((err) => {
             res.send(err)       // If some error occurs
