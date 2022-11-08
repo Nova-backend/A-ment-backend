@@ -2,7 +2,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const { Swaggiffy } = require('swaggiffy');
-
+const path = require('path')
 const fileupload = require("express-fileupload");
 
 const express = require("express");
@@ -33,7 +33,13 @@ const stripe = require('stripe')(stripeSecretKey)
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+app.get('/payment', function(req, res){
+  res.render('home', {
+     key: stripePublicKey
+  })
+})
 const io = socket(8080, {
   cors: {
     origin:process.env.ORIGIN ,
