@@ -45,11 +45,11 @@
     "qs": "^6.11.0",
     "socket.io": "^4.5.3",
     "stripe": "^10.16.0",
-    "swaggiffy": "^1.0.5"
+    "swaggiffy": "^1.0.5",
+    "uid-generator": "^2.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.18"
-  
   }
 }

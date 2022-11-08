@@ -8,6 +8,10 @@ const Payment = mongoose.Schema({
     stripeToken:{
         type:String,
         required:true
+    },
+    email:{
+        type:String,
+        required:true,
     }
 
 })

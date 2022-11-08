@@ -21,7 +21,7 @@ export const stripePay = asyncHandler(async (req: Request, res: Response) => {
       stripe.charges.create(
         {
           amount: amount * 100,
-          currency: 'usd',
+          currency: 'usd', 
           customer: customer.id,
           receipt_email: token?.email,
         },

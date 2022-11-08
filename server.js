@@ -12,14 +12,14 @@ const bodyparser = require("body-parser");
 const app = express();
 // const server = http.createServer(app)
 const mongoose = require("mongoose");
-const router = require("./models/routes.js");
+const router = require("./routes/routes.js");
 const manageappoint = require("./routes/requestAppointRoutes");
 const socket = require("socket.io");
 
 new Swaggiffy().setupExpress(app).swaggiffy();
 
-const cookieParser = require("cookie-parser");
-const { urlencoded } = require("express");
+// const cookieParser = require("cookie-parser");
+// const { urlencoded } = require("express");
 
 mongoose.connect(process.env.URL).then(() => {
   console.log("Database successfully connected");
@@ -31,7 +31,7 @@ app.use(fileupload({ useTempFiles: true }));
 app.use(express.json());
 const stripe = require('stripe')(stripeSecretKey)
 
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')

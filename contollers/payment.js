@@ -1,25 +1,31 @@
-const express = require('express');
-const Publishable_Key = require('../server')
+const express = require('express')
 const app = express()
 const stripe = require('stripe');
-
+const uidGenerator = require('uid-generator');
+const generateUid = new uidGenerator()
  
-module.exports.payment = () =>{
+module.exports.stripePayment = () =>{
     return async(req,res) => {
+        const idKey = await generateUid.generate();
         stripe.customers.create({
-            email: req.body.stripeEmail,
-            source: req.body.stripeToken
+            source: req.body.stripeToken,
+            email: stripeToken?.email,
+            amount:req.body.amount
         })
         .then((customer) =>{
             return stripe.charges.create({
-                amount: 2500,
+                amount:amount,
                 description : 'Pay your client',
                 currency : 'frw',
-                customer:customer.id
-            })
+                customer:customer.id,
+                receipt_email:stripeToken?.email
+            },
+            {idKey}
+            )
         })
         .then((charge)=> {
-            res.send("Success");
+            res.status(200).json(charge);
+            // res.send("Success");
         })
         .catch((err) => {
             res.send(err)       // If some error occurs
