@@ -1,12 +1,10 @@
-
 const dotenv = require("dotenv");
 dotenv.config();
-const { Swaggiffy } = require('swaggiffy');
-const path = require('path')
+const { Swaggiffy } = require("swaggiffy");
+const path = require("path");
 const fileupload = require("express-fileupload");
 
 const express = require("express");
-
 
 const bodyparser = require("body-parser");
 const app = express();
@@ -29,20 +27,20 @@ const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 app.use(fileupload({ useTempFiles: true }));
 app.use(express.json());
-const stripe = require('stripe')(stripeSecretKey)
+const stripe = require("stripe")(stripeSecretKey);
 
 // app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-app.get('/payment', function(req, res){
-  res.render('home', {
-     key: stripePublicKey
-  })
-})
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.get("/payment", function (req, res) {
+  res.render("home", {
+    key: stripePublicKey,
+  });
+});
 const io = socket(8080, {
   cors: {
-    origin:process.env.ORIGIN ,
+    origin: process.env.ORIGIN,
     credentials: true,
   },
 });
@@ -67,4 +65,3 @@ app.use("/api/manage", manageappoint);
 app.listen(PORT, () => {
   console.log(`The server is learning on port ${PORT}`);
 });
-

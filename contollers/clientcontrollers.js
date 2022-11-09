@@ -56,14 +56,11 @@ const getAppoint = async (req, res) => {
 };
 
 // Update a new idetified user by user id
-  const updatedAppoint = async(req,res)=>{
-    try{
-    await clientRequestModels.findByIdAndUpdate(id,
-      req.body,
-      {
-        new: true,
-      }
-    );
+const updatedAppoint = async (req, res) => {
+  try {
+    await clientRequestModels.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
 
     console.log(updatedAppoint);
     res.status(201).json(updatedAppoint);
