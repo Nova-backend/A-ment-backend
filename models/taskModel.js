@@ -12,9 +12,9 @@ const Task = new mongoose.Schema({
     default: Date.now(),
   },
   completed: {
-    type:Boolean,
-    required:true
-  }
+    type: Boolean,
+    required: true,
+  },
 });
 module.exports.Task = mongoose.model("task", Task);
 registerSchema("task", Task);
