@@ -16,4 +16,4 @@ const PaymentDetails =  mongoose.Schema({
         required:true
     }
 })
-module.exports.PaymentDetails = mongoose.model("paymentDetails", PaymentDetails)
+module.exports.PaymentDetails = mongoose.model("payload", PaymentDetails)
