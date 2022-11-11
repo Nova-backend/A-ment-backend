@@ -106,7 +106,7 @@ module.exports.signup = () => {
               user,
             });
           } else {
-            // console.log("Email duplicated");
+            // console.log("Email duplicated")                                                                      ;
             res.send("Sorry, Email already exists");
           }
         });
