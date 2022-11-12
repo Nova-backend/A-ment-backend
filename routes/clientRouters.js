@@ -4,6 +4,7 @@ const express=require('express')
 // const deleteUser=require('..//controllers/ManageController')
 
 const {signUp,login}=require('../contollers/clientUser')
+// const {}=require('../contollers/')
 
 const router=express.Router()
 
