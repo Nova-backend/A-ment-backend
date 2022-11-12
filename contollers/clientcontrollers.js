@@ -13,6 +13,7 @@ const createAppointment = (req, res) => {
     company: req.body.company,
     serviceNeeded: req.body.serviceNeeded,
     specificStaff: req.body.specificStaff,
+      
   });
 
   // save user in the database
@@ -39,6 +40,7 @@ const findAppoint = async (req, res) => {
     res.status(201).json(appointData);
     console.log(appointData);
   } catch (error) {
+    
     res.status(422).json(error);
   }
 };
@@ -62,12 +64,7 @@ const updatedAppoint = async (req, res) => {
       new: true,
     });
 
-    console.log(updatedAppoint);
-    res.status(201).json(updatedAppoint);
-  } catch (error) {
-    res.status(422).json(error);
-  }
-};
+
 
 // Delete a user with specified user id in the request
 const deleteAppoint = async (req, res) => {

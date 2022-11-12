@@ -3,7 +3,9 @@ const express = require("express");
 // const updateUser  = require('../controllers/ManageController')
 // const deleteUser=require('..//controllers/ManageController')
 
+
 const { signUp, login } = require("../contollers/clientUser");
+
 
 const router = express.Router();
 
