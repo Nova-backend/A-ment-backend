@@ -58,29 +58,13 @@ const getAppoint = async (req, res) => {
 };
 
 // Update a new idetified user by user id
+const updatedAppoint = async (req, res) => {
+  try {
+    await clientRequestModels.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
 
-   const updatedAppoint =  async   (req,res)=>{
 
-      
-      try{
-        const {id} = req.params;
-        const updateAppoint=await clientRequestModels.findByIdAndUpdate(
-          id,
-          req.body,
-          {
-            new: true,
-          }
-          );
-          
-          console.log(updateAppoint);
-          res.status(201).json(updateAppoint);
-        } catch (error) {
-          res.status(422).json(error);
-        }
-      }
-      
-    
-  
 
 // Delete a user with specified user id in the request
 const deleteAppoint = async (req, res) => {

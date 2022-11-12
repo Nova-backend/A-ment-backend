@@ -4,7 +4,7 @@ const nodeMailer = require("nodemailer");
 const _ = require("lodash");
 const cloudinary = require("cloudinary");
 const QueryString = require("qs");
- const otpGenerator = require('otp-generator')
+const otpGenerator = require("otp-generator");
 const redirectURI = "auth/google";
 const { generateUserToken } = require("../auth/auth");
 const axios = require("axios");
@@ -46,11 +46,11 @@ module.exports.signup = () => {
             password: hash,
             image: result.url,
             contact: req.body.contact,
-            skills:req.body.skills,
-            cv:result.url,
-            achievements:req.body.achievements,
-            certifications:result.url,
-     employees: {
+            skills: req.body.skills,
+            cv: result.url,
+            achievements: req.body.achievements,
+            certifications: result.url,
+            employees: {
               fullname: req.body.fullname,
               position: req.body.position,
               workingDays: User.workingDays,
@@ -62,50 +62,53 @@ module.exports.signup = () => {
             },
             bio: req.body.bio,
           });
-          await user.save();
+
           const newuser = new OTPmodel({
             OTP: OTP,
             email: user.email,
           });
           newuser.save();
-
-          res.status(200).send({
-            user,
-          });
-
-          const emailDuplicate = User.findOne(req.body.email);
-          if (emailDuplicate) {
-            res.send("Sorry, the email already exists").status(400);
+          await user.save();
+          
+          const emailDuplicate = await User.findOne({email:req.body.email});
+          
+          if (!emailDuplicate) {
+            
+            const messenger = nodeMailer.createTransport({
+              service: "outlook",
+              auth: {
+                user: "divineingabire@outlook.com",
+                pass: "divine005@",
+              },
+            });
+            const mailOptions = {
+              to: user.email,
+              from: "divineingabire@outlook.com",
+              subject: "Email verification",
+              html: `
+              <html>
+              <h6> Hi ${user.firstName} </h6>\n
+              <p> Below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
+              <h3>${OTP}</h3>
+              <button onClick="">confirm acccount</button>
+              </html>
+              `,
+            };
+            messenger.sendMail(mailOptions, (error, info) => {
+              if (error) {
+                console.log("er2", error);
+              } else {
+                console.log("sent", info.response);
+                res.send("Email sent successfully");
+              }
+            });
+            res.status(200).send({
+              user,
+            });
+          } else {
+            // console.log("Email duplicated")                                                                      ;
+            res.send("Sorry, Email already exists");
           }
-          const messenger = nodeMailer.createTransport({
-            service: "outlook",
-
-            auth: {
-              user: "divineingabire@outlook.com",
-              pass: "divine005@",
-            },
-          });
-          const mailOptions = {
-            to: user.email,
-            from: "divineingabire@outlook.com",
-            subject: "Email verification",
-            html: `
-                        <html>
-                        <h6> Hi ${user.firstName} </h6>\n
-                        <p> Below is the verification code for your password reset request <br> This code is valid for 15 minutes</p>
-                         <h3>${OTP}</h3>
-                         <button onClick="">confirm acccount</button>
-                         </html>
-                      `,
-          };
-          messenger.sendMail(mailOptions, (error, info) => {
-            if (error) {
-              console.log("er2", error);
-            } else {
-              console.log("sent", info.response);
-              res.send("Email sent successfully");
-            }
-          });
         });
       });
     } catch (err) {
@@ -135,7 +138,6 @@ module.exports.updateUser = () => {
           userName: updates.userName,
           email: updates.email,
           password: updates.password,
-
         },
         (err, response) => {
           if (err) {
@@ -212,17 +214,13 @@ module.exports.forgotPassword = () => {
 };
 module.exports.logout = () => {
   return async (req, res) => {
-    User.findOneAndUpdate(
-      { _id: req.user._id },
-      { token: "" },
-      (error, doc) => {
-        if (error) {
-          res.status(403).json({ success: false, error });
-        } else {
-          return res.status(200).send({ success: true });
-        }
+    User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (error) => {
+      if (error) {
+        res.status(403).json({ success: false, error });
+      } else {
+        return res.status(200).send({ success: true });
       }
-    );
+    });
   };
 };
 function getGoogleAuthUrl() {
@@ -294,7 +292,6 @@ module.exports.getGoogleUser = () => {
         });
         await usergoogle.save();
         console.log(usergoogle);
-        
       });
     });
   };
