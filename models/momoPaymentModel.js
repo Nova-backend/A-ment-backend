@@ -8,7 +8,7 @@ const PaymentDetails =  mongoose.Schema({
     },
     amount: {
         
-            type:String,
+            type:Number,
             required:true
         
     },
