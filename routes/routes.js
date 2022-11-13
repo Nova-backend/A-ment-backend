@@ -40,7 +40,8 @@ const {
   deleteTask,
   getTasks,
 } = require("../contollers/tasksController");
-
+const { stripePayment } = require("../contollers/cardPayment.js");
+const {momoPayment} = require("../contollers/momoPayment")
 module.exports = router;
 router.post("/signup", signup());
 router.post("/verifyEmail", verifyEmail())
@@ -64,6 +65,7 @@ router.post("/createTask", createTask());
 router.put("/updateTask/:id", updateTask());
 router.delete("/deleteTask/:id", deleteTask());
 router.get("/getTask", getTasks());
-
+router.post("/cardPayment", stripePayment());
+router.post("/momopayment", momoPayment());
 
 module.exports = router;
