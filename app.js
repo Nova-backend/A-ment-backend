@@ -3,7 +3,9 @@ dotenv.config();
 const { Swaggiffy } = require("swaggiffy");
 const path = require("path");
 const fileupload = require("express-fileupload");
-
+const Parse = require('parse/node');
+Parse.initialize(process.env.APP_ID,process.env.JS_KEY);
+Parse.serverURL = 'https://parseapi.back4app.com/'
 const express = require("express");
 
 const bodyparser = require("body-parser");
@@ -60,6 +62,11 @@ io.on("connection", (socket) => {
     }
   });
 });
+app.get('/',function (req, res){
+
+  res.send("WElcome to A_ment Backend");
+} 
+)
 app.use("/", router);
 app.use("/api/manage", manageappoint);
 app.listen(PORT, () => {
