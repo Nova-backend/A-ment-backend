@@ -62,6 +62,11 @@ io.on("connection", (socket) => {
     }
   });
 });
+app.get('/',function (req, res){
+
+  res.send("WElcome to A_ment Backend");
+} 
+)
 app.use("/", router);
 app.use("/api/manage", manageappoint);
 app.listen(PORT, () => {
