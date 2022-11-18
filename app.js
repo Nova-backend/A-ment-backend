@@ -3,7 +3,9 @@ dotenv.config();
 const { Swaggiffy } = require("swaggiffy");
 const path = require("path");
 const fileupload = require("express-fileupload");
-
+const Parse = require('parse/node');
+Parse.initialize(process.env.APP_ID,process.env.JS_KEY);
+Parse.serverURL = 'https://parseapi.back4app.com/'
 const express = require("express");
 
 const bodyparser = require("body-parser");

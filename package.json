@@ -2,10 +2,10 @@
   "name": "panga",
   "version": "1.0.0",
   "description": "a scheduling app",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -44,6 +44,7 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "nodemon": "^2.0.19",
     "otp-generator": "^4.0.0",
+    "parse": "^3.5.0",
     "path": "^0.12.7",
     "qs": "^6.11.0",
     "socket.io": "^4.5.3",
