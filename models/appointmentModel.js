@@ -21,14 +21,13 @@ const Appointment = mongoose.Schema({
   },
 });
 const validation = (data) => {
- data = new joi.object({
-  service:joi.string().required(),
-  clientName:joi.string().required(),
-  date:joi.date().required(),
-  duration:joi.date()
- })
-
-}
+  data = new joi.object({
+    service: joi.string().required(),
+    clientName: joi.string().required(),
+    date: joi.date().required(),
+    duration: joi.date(),
+  });
+};
 
 module.exports.validation = validation;
 module.exports.Appointment = mongoose.model("appointment", Appointment);

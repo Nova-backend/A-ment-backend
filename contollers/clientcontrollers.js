@@ -13,6 +13,7 @@ const createAppointment = (req, res) => {
     company: req.body.company,
     serviceNeeded: req.body.serviceNeeded,
     specificStaff: req.body.specificStaff,
+      
   });
 
   // save user in the database
@@ -39,6 +40,7 @@ const findAppoint = async (req, res) => {
     res.status(201).json(appointData);
     console.log(appointData);
   } catch (error) {
+    
     res.status(422).json(error);
   }
 };
@@ -56,22 +58,16 @@ const getAppoint = async (req, res) => {
 };
 
 // Update a new idetified user by user id
+const updatedAppoint = async (req, res) => {
+  try {
+    await clientRequestModels.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
 
-    const updatedAppoint = await clientRequestModels.findByIdAndUpdate(
-      id,
-      req.body,
-      {
-        new: true,
-      }
-    );
 
-    console.log(updateAppoint);
-    res.status(201).json(updateAppoint);
-  } catch (error) {
-    res.status(422).json(error);
-  }
-};
-
+  }catch(error){
+    console.log(error);
+  }}
 // Delete a user with specified user id in the request
 const deleteAppoint = async (req, res) => {
   try {
@@ -90,7 +86,7 @@ module.exports = {
   deleteAppoint,
   findAppoint,
   createAppointment,
-  updateAppoint,
+  updatedAppoint,
   getAppoint,
   // module.exports = getUser;
 };
