@@ -63,7 +63,6 @@ module.exports = {
   login,
   // module.exports = getUser;
 };
-<<<<<<< HEAD
 module.exports ={ 
    signUp,
    login
@@ -207,5 +206,3 @@ module.exports.forgotPassword = () => {
   };
   
 
-=======
->>>>>>> f830cbbd779379e3583394f8ae8ba33f4057d51e
