@@ -13,6 +13,7 @@ const createAppointment = (req, res) => {
     company: req.body.company,
     serviceNeeded: req.body.serviceNeeded,
     specificStaff: req.body.specificStaff,
+      
   });
 
   // save user in the database
@@ -39,6 +40,7 @@ const findAppoint = async (req, res) => {
     res.status(201).json(appointData);
     console.log(appointData);
   } catch (error) {
+    
     res.status(422).json(error);
   }
 };

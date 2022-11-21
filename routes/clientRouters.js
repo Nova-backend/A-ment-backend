@@ -3,7 +3,12 @@ const express = require("express");
 // const updateUser  = require('../controllers/ManageController')
 // const deleteUser=require('..//controllers/ManageController')
 
+<<<<<<< HEAD
 const { signUp, login } = require("../contollers/clientUser");
+=======
+const {signUp,login}=require('../contollers/clientUser')
+// const {}=require('../contollers/')
+>>>>>>> 7cad049 (working on controllers)
 
 const router = express.Router();
 

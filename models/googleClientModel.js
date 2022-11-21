@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { registerSchema } = require("swaggiffy");
 const joi = require("joi");
 const { string, number } = require("joi");
-const Usergoogle = mongoose.Schema({
+const Clientgoogle = mongoose.Schema({
   given_name: {
     type: String,
   },
@@ -20,9 +20,6 @@ const Usergoogle = mongoose.Schema({
     type: String,
     unique: false,
     required: false,
-  },
-  image: {
-    type: String,
   },
   contact: {
     type: Number,
@@ -78,7 +75,7 @@ const OTP = mongoose.Schema({
   },
 });
 
-module.exports.Usergoogle = mongoose.model("usergoogle", Usergoogle);
+module.exports.Clientgoogle = mongoose.model("Clientgoogle", Clientgoogle);
 module.exports.Otpmodel = mongoose.model("OTP", OTP);
-registerSchema("usergoogle", Usergoogle);
+registerSchema("Clientgoogle", Clientgoogle);
 registerSchema("OTP", OTP);
