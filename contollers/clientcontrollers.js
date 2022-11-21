@@ -65,7 +65,9 @@ const updatedAppoint = async (req, res) => {
     });
 
 
-
+  }catch(error){
+    console.log(error);
+  }}
 // Delete a user with specified user id in the request
 const deleteAppoint = async (req, res) => {
   try {

@@ -16,4 +16,5 @@ router.get("/display/:id", getAppoint);
 router.put("/update/:id", updatedAppoint);
 router.delete("/delete/:id", deleteAppoint);
 
+
 module.exports = router;

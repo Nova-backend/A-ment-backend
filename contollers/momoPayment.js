@@ -64,8 +64,8 @@ if(momo_response.status == "success"){
  }
     return res.status(200).send({message: "Service paid"})
 }
-catch(ex){
-    res.status(400).send(ex.message);
+catch(error){
+    res.status(400).send(error);
 }
 }
     
