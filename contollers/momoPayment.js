@@ -9,8 +9,10 @@ const flutterwave = new Flutterwave(
 module.exports.momoPayment = () => {
     return async(req,res) => {
         let order = _.pick(req.body, [ "phone_number", "PaymentType"]);
-        order.tx_ref = "amt_" + Math.floor(Math.random()*1000000000 + 1);
+        order.tx_ref = "amt_tx_ref" + Math.floor(Math.random()*1000000000 + 1);
+        order.order_id = "amt_order_id" + Math.floor(Math.random()*1000000000 + 1);
         console.log(order.tx_ref);
+        console.log(order.order_id);
         let url;
         url = `http:localhost:${process.env.PORT}`;
   
@@ -28,7 +30,8 @@ module.exports.momoPayment = () => {
     currency: 'RWF',
     email:"divineingabire69@gmail.com",
     redirect_url:`${url}/paymentDone`,
-    payment_options:"mobilemonerwanda",
+    payment_options:"mobilemoneyrwanda",
+    
     payment_type:req.body.payment_type,
     meta: {
         customer_id: req.params.id,
@@ -44,14 +47,14 @@ module.exports.momoPayment = () => {
 
 try{
     
- const servicePayment = await payloadBody.save();   
+  await payloadBody.save();   
  if(req.body.payment_type == "mobilemoneyrw"){
-payloadBody.tx_ref =  servicePayment.tx_ref;
-payloadBody.order_id = servicePayment.order_id;
+payloadBody.tx_ref = order.tx_ref;
+payloadBody.order_id = order.order_id;
 
 const momo_response = await flutterwave.MobileMoney.rwanda(payloadBody);
 if(momo_response.status == "success"){
-    return rea.status(200).send({
+    return res.status(200).send({
         message:"Click on this link to complete payment",
         url: `${momo_response.meta.authorization.redirect}`,
     })
