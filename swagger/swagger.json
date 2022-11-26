@@ -242,7 +242,8 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "11/21/2022, 8:14:15 PM"
+            "example": "11/21/2022, 8:31:26 PM"
+
           },
           "completed": {
             "type": "boolean",
