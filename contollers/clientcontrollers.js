@@ -64,13 +64,10 @@ const updatedAppoint = async (req, res) => {
       new: true,
     });
 
-    console.log(updatedAppoint);
-    res.status(201).json(updatedAppoint);
-  } catch (error) {
-    res.status(422).json(error);
-  }
-};
 
+  }catch(error){
+    console.log(error);
+  }}
 // Delete a user with specified user id in the request
 const deleteAppoint = async (req, res) => {
   try {
