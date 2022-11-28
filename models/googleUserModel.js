@@ -14,6 +14,7 @@ const Usergoogle = mongoose.Schema({
     trim: true,
     unique: false,
     required: false,
+    
   },
   password: {
     type: String,
