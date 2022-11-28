@@ -20,7 +20,7 @@ const { verifyToken } = require("../auth/auth");
 
 const express = require("express");
 const { registerDefinition, registerDefinitions } = require("swaggiffy");
-
+const { signUp, signin } = require("../contollers/clientUser");
 const router = express.Router();
 
 registerDefinition(router, {
@@ -42,7 +42,14 @@ const {
 } = require("../contollers/tasksController");
 const { stripePayment } = require("../contollers/cardPayment.js");
 const {momoPayment} = require("../contollers/momoPayment")
-module.exports = router;
+const {
+  deleteAppoint,
+  findAppoint,
+  updatedAppoint,
+  createappointment,
+  getAppoint,
+} = require("../contollers/clientcontrollers");
+
 router.post("/signup", signup());
 router.post("/verifyEmail", verifyEmail())
 router.put("/updateUser/:id", updateUser());
@@ -67,5 +74,13 @@ router.delete("/deleteTask/:id", deleteTask());
 router.get("/getTask", getTasks());
 router.post("/cardPayment", stripePayment());
 router.post("/momopayment", momoPayment());
+router.post("/create", createappointment);
+router.get("/find", findAppoint);
+router.get("/display/:id", getAppoint);
+router.put("/update/:id", updatedAppoint);
+router.delete("/delete/:id", deleteAppoint);
+router.post("/register", signUp);
+router.post("/login", login);
+
 
 module.exports = router;

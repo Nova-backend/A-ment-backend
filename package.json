@@ -33,6 +33,7 @@
     "flutterwave-node-v3": "^1.0.11",
     "google-auth-library": "^8.5.2",
     "joi": "^17.6.4",
+    "joi-password-complexity": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",

@@ -76,6 +76,6 @@ const OTP = mongoose.Schema({
 });
 
 module.exports.Clientgoogle = mongoose.model("Clientgoogle", Clientgoogle);
-module.exports.Otpmodel = mongoose.model("OTP", OTP);
+module.exports.Otpmodel = mongoose.model("Otpmodel", OTP);
 registerSchema("Clientgoogle", Clientgoogle);
-registerSchema("OTP", OTP);
+registerSchema("Otpmodel", OTP);

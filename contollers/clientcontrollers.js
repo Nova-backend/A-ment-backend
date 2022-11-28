@@ -1,7 +1,7 @@
 var clientRequestModels = require("../models/RequestClientModels");
 
 // create and save new user
-const createAppointment = (req, res) => {
+const createappointment = (req, res) => {
   // validate request
   if (!req.body) {
     res.status(400).send({ message: "Content can not be emtpy!" });
@@ -85,7 +85,7 @@ const deleteAppoint = async (req, res) => {
 module.exports = {
   deleteAppoint,
   findAppoint,
-  createAppointment,
+  createappointment,
   updatedAppoint,
   getAppoint,
   // module.exports = getUser;
