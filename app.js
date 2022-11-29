@@ -1,18 +1,16 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const path = require("path");
-const fileupload = require("express-fileupload");
-const Parse = require("parse/node");
-Parse.initialize(process.env.APP_ID, process.env.JS_KEY);
-Parse.serverURL = "https://parseapi.back4app.com/";
-const express = require("express");
+// const Parse = require("parse/node");
+// Parse.initialize(process.env.APP_ID, process.env.JS_KEY);
+// Parse.serverURL = "https://parseapi.back4app.com/";
 
+const express = require("express");
 const app = express();
 
 const mongoose = require("mongoose");
 const router = require("./routes/routes.js");
 
-const socket = require("socket.io");
 
 const { Swaggiffy } = require("swaggiffy");
 new Swaggiffy().setupExpress(app).swaggiffy();
@@ -21,11 +19,13 @@ mongoose.connect(process.env.URL).then(() => {
   console.log("Database successfully connected");
 });
 const PORT = process.env.PORT;
+const stripe = require("stripe")(stripeSecretKey);
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+
+const fileupload = require("express-fileupload");
 app.use(fileupload({ useTempFiles: true }));
 app.use(express.json());
-const stripe = require("stripe")(stripeSecretKey);
 app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -34,6 +34,7 @@ app.get("/payment", function (req, res) {
     key: stripePublicKey,
   });
 });
+const socket = require("socket.io");
 const io = socket(8080, {
   cors: {
     origin: process.env.ORIGIN,
