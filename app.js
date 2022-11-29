@@ -1,21 +1,20 @@
 const dotenv = require("dotenv");
 dotenv.config();
-const { Swaggiffy } = require("swaggiffy");
 const path = require("path");
 const fileupload = require("express-fileupload");
-const Parse = require('parse/node');
-Parse.initialize(process.env.APP_ID,process.env.JS_KEY);
-Parse.serverURL = 'https://parseapi.back4app.com/'
+const Parse = require("parse/node");
+Parse.initialize(process.env.APP_ID, process.env.JS_KEY);
+Parse.serverURL = "https://parseapi.back4app.com/";
 const express = require("express");
 
-const bodyparser = require("body-parser");
 const app = express();
-// const server = http.createServer(app)
+
 const mongoose = require("mongoose");
 const router = require("./routes/routes.js");
 
 const socket = require("socket.io");
 
+const { Swaggiffy } = require("swaggiffy");
 new Swaggiffy().setupExpress(app).swaggiffy();
 
 mongoose.connect(process.env.URL).then(() => {
@@ -57,11 +56,9 @@ io.on("connection", (socket) => {
     }
   });
 });
-app.get('/',function (req, res){
-
+app.get("/", function (req, res) {
   res.send("Welcome to A_ment Backend");
-} 
-)
+});
 app.use("/", router);
 app.listen(PORT, () => {
   console.log(`The server is learning on port ${PORT}`);
