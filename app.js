@@ -19,9 +19,9 @@ mongoose.connect(process.env.URL).then(() => {
   console.log("Database successfully connected");
 });
 const PORT = process.env.PORT;
-const stripe = require("stripe")(stripeSecretKey);
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+const stripe = require("stripe")(stripeSecretKey);
 
 const fileupload = require("express-fileupload");
 app.use(fileupload({ useTempFiles: true }));
