@@ -1,9 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const path = require("path");
-// const Parse = require("parse/node");
-// Parse.initialize(process.env.APP_ID, process.env.JS_KEY);
-// Parse.serverURL = "https://parseapi.back4app.com/";
 
 const express = require("express");
 const app = express();
