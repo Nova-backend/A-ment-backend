@@ -1,5 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
+const PORT = process.env.PORT;
 const path = require("path");
 
 const express = require("express");
@@ -8,14 +9,12 @@ const app = express();
 const mongoose = require("mongoose");
 const router = require("./routes/routes.js");
 
-
 const { Swaggiffy } = require("swaggiffy");
 new Swaggiffy().setupExpress(app).swaggiffy();
 
 mongoose.connect(process.env.URL).then(() => {
   console.log("Database successfully connected");
 });
-const PORT = process.env.PORT;
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 const stripe = require("stripe")(stripeSecretKey);
