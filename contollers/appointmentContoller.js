@@ -1,6 +1,5 @@
 const { Appointment, validation } = require("../models/appointmentModel");
 const _ = require("lodash");
-const { duration } = require("moment");
 
 module.exports.createAppointment = () => {
   return async (req, res) => {
