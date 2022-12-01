@@ -21,15 +21,10 @@ const stripe = require("stripe")(stripeSecretKey);
 
 const fileupload = require("express-fileupload");
 app.use(fileupload({ useTempFiles: true }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-app.get("/payment", function (req, res) {
-  res.render("home", {
-    key: stripePublicKey,
-  });
-});
+
 const socket = require("socket.io");
 const io = socket(8080, {
   cors: {
