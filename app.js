@@ -7,14 +7,14 @@ const express = require("express");
 const app = express();
 
 const mongoose = require("mongoose");
+mongoose.connect(process.env.URL).then(() => {
+  console.log("Database successfully connected");
+});
 const router = require("./routes/routes.js");
 
 const { Swaggiffy } = require("swaggiffy");
 new Swaggiffy().setupExpress(app).swaggiffy();
 
-mongoose.connect(process.env.URL).then(() => {
-  console.log("Database successfully connected");
-});
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 const stripe = require("stripe")(stripeSecretKey);
