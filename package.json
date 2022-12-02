@@ -37,6 +37,7 @@
     "joi": "^17.6.4",
     "joi-password-complexity": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.4",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "momo-payment-sdk": "^1.0.1",
