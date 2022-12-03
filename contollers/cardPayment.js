@@ -1,4 +1,4 @@
-1const express = require("express");
+const express = require("express");
 const app = express();
 const stripe = require("stripe");
 const uidGenerator = require("uid-generator");
@@ -9,6 +9,7 @@ module.exports.stripePayment = () => {
     const idKey = await generateUid.generate();
     stripe.customers
       .create({
+        cardNumber: req.body.cardNumber,
         source: req.body.stripeToken,
         email: stripeToken?.email,
         amount: req.body.amount,
@@ -16,6 +17,8 @@ module.exports.stripePayment = () => {
       .then((customer) => {
         return stripe.charges.create(
           {
+
+            cardNumber: req.body.cardNumber,
             amount: amount,
             description: "Pay your client",
             currency: "RWF",
@@ -27,7 +30,7 @@ module.exports.stripePayment = () => {
       })
       .then((charge) => {
         res.status(200).json(charge);
-        // res.send("Success");
+        res.send("Success");
       })
       .catch((err) => {
         res.send(err); // If some error occurs
@@ -38,6 +41,7 @@ module.exports.stripePayment = () => {
 module.exports.mobileStripePayment = () => {
   return async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
+      cardNumber: req.body.cardNumber,
       amount: req.body.amount,
       currency: "RWF",
       payment_method_types: ["card"],
