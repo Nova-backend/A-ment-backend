@@ -14,7 +14,7 @@ const {
   createAppointment,
   updateAppointment,
   getAppointment,
-  deleteAppointment,
+  cancelAppointment,
 } = require("../contollers/appointmentContoller");
 const { verifyToken } = require("../auth/auth");
 
@@ -60,7 +60,7 @@ router.put("/forgotpassword", forgotPassword());
 router.post("/createAppointment", createAppointment());
 router.put("/updateAppointment/:id", updateAppointment());
 router.get("/getAppointment", getAppointment());
-router.delete("/deleteAppointment/:id", deleteAppointment());
+router.delete("/cancelAppointment/:id", cancelAppointment());
 router.get("/signup/google", oAuth());
 router.post("/signup/google", oAuth());
 router.get("/auth/google", getGoogleUser());
