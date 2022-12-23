@@ -1,11 +1,9 @@
-const { Appointment ,validation} = require("../models/appointmentModel");
+const { Appointment, validation } = require("../models/appointmentModel");
 const _ = require("lodash");
-const { duration } = require("moment");
 
 module.exports.createAppointment = () => {
   return async (req, res) => {
-
-    const {error} = await validation(req.body);
+    const { error } = await validation(req.body);
     const appointment = new Appointment({
       service: req.body.service,
       clientName: req.body.clientName,
@@ -58,9 +56,9 @@ module.exports.getAppointment = () => {
     return res.json({ appointment: appointment, success: true });
   };
 };
-module.exports.deleteAppointment = () => {
+module.exports.cancelAppointment = () => {
   return async (req, res) => {
     Appointment.findByIdAndDelete(req.params.id);
-    res.json({ message: "Appointment deleted" });
+    res.json({ message: "Appointment canceled" });
   };
 };

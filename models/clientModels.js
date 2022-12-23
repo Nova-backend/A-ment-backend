@@ -5,14 +5,34 @@ const passwordComplexity = require("joi-password-complexity");
 const { registerSchema } = require("swaggiffy");
 
 const userSchema = new mongoose.Schema({
-  fullNames: { type: String, required: true },
-  username: { type: String, required: true },
-  email: { type: String, required: true },
-  password: { type: String, required: true },
-  profileUrl: { type: String },
-  appointments: { type: Object },
-  tasks: { type: Object },
-  notifications: { type: Object },
+  fullNames: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  profileUrl: {
+    type: String,
+  },
+  appointments: {
+    type: Object,
+  },
+  tasks: {
+    type: Object,
+  },
+  notifications: {
+    type: Object,
+  },
 });
 
 userSchema.methods.generateAuthToken = function () {
@@ -21,8 +41,6 @@ userSchema.methods.generateAuthToken = function () {
   });
   return token;
 };
-
-const User = mongoose.model("user", userSchema);
 
 const validate = (data) => {
   const schema = Joi.object({
@@ -34,6 +52,7 @@ const validate = (data) => {
   return schema.validate(data);
 };
 
+const User = mongoose.model("User", userSchema);
 module.exports = { User, validate };
-registerSchema("User", userSchema);
+registerSchema("User", User);
 registerSchema("validate", validate);

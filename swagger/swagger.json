@@ -16,7 +16,7 @@
       },
       "version": "1.0.0"
     },
-    "host": "localhost:5008",
+    "host": "localhost:4000",
     "basePath": "/",
     "schemes": [
       "http"
@@ -184,11 +184,137 @@
           },
           "date": {
             "type": "string",
-            "example": "11/1/2022, 3:37:06 PM"
+            "example": "12/23/2022, 5:34:19 PM"
           },
           "duration": {
             "type": "string",
-            "example": "11/1/2022, 3:37:06 PM"
+            "example": "12/23/2022, 5:34:19 PM"
+          },
+          "_id": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "required": true
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "hooks": {
+            "type": "object"
+          },
+          "base": {
+            "type": "object"
+          },
+          "modelName": {
+            "type": "string"
+          },
+          "model": {
+            "type": "object"
+          },
+          "db": {
+            "type": "object"
+          },
+          "discriminators": {
+            "type": "object"
+          },
+          "events": {
+            "type": "object"
+          },
+          "$appliedMethods": {
+            "type": "boolean"
+          },
+          "$appliedHooks": {
+            "type": "boolean"
+          },
+          "_middleware": {
+            "type": "object"
+          },
+          "$__insertMany": {
+            "type": "object"
+          },
+          "schema": {
+            "type": "object"
+          },
+          "collection": {
+            "type": "object"
+          },
+          "$__collection": {
+            "type": "object"
+          },
+          "Query": {
+            "type": "object"
+          },
+          "$init": {
+            "type": "object"
+          },
+          "$caught": {
+            "type": "boolean"
+          }
+        }
+      },
+      "validate": {
+        "type": "object",
+        "properties": {}
+      },
+      "Clientgoogle": {
+        "type": "object",
+        "properties": {
+          "given_name": {
+            "type": "string",
+            "example": "string"
+          },
+          "userName": {
+            "type": "string",
+            "example": "string"
+          },
+          "email": {
+            "type": "string",
+            "example": "string"
+          },
+          "password": {
+            "type": "string",
+            "example": "string"
+          },
+          "contact": {
+            "type": "number",
+            "example": 0
+          },
+          "employees": {
+            "type": "array"
+          },
+          "servicesOffered": {
+            "type": "array"
+          },
+          "bio": {
+            "type": "string",
+            "example": "string"
+          },
+          "_id": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "required": true
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
+      },
+      "Otpmodel": {
+        "type": "object",
+        "properties": {
+          "OTP": {
+            "type": "string",
+            "example": "string"
+          },
+          "email": {
+            "type": "string",
+            "example": "string"
           },
           "_id": {
             "type": "string",
@@ -219,13 +345,13 @@
             "example": "507f1f77bcf86cd799439011",
             "required": true
           },
-          "updatedAt": {
-            "type": "string",
-            "example": "11/1/2022, 3:37:06 PM"
-          },
           "createdAt": {
             "type": "string",
-            "example": "11/1/2022, 3:37:06 PM"
+            "example": "12/23/2022, 5:34:19 PM"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "12/23/2022, 5:34:19 PM"
           },
           "__v": {
             "type": "number",
@@ -242,7 +368,7 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "11/1/2022, 3:37:06 PM"
+            "example": "12/23/2022, 5:34:19 PM"
           },
           "completed": {
             "type": "boolean",
