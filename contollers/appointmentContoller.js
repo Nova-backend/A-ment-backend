@@ -1,7 +1,7 @@
 const { Appointment, validation } = require("../models/appointmentModel");
 const _ = require("lodash");
-
 module.exports.createAppointment = () => {
+
   return async (req, res) => {
     const { error } = await validation(req.body);
     const appointment = new Appointment({
@@ -15,6 +15,7 @@ module.exports.createAppointment = () => {
       console.log("error", error);
     }
     await appointment.save();
+  
   };
 };
 

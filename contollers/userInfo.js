@@ -269,6 +269,7 @@ module.exports.getGoogleUser = () => {
       .catch((error) => {
         throw new Error(error);
       });
+    
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(req.body.password, salt, async (err, hash) => {
         const usergoogle = new Usergoogle({
@@ -321,6 +322,4 @@ function getTokens({ code }) {
       throw new Error(error);
     });
 }
-module.exports.signupGoogle = () => {
-  return async (req, res) => {};
-};
+

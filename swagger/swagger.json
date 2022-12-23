@@ -184,11 +184,11 @@
           },
           "date": {
             "type": "string",
-            "example": "12/23/2022, 5:34:19 PM"
+            "example": "12/23/2022, 7:50:17 PM"
           },
           "duration": {
             "type": "string",
-            "example": "12/23/2022, 5:34:19 PM"
+            "example": "12/23/2022, 7:50:18 PM"
           },
           "_id": {
             "type": "string",
@@ -347,11 +347,11 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "12/23/2022, 5:34:19 PM"
+            "example": "12/23/2022, 7:50:18 PM"
           },
           "updatedAt": {
             "type": "string",
-            "example": "12/23/2022, 5:34:19 PM"
+            "example": "12/23/2022, 7:50:18 PM"
           },
           "__v": {
             "type": "number",
@@ -368,7 +368,7 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "12/23/2022, 5:34:19 PM"
+            "example": "12/23/2022, 7:50:18 PM"
           },
           "completed": {
             "type": "boolean",
