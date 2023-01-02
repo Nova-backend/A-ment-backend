@@ -1,5 +1,5 @@
 const express = require("express");
-const {registerDefinition} = require("swaggiffy");
+// const {registerDefinition} = require("swaggiffy");
 const serviceAppointmentRouter = express.Router();
 const {
     createAppointment,
@@ -11,5 +11,5 @@ const {
 serviceAppointmentRouter.put("/updateAppointment/:id", updateAppointment());
 serviceAppointmentRouter.get("/getAppointment", getAppointment());
 serviceAppointmentRouter.delete("/cancelAppointment/:id", cancelAppointment());
-registerDefinition(serviceAppointmentRouter, {tags:'ServiceAppointment', mappedSchema:'ServiceAppointment',basePath:'/serviceAppointment'})
+// registerDefinition(serviceAppointmentRouter, {tags:'ServiceAppointment', mappedSchema:'ServiceAppointment',basePath:'/serviceAppointment'})
 module.exports.serviceAppointmentRouter = serviceAppointmentRouter;

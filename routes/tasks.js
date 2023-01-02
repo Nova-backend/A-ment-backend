@@ -1,7 +1,7 @@
 
     const express = require("express");
     const taskRouter = express.Router();
-    const {registerDefinition} = require("swaggiffy");
+    // const {registerDefinition} = require("swaggiffy");
 const {
     createTask,
     updateTask,
@@ -13,5 +13,5 @@ const {
     taskRouter.put("/updateTask/:id", updateTask());
     taskRouter.delete("/deleteTask/:id", deleteTask());
     taskRouter.get("/getTask", getTasks());
-    registerDefinition(taskRouter, {tags:'Task', mappedSchema:'Task',basePath:'/task'})
+    // registerDefinition(taskRouter, {tags:'Task', mappedSchema:'Task',basePath:'/task'})
     module.exports.taskRouter = taskRouter;

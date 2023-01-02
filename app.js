@@ -21,8 +21,8 @@ const {serviceProviderRouter} = require("./routes/serviceProvider.js");
 const {messageRouter} = require("./routes/message.js");
 
 
-const { Swaggiffy } = require("swaggiffy");
-new Swaggiffy().setupExpress(app).swaggiffy();
+const swaggerDocument = require('./swagger/swagger.json');
+const swaggerUi = require('swagger-ui-express');
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 const stripe = require("stripe")(stripeSecretKey);
@@ -56,6 +56,7 @@ io.on("connection", (socket) => {
     }
   });
 });
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.get("/", function (req, res) {
   res.send("Welcome to A_ment Backend");
 });
