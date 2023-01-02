@@ -2,19 +2,27 @@ const dotenv = require("dotenv");
 dotenv.config();
 const PORT = process.env.PORT;
 const path = require("path");
-
 const express = require("express");
 const app = express();
+const cors = require('cors');
+app.use(cors());
 
 const mongoose = require("mongoose");
 mongoose.connect(process.env.URL).then(() => {
   console.log("Database successfully connected");
 });
-const router = require("./routes/routes.js");
+const {middleware} = require("./middlewares/mainMiddleware.js");
+const {clientRouter} = require("./routes/client.js");
+const {serviceAppointmentRouter} = require("./routes/serviceAppointments.js");
+const {paymentRouter} = require("./routes/payment.js");
+const {taskRouter} = require("./routes/tasks.js");
+const {clientAppointmentRouter} = require("./routes/clientAppointment.js");
+const {serviceProviderRouter} = require("./routes/serviceProvider.js");
+const {messageRouter} = require("./routes/message.js");
 
-const swaggerDocument = require('./swagger/swagger.json');
-const swaggerUi = require('swagger-ui-express');
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
+const { Swaggiffy } = require("swaggiffy");
+new Swaggiffy().setupExpress(app).swaggiffy();
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 const stripe = require("stripe")(stripeSecretKey);
@@ -40,7 +48,7 @@ io.on("connection", (socket) => {
   socket.on("add-user", (userId) => {
     onlineUsers.set(userId, socket.id);
   });
-
+  
   socket.on("send-msg", (data) => {
     const sendUserSocket = onlineUsers.get(data.to);
     if (sendUserSocket) {
@@ -51,7 +59,15 @@ io.on("connection", (socket) => {
 app.get("/", function (req, res) {
   res.send("Welcome to A_ment Backend");
 });
-app.use("/", router);
+middleware(app);
+app.use("/client", clientRouter);
+app.use("/serviceAppointment", serviceAppointmentRouter);
+app.use("/payment", paymentRouter);
+app.use("/task", taskRouter);
+app.use("/clientAppointment", clientAppointmentRouter);
+app.use("/serviceProvider", serviceProviderRouter);
+app.use("/message", messageRouter);
+
 app.listen(PORT, () => {
   console.log(`The server is learning on port ${PORT}`);
 });
