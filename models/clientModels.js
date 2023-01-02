@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
-const { registerSchema } = require("swaggiffy");
+// const { registerSchema } = require("swaggiffy");
 
 const userSchema = new mongoose.Schema({
   fullNames: {
@@ -54,5 +54,5 @@ const validate = (data) => {
 
 const User = mongoose.model("User", userSchema);
 module.exports = { User, validate };
-registerSchema("User", User);
-registerSchema("validate", validate);
+// registerSchema("User", User);
+// registerSchema("validate", validate);

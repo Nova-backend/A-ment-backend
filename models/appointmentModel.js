@@ -1,6 +1,6 @@
 // const { StreamingQuerystring } = require('formidable/parsers');
 const mongoose = require("mongoose");
-const { registerSchema } = require("swaggiffy");
+// const { registerSchema } = require("swaggiffy");
 const joi = require("joi");
 const Appointment = mongoose.Schema({
   service: {
@@ -31,5 +31,5 @@ const validation = (data) => {
 
 module.exports.validation = validation;
 module.exports.Appointment = mongoose.model("appointment", Appointment);
-registerSchema("appointment", Appointment);
-registerSchema("validation", validation);
+// registerSchema("appointment", Appointment);
+// registerSchema("validation", validation);
