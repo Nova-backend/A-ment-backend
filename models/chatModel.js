@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { registerSchema } = require("swaggiffy");
+// const { registerSchema } = require("swaggiffy");
 
 const messageSchema = mongoose.Schema(
   {
@@ -7,11 +7,13 @@ const messageSchema = mongoose.Schema(
       text: { type: String, required: true },
     },
     users: Array,
-    sender: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    }],
+    sender: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+    ],
   },
   {
     timestamps: true,
@@ -19,4 +21,4 @@ const messageSchema = mongoose.Schema(
 );
 
 module.exports = mongoose.model("Messages", messageSchema);
-registerSchema("Messages", messageSchema);
+// registerSchema("Messages", messageSchema);
