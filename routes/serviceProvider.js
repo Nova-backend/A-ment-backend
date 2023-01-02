@@ -1,5 +1,5 @@
 const express = require("express");
-// const {registerDefinition} = require("swaggiffy");
+const {registerDefinition} = require("swaggiffy");
 const serviceProviderRouter = express.Router();
 const {
     signup,
@@ -23,5 +23,5 @@ serviceProviderRouter.put("/forgotpassword", forgotPassword());
 serviceProviderRouter.get("/signup/google", oAuth());
 serviceProviderRouter.post("/signup/google", oAuth());
 serviceProviderRouter.get("/auth/google", getGoogleUser());
-// registerDefinition(serviceProviderRouter, {tags:'ServiceProvider', mappedSchema:'ServiceProvider',basePath:'/serviceProvider'})
+registerDefinition(serviceProviderRouter, {tags:'ServiceProvider', mappedSchema:'ServiceProvider',basePath:'/serviceProvider'})
 module.exports.serviceProviderRouter = serviceProviderRouter;

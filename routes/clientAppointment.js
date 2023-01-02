@@ -1,5 +1,5 @@
 const express = require("express");
-// const {registerDefinition} = require("swaggiffy");
+const {registerDefinition} = require("swaggiffy");
 const clientAppointmentRouter = express.Router();
 const {
     deleteAppoint,
@@ -13,6 +13,6 @@ const {
     clientAppointmentRouter.get("/display/:id", getAppoint);
     clientAppointmentRouter.put("/update/:id", updatedAppoint);
     clientAppointmentRouter.delete("/delete/:id", deleteAppoint);
-    // registerDefinition(clientAppointmentRouter, {tags:'ClientAppointment', mappedSchema:'ClientAppointment',basePath:'/clientAppointment'})
+    registerDefinition(clientAppointmentRouter, {tags:'ClientAppointment', mappedSchema:'ClientAppointment',basePath:'/clientAppointment'})
 module.exports.clientAppointmentRouter = clientAppointmentRouter;
 
