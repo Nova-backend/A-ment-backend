@@ -6,7 +6,7 @@ const cloudinary = require("cloudinary");
 const QueryString = require("qs");
 const otpGenerator = require("otp-generator");
 const redirectURI = "auth/google";
-const { generateUserToken } = require("../auth/auth");
+const { generateUserToken } = require("../middlewares/auth");
 const axios = require("axios");
 const { Usergoogle } = require("../models/googleUserModel.js");
 cloudinary.config({
