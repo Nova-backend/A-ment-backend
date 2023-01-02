@@ -1,5 +1,5 @@
 {
-  "name": "panga",
+  "name": "A-ment",
   "version": "1.0.0",
   "description": "a scheduling app",
   "main": "app.js",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/Nova-backend/Appointments-backend.git"
   },
-  "author": "panga",
+  "author": "A-ment",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Nova-backend/Appointmen￼ts-backend/issues"

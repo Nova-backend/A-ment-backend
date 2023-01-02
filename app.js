@@ -20,9 +20,9 @@ const {clientAppointmentRouter} = require("./routes/clientAppointment.js");
 const {serviceProviderRouter} = require("./routes/serviceProvider.js");
 const {messageRouter} = require("./routes/message.js");
 
-
-const { Swaggiffy } = require("swaggiffy");
+const { Swaggiffy } = require('swaggiffy'); 
 new Swaggiffy().setupExpress(app).swaggiffy();
+
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 const stripe = require("stripe")(stripeSecretKey);
@@ -42,7 +42,6 @@ const io = socket(8080, {
 });
 //store all online users inside this map
 global.onlineUsers = new Map();
-
 io.on("connection", (socket) => {
   global.chatSocket = socket;
   socket.on("add-user", (userId) => {
@@ -56,6 +55,7 @@ io.on("connection", (socket) => {
     }
   });
 });
+
 app.get("/", function (req, res) {
   res.send("Welcome to A_ment Backend");
 });
