@@ -1,6 +1,5 @@
 {
   "swaggerDefinition": {
-    "openapi": " 3.0.1",
     "swagger": "2.0",
     "info": {
       "title": "panga",
@@ -17,7 +16,7 @@
       },
       "version": "1.0.0"
     },
-    "host": "localhost:4000",
+    "host": "localhost:5008",
     "basePath": "/",
     "schemes": [
       "http"
@@ -29,390 +28,1421 @@
         "in": "header"
       }
     },
-    "paths": {},
-    "definitions": {
-      "User": {
-        "type": "object",
-        "properties": {
-          "hooks": {
-            "type": "object"
+    "paths": {
+      "/client/signup": {
+        "post": {
+          "tags": [
+            "Client"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
           },
-          "base": {
-            "type": "object"
-          },
-          "modelName": {
-            "type": "string"
-          },
-          "model": {
-            "type": "object"
-          },
-          "db": {
-            "type": "object"
-          },
-          "discriminators": {
-            "type": "object"
-          },
-          "events": {
-            "type": "object"
-          },
-          "$appliedMethods": {
-            "type": "boolean"
-          },
-          "$appliedHooks": {
-            "type": "boolean"
-          },
-          "_middleware": {
-            "type": "object"
-          },
-          "$__insertMany": {
-            "type": "object"
-          },
-          "schema": {
-            "type": "object"
-          },
-          "collection": {
-            "type": "object"
-          },
-          "$__collection": {
-            "type": "object"
-          },
-          "Query": {
-            "type": "object"
-          },
-          "$init": {
-            "type": "object"
-          },
-          "$caught": {
-            "type": "boolean"
-          }
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
         }
       },
-      "validate": {
-        "type": "object",
-        "properties": {}
-      },
-      "Clientgoogle": {
-        "type": "object",
-        "properties": {
-          "given_name": {
-            "type": "string",
-            "example": "string"
+      "/client/signin": {
+        "post": {
+          "tags": [
+            "Client"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
           },
-          "userName": {
-            "type": "string",
-            "example": "string"
-          },
-          "email": {
-            "type": "string",
-            "example": "string"
-          },
-          "password": {
-            "type": "string",
-            "example": "string"
-          },
-          "contact": {
-            "type": "number",
-            "example": 0
-          },
-          "employees": {
-            "type": "array"
-          },
-          "servicesOffered": {
-            "type": "array"
-          },
-          "bio": {
-            "type": "string",
-            "example": "string"
-          },
-          "_id": {
-            "type": "string",
-            "example": "507f1f77bcf86cd799439011",
-            "required": true
-          },
-          "__v": {
-            "type": "number",
-            "example": 0
-          }
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
         }
       },
-      "Otpmodel": {
-        "type": "object",
-        "properties": {
-          "OTP": {
-            "type": "string",
-            "example": "string"
+      "/serviceAppointment/createAppointment": {
+        "post": {
+          "tags": [
+            "ServiceAppointment"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/ServiceAppointment"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/ServiceAppointment"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
           },
-          "email": {
-            "type": "string",
-            "example": "string"
-          },
-          "_id": {
-            "type": "string",
-            "example": "507f1f77bcf86cd799439011",
-            "required": true
-          },
-          "__v": {
-            "type": "number",
-            "example": 0
-          }
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
         }
       },
-      "appointment": {
-        "type": "object",
-        "properties": {
-          "service": {
-            "type": "string",
-            "example": "string"
+      "/serviceAppointment/updateAppointment/{id}": {
+        "put": {
+          "tags": [
+            "ServiceAppointment"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/ServiceAppointment"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/ServiceAppointment"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
           },
-          "clientName": {
-            "type": "string",
-            "example": "string"
-          },
-          "date": {
-            "type": "string",
-            "example": "1/2/2023, 6:10:51 PM"
-          },
-          "duration": {
-            "type": "string",
-            "example": "1/2/2023, 6:10:51 PM"
-          },
-          "_id": {
-            "type": "string",
-            "example": "507f1f77bcf86cd799439011",
-            "required": true
-          },
-          "__v": {
-            "type": "number",
-            "example": 0
-          }
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
         }
       },
-      "validation": {
-        "type": "object",
-        "properties": {}
-      },
-      "user": {
-        "type": "object",
-        "properties": {
-          "fullName": {
-            "type": "string",
-            "example": "string"
+      "/serviceAppointment/getAppointment": {
+        "get": {
+          "tags": [
+            "ServiceAppointment"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ServiceAppointment"
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Internal Server Error"
+                  }
+                }
+              }
+            }
           },
-          "userName": {
-            "type": "string",
-            "example": "string"
-          },
-          "email": {
-            "type": "string",
-            "example": "string"
-          },
-          "password": {
-            "type": "string",
-            "example": "string"
-          },
-          "image": {
-            "type": "string",
-            "example": "string"
-          },
-          "contact": {
-            "type": "number",
-            "example": 0
-          },
-          "skills": {
-            "type": "string",
-            "example": "string"
-          },
-          "cv": {
-            "type": "string",
-            "example": "string"
-          },
-          "achievements": {
-            "type": "object"
-          },
-          "certifications": {
-            "type": "string",
-            "example": "string"
-          },
-          "employees": {
-            "type": "array"
-          },
-          "servicesOffered": {
-            "type": "array"
-          },
-          "bio": {
-            "type": "string",
-            "example": "string"
-          },
-          "googleId": {
-            "type": "string",
-            "example": "string"
-          },
-          "_id": {
-            "type": "string",
-            "example": "507f1f77bcf86cd799439011",
-            "required": true
-          },
-          "__v": {
-            "type": "number",
-            "example": 0
-          }
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
         }
       },
-      "OTP": {
-        "type": "object",
-        "properties": {
-          "OTP": {
-            "type": "string",
-            "example": "string"
+      "/serviceAppointment/cancelAppointment/{id}": {
+        "delete": {
+          "tags": [
+            "ServiceAppointment"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deleted": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
           },
-          "email": {
-            "type": "string",
-            "example": "string"
-          },
-          "_id": {
-            "type": "string",
-            "example": "507f1f77bcf86cd799439011",
-            "required": true
-          },
-          "__v": {
-            "type": "number",
-            "example": 0
-          }
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
         }
       },
-      "task": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string",
-            "example": "string"
+      "/payment/cardPayment": {
+        "post": {
+          "tags": [
+            "Payment"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Payment"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/Payment"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
           },
-          "createdAt": {
-            "type": "string",
-            "example": "1/2/2023, 6:10:51 PM"
-          },
-          "completed": {
-            "type": "boolean",
-            "example": false
-          },
-          "_id": {
-            "type": "string",
-            "example": "507f1f77bcf86cd799439011",
-            "required": true
-          },
-          "__v": {
-            "type": "number",
-            "example": 0
-          }
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
         }
       },
-      "userdb": {
-        "type": "object",
-        "properties": {
-          "company": {
-            "type": "string",
-            "example": "string"
+      "/payment/momopayment": {
+        "post": {
+          "tags": [
+            "Payment"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Payment"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/Payment"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
           },
-          "serviceNeeded": {
-            "type": "string",
-            "example": "string"
-          },
-          "specificStaff": {
-            "type": "string",
-            "example": "string"
-          },
-          "_id": {
-            "type": "string",
-            "example": "507f1f77bcf86cd799439011",
-            "required": true
-          },
-          "__v": {
-            "type": "number",
-            "example": 0
-          }
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
         }
       },
-      "usergoogle": {
-        "type": "object",
-        "properties": {
-          "given_name": {
-            "type": "string",
-            "example": "string"
+      "/task/createTask": {
+        "post": {
+          "tags": [
+            "Task"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
           },
-          "userName": {
-            "type": "string",
-            "example": "string"
-          },
-          "email": {
-            "type": "string",
-            "example": "string"
-          },
-          "password": {
-            "type": "string",
-            "example": "string"
-          },
-          "image": {
-            "type": "string",
-            "example": "string"
-          },
-          "contact": {
-            "type": "number",
-            "example": 0
-          },
-          "employees": {
-            "type": "array"
-          },
-          "servicesOffered": {
-            "type": "array"
-          },
-          "bio": {
-            "type": "string",
-            "example": "string"
-          },
-          "_id": {
-            "type": "string",
-            "example": "507f1f77bcf86cd799439011",
-            "required": true
-          },
-          "__v": {
-            "type": "number",
-            "example": 0
-          }
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
         }
       },
-      "Messages": {
-        "type": "object",
-        "properties": {
-          "message.text": {
-            "type": "string",
-            "example": "string"
+      "/task/updateTask/{id}": {
+        "put": {
+          "tags": [
+            "Task"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/Task"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
           },
-          "users": {
-            "type": "array"
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/task/deleteTask/{id}": {
+        "delete": {
+          "tags": [
+            "Task"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deleted": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
           },
-          "sender": {
-            "type": "array"
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/task/getTask": {
+        "get": {
+          "tags": [
+            "Task"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Task"
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Internal Server Error"
+                  }
+                }
+              }
+            }
           },
-          "_id": {
-            "type": "string",
-            "example": "507f1f77bcf86cd799439011",
-            "required": true
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/clientAppointment/create": {
+        "post": {
+          "tags": [
+            "ClientAppointment"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/ClientAppointment"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/ClientAppointment"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
           },
-          "createdAt": {
-            "type": "string",
-            "example": "1/2/2023, 6:10:52 PM"
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/clientAppointment/find": {
+        "get": {
+          "tags": [
+            "ClientAppointment"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ClientAppointment"
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Internal Server Error"
+                  }
+                }
+              }
+            }
           },
-          "updatedAt": {
-            "type": "string",
-            "example": "1/2/2023, 6:10:52 PM"
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/clientAppointment/display/{id}": {
+        "get": {
+          "tags": [
+            "ClientAppointment"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ClientAppointment"
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Internal Server Error"
+                  }
+                }
+              }
+            }
           },
-          "__v": {
-            "type": "number",
-            "example": 0
-          }
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/clientAppointment/update/{id}": {
+        "put": {
+          "tags": [
+            "ClientAppointment"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/ClientAppointment"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/ClientAppointment"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/clientAppointment/delete/{id}": {
+        "delete": {
+          "tags": [
+            "ClientAppointment"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deleted": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/serviceProvider/signup": {
+        "post": {
+          "tags": [
+            "ServiceProvider"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/serviceProvider/verifyEmail": {
+        "post": {
+          "tags": [
+            "ServiceProvider"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/serviceProvider/updateUser/{id}": {
+        "put": {
+          "tags": [
+            "ServiceProvider"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/serviceProvider/deleteUser/{id}": {
+        "delete": {
+          "tags": [
+            "ServiceProvider"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deleted": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/serviceProvider/getUser": {
+        "get": {
+          "tags": [
+            "ServiceProvider"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ServiceProvider"
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Internal Server Error"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/serviceProvider/login": {
+        "post": {
+          "tags": [
+            "ServiceProvider"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/serviceProvider/forgotpassword": {
+        "put": {
+          "tags": [
+            "ServiceProvider"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/serviceProvider/signup/google": {
+        "get": {
+          "tags": [
+            "ServiceProvider"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ServiceProvider"
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Internal Server Error"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        },
+        "post": {
+          "tags": [
+            "ServiceProvider"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/ServiceProvider"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/serviceProvider/auth/google": {
+        "get": {
+          "tags": [
+            "ServiceProvider"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/ServiceProvider"
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Internal Server Error"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/message/addMessage": {
+        "post": {
+          "tags": [
+            "Message"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Message"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/Message"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/message/getMessage": {
+        "get": {
+          "tags": [
+            "Message"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Message"
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "example": "Internal Server Error"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/message/updateMessage/{id}": {
+        "put": {
+          "tags": [
+            "Message"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/Message"
+              }
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/definitions/Message"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
+        }
+      },
+      "/message/deleteMessage/{id}": {
+        "delete": {
+          "tags": [
+            "Message"
+          ],
+          "summary": "",
+          "description": "",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "id",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deleted": {
+                    "type": "boolean",
+                    "example": true
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          },
+          "security": [
+            {
+              "Bearer": [
+                "global"
+              ]
+            }
+          ]
         }
       }
-    }
+    },
+    "definitions": {}
   },
   "apis": []
 }
