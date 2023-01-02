@@ -1,6 +1,6 @@
 const { boolean } = require("joi");
 const mongoose = require("mongoose");
-// const { registerSchema } = require("swaggiffy");
+const { registerSchema } = require("swaggiffy");
 
 const Task = new mongoose.Schema({
   title: {
@@ -17,4 +17,4 @@ const Task = new mongoose.Schema({
   },
 });
 module.exports.Task = mongoose.model("task", Task);
-// registerSchema("task", Task);
+registerSchema("task", Task);

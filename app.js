@@ -12,9 +12,9 @@ mongoose.connect(process.env.URL).then(() => {
 });
 const router = require("./routes/routes.js");
 
-const swaggerDocument = require('./swagger/swagger.json');
-const swaggerUi = require('swagger-ui-express');
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+const { Swaggiffy } = require("swaggiffy");
+new Swaggiffy().setupExpress(app).swaggiffy();
+
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 const stripe = require("stripe")(stripeSecretKey);

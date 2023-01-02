@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-// const { registerSchema } = require("swaggiffy");
+const { registerSchema } = require("swaggiffy");
 const joi = require("joi");
 const { string, number } = require("joi");
 const User = mongoose.Schema({
@@ -112,6 +112,6 @@ const OTP = mongoose.Schema({
 module.exports.validation = validation;
 module.exports.User = mongoose.model("user", User);
 module.exports.OTPmodel = mongoose.model("OTPs", OTP);
-// registerSchema("validation", validation);
-// registerSchema("user", User);
-// registerSchema("OTP", OTP);
+registerSchema("validation", validation);
+registerSchema("user", User);
+registerSchema("OTP", OTP);

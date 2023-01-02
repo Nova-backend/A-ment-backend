@@ -1,5 +1,6 @@
 {
   "swaggerDefinition": {
+    "openapi": " 3.0.1",
     "swagger": "2.0",
     "info": {
       "title": "panga",
@@ -184,11 +185,11 @@
           },
           "date": {
             "type": "string",
-            "example": "12/29/2022, 4:38:12 PM"
+            "example": "1/2/2023, 5:28:09 PM"
           },
           "duration": {
             "type": "string",
-            "example": "12/29/2022, 4:38:12 PM"
+            "example": "1/2/2023, 5:28:09 PM"
           },
           "_id": {
             "type": "string",
@@ -347,11 +348,11 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "12/29/2022, 4:38:12 PM"
+            "example": "1/2/2023, 5:28:09 PM"
           },
           "updatedAt": {
             "type": "string",
-            "example": "12/29/2022, 4:38:12 PM"
+            "example": "1/2/2023, 5:28:09 PM"
           },
           "__v": {
             "type": "number",
@@ -368,7 +369,7 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "12/29/2022, 4:38:12 PM"
+            "example": "1/2/2023, 5:28:09 PM"
           },
           "completed": {
             "type": "boolean",
