@@ -13,5 +13,5 @@ const {
     taskRouter.put("/updateTask/:id", updateTask());
     taskRouter.delete("/deleteTask/:id", deleteTask());
     taskRouter.get("/getTask", getTasks());
-    registerDefinition(taskRouter, {tags:'Task', mappedSchema:'Task',basePath:'/task'})
+    registerDefinition(taskRouter, {tags:'Task', mappedSchema:'task',basePath:'/task'})
     module.exports.taskRouter = taskRouter;
