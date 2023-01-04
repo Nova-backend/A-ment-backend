@@ -1582,11 +1582,11 @@
           },
           "date": {
             "type": "string",
-            "example": "1/3/2023, 8:09:14 PM"
+            "example": "1/4/2023, 5:12:01 PM"
           },
           "duration": {
             "type": "string",
-            "example": "1/3/2023, 8:09:14 PM"
+            "example": "1/4/2023, 5:12:02 PM"
           },
           "_id": {
             "type": "string",
@@ -1602,6 +1602,52 @@
       "validation": {
         "type": "object",
         "properties": {}
+      },
+      "PaymentDetails": {
+        "type": "object",
+        "properties": {
+          "phone_number": {
+            "type": "string",
+            "example": "string"
+          },
+          "amount": {
+            "type": "number",
+            "example": 0
+          },
+          "email": {
+            "type": "string",
+            "example": "string"
+          },
+          "fullname": {
+            "type": "string",
+            "example": "string"
+          },
+          "currency": {
+            "type": "string",
+            "example": "string"
+          },
+          "payment_type": {
+            "type": "string",
+            "example": "string"
+          },
+          "order_id": {
+            "type": "string",
+            "example": "string"
+          },
+          "tx_ref": {
+            "type": "string",
+            "example": "string"
+          },
+          "_id": {
+            "type": "string",
+            "example": "507f1f77bcf86cd799439011",
+            "required": true
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        }
       },
       "user": {
         "type": "object",
@@ -1701,7 +1747,7 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "1/3/2023, 8:09:15 PM"
+            "example": "1/4/2023, 5:12:05 PM"
           },
           "completed": {
             "type": "boolean",
@@ -1812,11 +1858,11 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "1/3/2023, 8:09:15 PM"
+            "example": "1/4/2023, 5:12:10 PM"
           },
           "updatedAt": {
             "type": "string",
-            "example": "1/3/2023, 8:09:15 PM"
+            "example": "1/4/2023, 5:12:10 PM"
           },
           "__v": {
             "type": "number",
