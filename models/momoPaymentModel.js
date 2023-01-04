@@ -1,6 +1,6 @@
 const { string } = require('joi');
 const mongoose = require('mongoose');
-
+const { registerSchema } = require('swaggiffy');
 const PaymentDetails =  mongoose.Schema({
     phone_number: {
         type:String,
@@ -40,4 +40,5 @@ const PaymentDetails =  mongoose.Schema({
    }
 
 })
-module.exports.PaymentDetails = mongoose.model("payload", PaymentDetails)
+module.exports.PaymentDetails = mongoose.model("payload", PaymentDetails);
+registerSchema("PaymentDetails", PaymentDetails);

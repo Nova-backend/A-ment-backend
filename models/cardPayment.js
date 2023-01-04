@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { registerSchema } = require("swaggiffy")
 const Payment = mongoose.Schema({
   amount: {
     type: Number,
@@ -19,3 +19,4 @@ const Payment = mongoose.Schema({
   }
 });
 module.exports.Payment = mongoose.model("payment", Payment);
+registerSchema("Payment",Payment);
