@@ -23,5 +23,5 @@ serviceProviderRouter.put("/forgotpassword", forgotPassword());
 serviceProviderRouter.get("/signup/google", oAuth());
 serviceProviderRouter.post("/signup/google", oAuth());
 serviceProviderRouter.get("/auth/google", getGoogleUser());
-registerDefinition(serviceProviderRouter, {tags:'ServiceProvider', mappedSchema:'ServiceProvider',basePath:'/serviceProvider'})
+registerDefinition(serviceProviderRouter, {tags:'ServiceProvider', mappedSchema:'user',basePath:'/serviceProvider'})
 module.exports.serviceProviderRouter = serviceProviderRouter;

@@ -19,10 +19,8 @@ const {taskRouter} = require("./routes/tasks.js");
 const {clientAppointmentRouter} = require("./routes/clientAppointment.js");
 const {serviceProviderRouter} = require("./routes/serviceProvider.js");
 const {messageRouter} = require("./routes/message.js");
-
 const { Swaggiffy } = require('swaggiffy'); 
 new Swaggiffy().setupExpress(app).swaggiffy();
-
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 const stripe = require("stripe")(stripeSecretKey);
@@ -67,7 +65,6 @@ app.use("/task", taskRouter);
 app.use("/clientAppointment", clientAppointmentRouter);
 app.use("/serviceProvider", serviceProviderRouter);
 app.use("/message", messageRouter);
-
 app.listen(PORT, () => {
   console.log(`The server is learning on port ${PORT}`);
 });

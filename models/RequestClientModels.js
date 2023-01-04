@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-// const { registerSchema } = require("swaggiffy");
+const { registerSchema } = require("swaggiffy");
 
 var schema = new mongoose.Schema({
   company: {
@@ -18,4 +18,4 @@ var schema = new mongoose.Schema({
 
 const Userdb = mongoose.model("clientRequestModels", schema);
 module.exports = Userdb;
-// registerSchema("userdb", schema);
+registerSchema("userdb", schema);
