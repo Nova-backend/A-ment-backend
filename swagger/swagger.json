@@ -42,7 +42,7 @@
               "name": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/Client"
+                "$ref": "#/definitions/Clientgoogle"
               }
             }
           ],
@@ -56,7 +56,7 @@
             "201": {
               "description": "Created",
               "schema": {
-                "$ref": "#/definitions/Client"
+                "$ref": "#/definitions/Clientgoogle"
               }
             },
             "500": {
@@ -85,7 +85,7 @@
               "name": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/Client"
+                "$ref": "#/definitions/Clientgoogle"
               }
             }
           ],
@@ -99,7 +99,7 @@
             "201": {
               "description": "Created",
               "schema": {
-                "$ref": "#/definitions/Client"
+                "$ref": "#/definitions/Clientgoogle"
               }
             },
             "500": {
@@ -128,7 +128,7 @@
               "name": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/ServiceAppointment"
+                "$ref": "#/definitions/appointment"
               }
             }
           ],
@@ -142,7 +142,7 @@
             "201": {
               "description": "Created",
               "schema": {
-                "$ref": "#/definitions/ServiceAppointment"
+                "$ref": "#/definitions/appointment"
               }
             },
             "500": {
@@ -177,7 +177,7 @@
               "name": "body",
               "required": false,
               "schema": {
-                "$ref": "#/definitions/ServiceAppointment"
+                "$ref": "#/definitions/appointment"
               }
             }
           ],
@@ -191,7 +191,7 @@
             "201": {
               "description": "Created",
               "schema": {
-                "$ref": "#/definitions/ServiceAppointment"
+                "$ref": "#/definitions/appointment"
               }
             },
             "500": {
@@ -227,7 +227,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/ServiceAppointment"
+                  "$ref": "#/definitions/appointment"
                 }
               }
             },
@@ -303,7 +303,7 @@
       "/payment/cardPayment": {
         "post": {
           "tags": [
-            "Payment"
+            "PaymentDetails"
           ],
           "summary": "",
           "description": "",
@@ -313,7 +313,7 @@
               "name": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/Payment"
+                "$ref": "#/definitions/PaymentDetails"
               }
             }
           ],
@@ -327,7 +327,7 @@
             "201": {
               "description": "Created",
               "schema": {
-                "$ref": "#/definitions/Payment"
+                "$ref": "#/definitions/PaymentDetails"
               }
             },
             "500": {
@@ -346,7 +346,7 @@
       "/payment/momopayment": {
         "post": {
           "tags": [
-            "Payment"
+            "PaymentDetails"
           ],
           "summary": "",
           "description": "",
@@ -356,7 +356,7 @@
               "name": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/Payment"
+                "$ref": "#/definitions/PaymentDetails"
               }
             }
           ],
@@ -370,7 +370,7 @@
             "201": {
               "description": "Created",
               "schema": {
-                "$ref": "#/definitions/Payment"
+                "$ref": "#/definitions/PaymentDetails"
               }
             },
             "500": {
@@ -584,7 +584,7 @@
               "name": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/ClientAppointment"
+                "$ref": "#/definitions/appointment"
               }
             }
           ],
@@ -598,7 +598,7 @@
             "201": {
               "description": "Created",
               "schema": {
-                "$ref": "#/definitions/ClientAppointment"
+                "$ref": "#/definitions/appointment"
               }
             },
             "500": {
@@ -634,7 +634,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/ClientAppointment"
+                  "$ref": "#/definitions/appointment"
                 }
               }
             },
@@ -687,7 +687,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/ClientAppointment"
+                  "$ref": "#/definitions/appointment"
                 }
               }
             },
@@ -732,7 +732,7 @@
               "name": "body",
               "required": false,
               "schema": {
-                "$ref": "#/definitions/ClientAppointment"
+                "$ref": "#/definitions/appointment"
               }
             }
           ],
@@ -746,7 +746,7 @@
             "201": {
               "description": "Created",
               "schema": {
-                "$ref": "#/definitions/ClientAppointment"
+                "$ref": "#/definitions/appointment"
               }
             },
             "500": {
@@ -1582,11 +1582,11 @@
           },
           "date": {
             "type": "string",
-            "example": "1/4/2023, 5:28:28 PM"
+            "example": "1/6/2023, 8:48:38 PM"
           },
           "duration": {
             "type": "string",
-            "example": "1/4/2023, 5:28:29 PM"
+            "example": "1/6/2023, 8:48:38 PM"
           },
           "_id": {
             "type": "string",
@@ -1747,7 +1747,7 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "1/4/2023, 5:28:30 PM"
+            "example": "1/6/2023, 8:48:38 PM"
           },
           "completed": {
             "type": "boolean",
@@ -1858,11 +1858,11 @@
           },
           "createdAt": {
             "type": "string",
-            "example": "1/4/2023, 5:28:31 PM"
+            "example": "1/6/2023, 8:48:38 PM"
           },
           "updatedAt": {
             "type": "string",
-            "example": "1/4/2023, 5:28:31 PM"
+            "example": "1/6/2023, 8:48:38 PM"
           },
           "__v": {
             "type": "number",

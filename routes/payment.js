@@ -7,5 +7,5 @@ const {momoPayment} = require("../contollers/momoPayment")
 paymentRouter.post("/cardPayment", stripePayment());
 paymentRouter.post("/momopayment", momoPayment());
 
-registerDefinition(paymentRouter, {tags:'PaymentDetails', mappedSchema:'Payment',basePath:'/payment'})
+registerDefinition(paymentRouter, {tags:'PaymentDetails', mappedSchema:'PaymentDetails',basePath:'/payment'})
 module.exports.paymentRouter = paymentRouter;
