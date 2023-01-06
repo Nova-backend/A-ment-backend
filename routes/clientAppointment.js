@@ -13,6 +13,6 @@ const {
     clientAppointmentRouter.get("/display/:id", getAppoint);
     clientAppointmentRouter.put("/update/:id", updatedAppoint);
     clientAppointmentRouter.delete("/delete/:id", deleteAppoint);
-    registerDefinition(clientAppointmentRouter, {tags:'appointment', mappedSchema:'ClientAppointment',basePath:'/clientAppointment'})
+    registerDefinition(clientAppointmentRouter, {tags:'appointment', mappedSchema:'appointment',basePath:'/clientAppointment'})
 module.exports.clientAppointmentRouter = clientAppointmentRouter;
 
