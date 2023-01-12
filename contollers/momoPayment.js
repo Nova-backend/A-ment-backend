@@ -1,14 +1,14 @@
-const Flutterwave = require('flutterwave-node-v3')
-const {PaymentDetails} = require('../models/momoPaymentModel')
-const { User } = require('../models/userModel')
-const _  = require('lodash')
+import Flutterwave from 'flutterwave-node-v3'
+import { PaymentDetails } from '../models/momoPaymentModel'
+import { User } from '../models/userModel'
+import { pick } from 'lodash'
 const flutterwave = new Flutterwave(
     process.env.FLW_PUBLIC_KEY, 
     process.env.FLW_SECRET_KEY
 )
-module.exports.momoPayment = () => {
+export function momoPayment() {
     return async(req,res) => {
-        let order = _.pick(req.body, [ "phone_number", "PaymentType"]);
+        let order = pick(req.body, [ "phone_number", "PaymentType"]);
         order.tx_ref = "amt_tx_ref" + Math.floor(Math.random()*1000000000 + 1);
         order.order_id = "amt_order_id" + Math.floor(Math.random()*1000000000 + 1);
         console.log(order.tx_ref);

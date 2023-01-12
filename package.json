@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "build": "npm build"
+    "start": "node api.js && nodemon app.js",
+    "build": "node api.js && npm build"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   "author": "A-ment",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Nova-backend/Appointmen￼ts-backend/issues"
+    "url": "https://github.com/Nova-backend/Appointmen\ufffcts-backend/issues"
   },
   "homepage": "https://github.com/Nova-backend/Appointments-backend#readme",
   "dependencies": {
